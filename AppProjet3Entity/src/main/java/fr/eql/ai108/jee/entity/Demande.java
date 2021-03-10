@@ -1,0 +1,202 @@
+package fr.eql.ai108.jee.entity;
+
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table (name = "demande")
+public class Demande implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column (name = "id")
+	private Integer id;
+
+	private Date dateAction;
+	private String voieAction;
+	private Date dateSoumission;
+	private Date dateAnnulation;
+	private Date dateCloture;
+	private Integer noteEvaluation;
+
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private Ville ville;
+	
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private User user;
+	
+    //@OneToMany (mappedBy = "demande", cascade = CascadeType.ALL)
+    //private Set<Toy> toys;
+	
+	
+	
+	public Demande() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Demande(Integer id, Date dateAction, String voieAction, Date dateSoumission, Date dateAnnulation,
+			Date dateCloture, Integer noteEvaluation) {
+		super();
+		this.id = id;
+		this.dateAction = dateAction;
+		this.voieAction = voieAction;
+		this.dateSoumission = dateSoumission;
+		this.dateAnnulation = dateAnnulation;
+		this.dateCloture = dateCloture;
+		this.noteEvaluation = noteEvaluation;
+	}
+
+	@Override
+	public String toString() {
+		return "Demande [id=" + id + ", dateAction=" + dateAction + ", voieAction=" + voieAction
+				+ ", dateSoumission=" + dateSoumission + ", dateAnnulation=" + dateAnnulation + ", dateCloture="
+				+ dateCloture + ", noteEvaluation=" + noteEvaluation + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dateAction == null) ? 0 : dateAction.hashCode());
+		result = prime * result + ((dateAnnulation == null) ? 0 : dateAnnulation.hashCode());
+		result = prime * result + ((dateCloture == null) ? 0 : dateCloture.hashCode());
+		result = prime * result + ((dateSoumission == null) ? 0 : dateSoumission.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + noteEvaluation;
+		result = prime * result + ((voieAction == null) ? 0 : voieAction.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Demande other = (Demande) obj;
+		if (dateAction == null) {
+			if (other.dateAction != null)
+				return false;
+		} else if (!dateAction.equals(other.dateAction))
+			return false;
+		if (dateAnnulation == null) {
+			if (other.dateAnnulation != null)
+				return false;
+		} else if (!dateAnnulation.equals(other.dateAnnulation))
+			return false;
+		if (dateCloture == null) {
+			if (other.dateCloture != null)
+				return false;
+		} else if (!dateCloture.equals(other.dateCloture))
+			return false;
+		if (dateSoumission == null) {
+			if (other.dateSoumission != null)
+				return false;
+		} else if (!dateSoumission.equals(other.dateSoumission))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (noteEvaluation != other.noteEvaluation)
+			return false;
+		if (voieAction == null) {
+			if (other.voieAction != null)
+				return false;
+		} else if (!voieAction.equals(other.voieAction))
+			return false;
+		return true;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Ville getVille() {
+		return ville;
+	}
+
+	public void setVille(Ville ville) {
+		this.ville = ville;
+	}
+
+	public Date getDateAction() {
+		return dateAction;
+	}
+
+	public void setDateAction(Date dateAction) {
+		this.dateAction = dateAction;
+	}
+
+	public String getVoieAction() {
+		return voieAction;
+	}
+
+	public void setVoieAction(String voieAction) {
+		this.voieAction = voieAction;
+	}
+
+	public Date getDateSoumission() {
+		return dateSoumission;
+	}
+
+	public void setDateSoumission(Date dateSoumission) {
+		this.dateSoumission = dateSoumission;
+	}
+
+	public Date getDateAnnulation() {
+		return dateAnnulation;
+	}
+
+	public void setDateAnnulation(Date dateAnnulation) {
+		this.dateAnnulation = dateAnnulation;
+	}
+
+	public Date getDateCloture() {
+		return dateCloture;
+	}
+
+	public void setDateCloture(Date dateCloture) {
+		this.dateCloture = dateCloture;
+	}
+
+	public Integer getNoteEvaluation() {
+		return noteEvaluation;
+	}
+
+	public void setNoteEvaluation(Integer noteEvaluation) {
+		this.noteEvaluation = noteEvaluation;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
+	
+	
+	
+}
