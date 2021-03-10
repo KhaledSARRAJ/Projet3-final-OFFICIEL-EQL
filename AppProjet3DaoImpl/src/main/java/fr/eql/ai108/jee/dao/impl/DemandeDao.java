@@ -25,4 +25,14 @@ public class DemandeDao extends GenericDao<Demande> implements DemandeIDao {
 		return demandes;
 	}
 
+	@Override
+	public boolean sameDemand(Demande demande) {
+		Query query = em.createQuery("SELECT d FROM Demande d WHERE d.activite = :param1 AND d.dateAction = :param1 AND d.heureDebut = :param3 AND ");
+		
+		
+		return false;
+	}
+	
+	
+
 }
