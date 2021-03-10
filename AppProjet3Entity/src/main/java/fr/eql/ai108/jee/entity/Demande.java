@@ -34,10 +34,42 @@ public class Demande implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
+	private Activite activite;
+	
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private Heure heureDebut;
+	
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private Minute minuteDebut;
+
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private Heure heureFin;
+	
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private Minute minuteFin;
+
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private MotifAnnul minuteFin;
+	
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private FinalDemande finaleDemande;
+	
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private ProbDemande probDemande;
+		
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
 	private User user;
 	
-    //@OneToMany (mappedBy = "demande", cascade = CascadeType.ALL)
-    //private Set<Toy> toys;
+    @OneToMany (mappedBy = "demande", cascade = CascadeType.ALL)
+    private Set<ReponseAction> reponseAction;
 	
 	
 	
@@ -193,6 +225,70 @@ public class Demande implements Serializable{
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Activite getActivite() {
+		return activite;
+	}
+
+	public void setActivite(Activite activite) {
+		this.activite = activite;
+	}
+
+	public Heure getHeureDebut() {
+		return heureDebut;
+	}
+
+	public void setHeureDebut(Heure heureDebut) {
+		this.heureDebut = heureDebut;
+	}
+
+	public Minute getMinuteDebut() {
+		return minuteDebut;
+	}
+
+	public void setMinuteDebut(Minute minuteDebut) {
+		this.minuteDebut = minuteDebut;
+	}
+
+	public Heure getHeureFin() {
+		return heureFin;
+	}
+
+	public void setHeureFin(Heure heureFin) {
+		this.heureFin = heureFin;
+	}
+
+	public Minute getMinuteFin() {
+		return minuteFin;
+	}
+
+	public void setMinuteFin(Minute minuteFin) {
+		this.minuteFin = minuteFin;
+	}
+
+	public MotifAnnul getMinuteFin() {
+		return minuteFin;
+	}
+
+	public void setMinuteFin(MotifAnnul minuteFin) {
+		this.minuteFin = minuteFin;
+	}
+
+	public FinalDemande getFinaleDemande() {
+		return finaleDemande;
+	}
+
+	public void setFinaleDemande(FinalDemande finaleDemande) {
+		this.finaleDemande = finaleDemande;
+	}
+
+	public ProbDemande getProbDemande() {
+		return probDemande;
+	}
+
+	public void setProbDemande(ProbDemande probDemande) {
+		this.probDemande = probDemande;
 	}
 	
 	
