@@ -54,7 +54,7 @@ public class Demande implements Serializable{
 
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
-	private MotifAnnul minuteFin;
+	private MotifAnnul motifAnnul;
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
@@ -68,7 +68,7 @@ public class Demande implements Serializable{
 	@JoinColumn(referencedColumnName = "id")
 	private User user;
 	
-    @OneToMany (mappedBy = "demande", cascade = CascadeType.ALL)
+    @OneToMany (mappedBy = "demande", cascade = CascadeType.PERSIST)
     private Set<ReponseAction> reponseAction;
 	
 	
@@ -267,12 +267,12 @@ public class Demande implements Serializable{
 		this.minuteFin = minuteFin;
 	}
 
-	public MotifAnnul getMinuteFin() {
-		return minuteFin;
+	public MotifAnnul getMotifAnnul() {
+		return motifAnnul;
 	}
 
-	public void setMinuteFin(MotifAnnul minuteFin) {
-		this.minuteFin = minuteFin;
+	public void setMotifAnnul(MotifAnnul motifAnnul) {
+		this.motifAnnul = motifAnnul;
 	}
 
 	public FinalDemande getFinaleDemande() {
@@ -290,9 +290,16 @@ public class Demande implements Serializable{
 	public void setProbDemande(ProbDemande probDemande) {
 		this.probDemande = probDemande;
 	}
-	
-	
-	
+
+	public Set<ReponseAction> getReponseAction() {
+		return reponseAction;
+	}
+
+	public void setReponseAction(Set<ReponseAction> reponseAction) {
+		this.reponseAction = reponseAction;
+	}
+
+
 	
 	
 }
