@@ -76,10 +76,10 @@ public class User implements Serializable{
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
 	private Set<Demande> demande;
-	/*
+	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-	private Set<Demande> repondre;
-	 */
+	private Set<ReponseAction> reponseAction;
+	 
 	public User(String nomUtil, String prenomUtil, Date dateNaissance, String emailUtil,
 			String telUtil, String voieUtil, String mdpUtil, Date dateInscriUtil, String nomContactUrg,
 			String prenomContactUrg, String telContactUrg) {
@@ -346,16 +346,15 @@ public class User implements Serializable{
 	public void setDemande(Set<Demande> demande) {
 		this.demande = demande;
 	}
-/*
-	public Set<Demande> getRepondre() {
-		return repondre;
+
+	public Set<ReponseAction> getReponseAction() {
+		return reponseAction;
 	}
 
-	public void setRepondre(Set<Demande> repondre) {
-		this.repondre = repondre;
+	public void setReponseAction(Set<ReponseAction> reponseAction) {
+		this.reponseAction = reponseAction;
 	}
 
-*/
 	
 	
 	
