@@ -7,6 +7,12 @@
 	<class>fr.eql.ai108.jee.entity.Ville</class>
 	<class>fr.eql.ai108.jee.entity.Genre</class>
 	<class>fr.eql.ai108.jee.entity.Motif_desinscription</class>
+	<class>fr.eql.ai108.jee.entity.Activite</class>
+	<class>fr.eql.ai108.jee.entity.Heure</class>
+	<class>fr.eql.ai108.jee.entity.Minute</class>
+	<class>fr.eql.ai108.jee.entity.MotifAnnulation</class>
+	<class>fr.eql.ai108.jee.entity.TypeFinalisation</class>
+	<class>fr.eql.ai108.jee.entity.ProbDemande</class>
 	<properties>
 		<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
 		<property name="hibernate.show_sql" value="true"/>
