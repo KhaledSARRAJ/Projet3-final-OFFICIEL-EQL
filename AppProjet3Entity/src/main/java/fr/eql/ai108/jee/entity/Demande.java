@@ -58,11 +58,11 @@ public class Demande implements Serializable{
 
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
-	private MotifAnnul motifAnnul;
+	private MotifAnnulation motifAnnul;
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
-	private FinalDemande finaleDemande;
+	private TypeFinalisation finaleDemande;
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
@@ -271,19 +271,19 @@ public class Demande implements Serializable{
 		this.minuteFin = minuteFin;
 	}
 
-	public MotifAnnul getMotifAnnul() {
+	public MotifAnnulation getMotifAnnul() {
 		return motifAnnul;
 	}
 
-	public void setMotifAnnul(MotifAnnul motifAnnul) {
+	public void setMotifAnnul(MotifAnnulation motifAnnul) {
 		this.motifAnnul = motifAnnul;
 	}
 
-	public FinalDemande getFinaleDemande() {
+	public TypeFinalisation getFinaleDemande() {
 		return finaleDemande;
 	}
 
-	public void setFinaleDemande(FinalDemande finaleDemande) {
+	public void setFinaleDemande(TypeFinalisation finaleDemande) {
 		this.finaleDemande = finaleDemande;
 	}
 

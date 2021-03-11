@@ -23,7 +23,7 @@ public class TypeFinalisation implements Serializable{
 	
 	private String labelTypeFinal;
 	
-	@OneToMany(mappedBy = "finalDemande", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "finaleDemande", cascade = CascadeType.PERSIST)
 	private Set<Demande> demandes;
 
 	public TypeFinalisation() {

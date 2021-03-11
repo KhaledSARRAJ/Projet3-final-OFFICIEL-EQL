@@ -32,8 +32,9 @@ public class Activite implements Serializable {
 		super();
 	}
 
-	public Activite(String labelActivite) {
+	public Activite(Integer id, String labelActivite) {
 		super();
+		this.id = id;
 		this.labelActivite = labelActivite;
 	}
 
