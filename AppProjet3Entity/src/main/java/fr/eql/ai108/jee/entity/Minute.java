@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,22 +12,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "genre")
-public class Genre implements Serializable {
-	
+@Table(name = "minute")
+public class Minute implements Serializable{
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
 	private Integer id;
 	
-	private String labelGenre;
+	private int minute;
 	
-	@OneToMany(mappedBy = "genre", cascade = CascadeType.PERSIST)
-	private Set<User> user;
-	
-	
+	@OneToMany(mappedBy = "minuteDebut", cascade = CascadeType.PERSIST)
+	private Set<Demande> demandes;
+
 	public Integer getId() {
 		return id;
 	}
@@ -37,23 +34,20 @@ public class Genre implements Serializable {
 		this.id = id;
 	}
 
-	public String getLabelGenre() {
-		return labelGenre;
+	public int getMinute() {
+		return minute;
 	}
 
-	public void setLabelGenre(String labelGenre) {
-		this.labelGenre = labelGenre;
+	public void setMinute(int minute) {
+		this.minute = minute;
 	}
 
-	public Set<User> getUser() {
-		return user;
+	public Set<Demande> getDemandes() {
+		return demandes;
 	}
 
-	public void setUser(Set<User> user) {
-		this.user = user;
+	public void setDemandes(Set<Demande> demandes) {
+		this.demandes = demandes;
 	}
 	
-	
-	
-
 }

@@ -23,7 +23,7 @@ public class MotifDesist implements Serializable{
 	
 	private String libelleMotif;
 	
-	@OneToMany(mappedBy = "ReponseAction", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "motifDesist", cascade = CascadeType.PERSIST)
     private Set<ReponseAction> reponseAction;
 
 	public MotifDesist(Integer id, String libelleMotif) {
