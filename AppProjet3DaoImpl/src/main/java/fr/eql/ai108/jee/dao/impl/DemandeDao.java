@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import fr.eql.ai108.jee.entity.Demande;
 import fr.eql.ai108.jee.idao.api.DemandeIDao;
 
+
 @Remote(DemandeIDao.class)
 @Stateless
 public class DemandeDao extends GenericDao<Demande> implements DemandeIDao {
@@ -27,10 +28,40 @@ public class DemandeDao extends GenericDao<Demande> implements DemandeIDao {
 
 	@Override
 	public boolean sameDemand(Demande demande) {
-		Query query = em.createQuery("SELECT d FROM Demande d WHERE d.activite = :param1 AND d.dateAction = :param1 AND d.heureDebut = :param3 AND ");
 		
+		boolean result = false;
 		
-		return false;
+		//Check whether there are other replicas of this demande
+		Query query = em.createQuery("SELECT d FROM Demande d WHERE d.activite_id = :param1 "
+														+ "AND d.dateAction = :param2 "
+														+ "AND d.heureDebut_id = :param3 "
+														+ "AND d.user_id = :param4");
+		
+		query.setParameter("param1", demande.getActivite().getId());
+		query.setParameter("param2", demande.getDateAction());
+		query.setParameter("param3", demande.getHeureDebut().getId());
+		query.setParameter("param4", demande.getUser().getId());
+		List<Demande> demandes = query.getResultList();
+		
+		if(demandes.size() > 0) {
+			result = true;
+		}
+		
+		return result;
+	}
+	
+	public void test() {
+		Query query = em.createQuery("SELECT d FROM Demande d");
+		Demande demande = new Demande();
+		
+		List<Demande> demandes = query.getResultList();
+		
+		if(demandes.size() > 0) {
+			System.out.println(demandes.size());
+			demande = demandes.get(0);
+		}
+		System.out.println(demande.toString());
+		
 	}
 	
 	

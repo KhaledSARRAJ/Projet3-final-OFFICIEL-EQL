@@ -36,27 +36,27 @@ INSERT INTO `probleme_demande` (id, labelProblemDemande) VALUES (2, "service imp
 INSERT INTO `probleme_demande` (id, labelProblemDemande) VALUES (3, "travail mal exécuté");
 
 -- remplissage table "heure"
-INSERT INTO `heure` (id, heure) VALUES (1, 7);
-INSERT INTO `heure` (id, heure) VALUES (2, 8);
-INSERT INTO `heure` (id, heure) VALUES (3, 9);
-INSERT INTO `heure` (id, heure) VALUES (4, 10);
-INSERT INTO `heure` (id, heure) VALUES (5, 11);
-INSERT INTO `heure` (id, heure) VALUES (6, 12);
-INSERT INTO `heure` (id, heure) VALUES (7, 13);
-INSERT INTO `heure` (id, heure) VALUES (8, 14);
-INSERT INTO `heure` (id, heure) VALUES (9, 15);
-INSERT INTO `heure` (id, heure) VALUES (10, 16);
-INSERT INTO `heure` (id, heure) VALUES (11, 17);
-INSERT INTO `heure` (id, heure) VALUES (12, 18);
-INSERT INTO `heure` (id, heure) VALUES (13, 19);
-INSERT INTO `heure` (id, heure) VALUES (14, 20);
-INSERT INTO `heure` (id, heure) VALUES (15, 21);
+INSERT INTO `heure` (id, heure) VALUES (1, "07");
+INSERT INTO `heure` (id, heure) VALUES (2, "08");
+INSERT INTO `heure` (id, heure) VALUES (3, "09");
+INSERT INTO `heure` (id, heure) VALUES (4, "10");
+INSERT INTO `heure` (id, heure) VALUES (5, "11");
+INSERT INTO `heure` (id, heure) VALUES (6, "12");
+INSERT INTO `heure` (id, heure) VALUES (7, "13");
+INSERT INTO `heure` (id, heure) VALUES (8, "14");
+INSERT INTO `heure` (id, heure) VALUES (9, "15");
+INSERT INTO `heure` (id, heure) VALUES (10, "16");
+INSERT INTO `heure` (id, heure) VALUES (11, "17");
+INSERT INTO `heure` (id, heure) VALUES (12, "18");
+INSERT INTO `heure` (id, heure) VALUES (13, "19");
+INSERT INTO `heure` (id, heure) VALUES (14, "20");
+INSERT INTO `heure` (id, heure) VALUES (15, "21");
 
 -- remplissage table "minute"
-INSERT INTO `minute` (id, minute) VALUES (1,0);
-INSERT INTO `minute` (id, minute) VALUES (2,15);
-INSERT INTO `minute` (id, minute) VALUES (3,30);
-INSERT INTO `minute` (id, minute) VALUES (4,45);
+INSERT INTO `minute` (id, minute) VALUES (1,"00");
+INSERT INTO `minute` (id, minute) VALUES (2,"15");
+INSERT INTO `minute` (id, minute) VALUES (3,"30");
+INSERT INTO `minute` (id, minute) VALUES (4,"45");
 
 -- remplissage table "user"
 INSERT INTO `user` (id, genre_id, ville_id, desinscription_id, nomUtil, prenomUtil, dateNaissance, emailUtil, telUtil, voieUtil, mdpUtil, dateInscriUtil, nomContactUrg, prenomContactUrg, telContactUrg, dateDesinscription)VALUES (1, 1, 1, null, "Jacquot", "Roch", "1991-09-26", "roch.jc@emaildfsdf", "111111", "123 ma voie", "123mdp", "2021-03-10", "Louvet", "Raphael", "1234560", null);

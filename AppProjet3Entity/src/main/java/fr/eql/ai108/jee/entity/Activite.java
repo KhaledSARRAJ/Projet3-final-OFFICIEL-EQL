@@ -62,4 +62,11 @@ public class Activite implements Serializable {
 		this.demandes = demandes;
 	}
 
+	@Override
+	public String toString() {
+		return "Activite [id=" + id + ", labelActivite=" + labelActivite + "]";
+	}
+	
+	
+
 }

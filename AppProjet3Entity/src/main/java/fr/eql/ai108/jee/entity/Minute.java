@@ -21,10 +21,46 @@ public class Minute implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private int minute;
+	private String minute;
 	
 	@OneToMany(mappedBy = "minuteDebut", cascade = CascadeType.PERSIST)
-	private Set<Demande> demandes;
+	private Set<Demande> demandesDebut;
+	
+	@OneToMany(mappedBy = "minuteFin", cascade = CascadeType.PERSIST)
+	private Set<Demande> demandesFin;
+	
+	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((minute == null) ? 0 : minute.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Minute other = (Minute) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (minute == null) {
+			if (other.minute != null)
+				return false;
+		} else if (!minute.equals(other.minute))
+			return false;
+		return true;
+	}
 
 	public Integer getId() {
 		return id;
@@ -34,20 +70,35 @@ public class Minute implements Serializable{
 		this.id = id;
 	}
 
-	public int getMinute() {
+	public String getMinute() {
 		return minute;
 	}
 
-	public void setMinute(int minute) {
+	public void setMinute(String minute) {
 		this.minute = minute;
 	}
 
-	public Set<Demande> getDemandes() {
-		return demandes;
+	public Set<Demande> getDemandesDebut() {
+		return demandesDebut;
 	}
 
-	public void setDemandes(Set<Demande> demandes) {
-		this.demandes = demandes;
+	public void setDemandesDebut(Set<Demande> demandesDebut) {
+		this.demandesDebut = demandesDebut;
 	}
+
+	public Set<Demande> getDemandesFin() {
+		return demandesFin;
+	}
+
+	public void setDemandesFin(Set<Demande> demandesFin) {
+		this.demandesFin = demandesFin;
+	}
+
+	@Override
+	public String toString() {
+		return "Minute [id=" + id + ", minute=" + minute + "]";
+	}
+	
+	
 	
 }
