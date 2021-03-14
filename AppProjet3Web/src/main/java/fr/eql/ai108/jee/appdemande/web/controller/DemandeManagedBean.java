@@ -2,8 +2,6 @@ package fr.eql.ai108.jee.appdemande.web.controller;
 
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +9,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 import fr.eql.ai108.jee.entity.Activite;
@@ -34,7 +31,7 @@ public class DemandeManagedBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	/*
+	/* A MODIFIER POUR TENIR EN COMPTE DE LA PERSONNE CONNECTEE
 	@ManagedProperty (value = "#{mbConnect.user}")
 	*/
 	private User userConnected = new User();
@@ -45,7 +42,6 @@ public class DemandeManagedBean implements Serializable {
 	private List<Activite> activites;
 	private List<Heure> heures;
 	private List<Minute> minutes;
-	private String date = "";
 	private String message = "";
 	
 	@EJB
@@ -64,25 +60,27 @@ public class DemandeManagedBean implements Serializable {
 	private MinuteIBusiness proxyMinuteBu;
 	
 	public String registerNewDemand() {
-		message = demande.getVille().getLabelVille() + " et activite " + demande.getActivite().getLabelActivite() +" à " + demande.getHeureDebut() + "h"
-				+ "rue " + demande.getVoieAction() + " le " + date;
-		Date dateDemande = null;
-		/*
-		 try {
-			System.out.println(date);
-			dateDemande=new SimpleDateFormat("yyyy-MM-dd").parse(date);
-
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  
-		*/
-		 //demande.setDateAction(dateDemande);
+		//ajoute de la date de soumission
 		 demande.setDateSoumission(new Date());
 		 
+		 //valeur temporaire, dépendra de la personne inscrite
 		 userConnected.setId(1);
 		 demande.setUser(userConnected);
-		 proxyDemandeBu.addDemand(demande);
+		 
+		 //Potentiellement inutile, s'assure que l'heure convertie reste à "0";
+		 demande.getDateAction().setHours(0);
+		 //Appel de la fonction d'ajout à la base de données
+		 boolean resultat = proxyDemandeBu.addDemand(demande);
+		 //affichage d;un message selon les résultat de l'ajout
+		 if(resultat) {
+			 message = "Enregistrement réussi de votre demande";
+			 demande = new Demande();
+			 demande.setDateAction(new Date());
+			 
+		 } else {
+			 message = "Vous avez déjà enregistré cette demande";
+			 demande.setDateAction(new Date());
+		 }
 		return "/demandForm.xhtml?faces-redirect=true";
 	}
 	
@@ -142,14 +140,6 @@ public class DemandeManagedBean implements Serializable {
 
 	public void setMinutes(List<Minute> minutes) {
 		this.minutes = minutes;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
 	}
 
 	public String getMessage() {

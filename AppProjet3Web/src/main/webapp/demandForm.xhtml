@@ -9,6 +9,35 @@
 
 
 <h:head>
+	<style>
+#demandForm {
+	text-align: center;
+	border-style: dotted;
+	margin: auto;
+	padding: 150px;
+	background-color: yellow;
+	
+}
+table{
+	border-style: double;
+	align-content: right;
+	margin: auto;
+	
+}
+form{
+border-style: double;
+border-color: green;
+background-color: blue;
+
+}
+
+.titrePage {
+	text-align: center;
+	color: red;
+	border-style: dotted;
+}
+
+</style>
 
 </h:head>
 
@@ -18,67 +47,66 @@
 		<div class="titrePage">
 			<h2>Création d'une nouvelle demande</h2>
 		</div>
-
-
-		<ui:repeat var="demande" value="#{mbDemande.demandes}">
-			<h4>#{demande.toString()}</h4>
-		</ui:repeat>
-
 		<div id="demandForm">
 			<h:form>
-				<h:outputLabel value="Type de service requis: " />
+				<table>
+					<tr>
+						<td><h:outputLabel value="Type de service requis: " /></td>
+						<td><h:selectOneMenu value="#{mbDemande.demande.activite}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{mbDemande.activites}" var="activite"
+									itemValue="#{activite}" itemLabel="#{activite.labelActivite}" />
+							</h:selectOneMenu></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel
+								value="Ville et code postal du lieu de service: " /></td>
+						<td><h:selectOneMenu value="#{mbDemande.demande.ville}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{mbDemande.villes}" var="ville"
+									itemValue="#{ville}"
+									itemLabel="#{ville.labelVille} code postal: #{ville.CP}" />
+							</h:selectOneMenu></td>
+					</tr>
 
-				<h:selectOneMenu value="#{mbDemande.demande.activite}"
-					converter="omnifaces.SelectItemsConverter">
-					<f:selectItems value="#{mbDemande.activites}" var="activite"
-						itemValue="#{activite}" itemLabel="#{activite.labelActivite}" />
-				</h:selectOneMenu>
+					<tr>
+						<td><h:outputLabel value="Numéro et voie: " /></td>
 
+						<td><h:inputText value="#{mbDemande.demande.voieAction}" /></td>
+					</tr>
 
-				<h:selectOneMenu value="#{mbDemande.demande.ville}"
-					converter="omnifaces.SelectItemsConverter">
-					<f:selectItems value="#{mbDemande.villes}" var="ville"
-						itemValue="#{ville}"
-						itemLabel="#{ville.labelVille} cp: #{ville.CP}" />
-				</h:selectOneMenu>
-			
-			Numéro et voie : <h:inputText value="#{mbDemande.demande.voieAction}" />
-
-				<h:inputText a:type="date" value="#{mbDemande.demande.dateAction}">>
+					<tr>
+						<td><h:outputLabel value="Date du service: " /></td>
+						<td><h:inputText a:type="date"
+								value="#{mbDemande.demande.dateAction}">>
 					<f:convertDateTime pattern="yyyy-MM-dd" />
-				</h:inputText>
+							</h:inputText></td>
+					</tr>
 
-				<br />
 
-				<div class="horaire">
 
-					Horaire : de
-					<h:selectOneMenu value="#{mbDemande.demande.heureDebut}"
-						converter="omnifaces.SelectItemsConverter">
-						<f:selectItems value="#{mbDemande.heures}" var="heure"
-							itemValue="#{heure}" itemLabel="#{heure.heure}" />
-					</h:selectOneMenu>
-					:
-					<h:selectOneMenu value="#{mbDemande.demande.minuteDebut}"
-						converter="omnifaces.SelectItemsConverter">
-						<f:selectItems value="#{mbDemande.minutes}" var="minute"
-							itemValue="#{minute}" itemLabel="#{minute.minute}" />
-					</h:selectOneMenu>
-					à
-					<h:selectOneMenu value="#{mbDemande.demande.heureFin}"
-						converter="omnifaces.SelectItemsConverter">
-						<f:selectItems value="#{mbDemande.heures}" var="heure"
-							itemValue="#{heure}" itemLabel="#{heure.heure}" />
-					</h:selectOneMenu>
-					:
-					<h:selectOneMenu value="#{mbDemande.demande.minuteFin}"
-						converter="omnifaces.SelectItemsConverter">
-						<f:selectItems value="#{mbDemande.minutes}" var="minute"
-							itemValue="#{minute}" itemLabel="#{minute.minute}" />
-					</h:selectOneMenu>
+					<tr>
+						<td><h:outputLabel value="Horaire du service: " /></td>
+						<td><h:selectOneMenu value="#{mbDemande.demande.heureDebut}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{mbDemande.heures}" var="heure"
+									itemValue="#{heure}" itemLabel="#{heure.heure}" />
+							</h:selectOneMenu> : <h:selectOneMenu value="#{mbDemande.demande.minuteDebut}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{mbDemande.minutes}" var="minute"
+									itemValue="#{minute}" itemLabel="#{minute.minute}" />
+							</h:selectOneMenu> à <h:selectOneMenu value="#{mbDemande.demande.heureFin}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{mbDemande.heures}" var="heure"
+									itemValue="#{heure}" itemLabel="#{heure.heure}" />
+							</h:selectOneMenu> : <h:selectOneMenu value="#{mbDemande.demande.minuteFin}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{mbDemande.minutes}" var="minute"
+									itemValue="#{minute}" itemLabel="#{minute.minute}" />
+							</h:selectOneMenu></td>
+					</tr>
 
-				</div>
-
+				</table>
 
 
 				<h:commandButton action="#{mbDemande.registerNewDemand()}"

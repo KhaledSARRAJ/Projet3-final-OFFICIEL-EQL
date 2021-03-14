@@ -26,21 +26,23 @@ public class DemandeDao extends GenericDao<Demande> implements DemandeIDao {
 		return demandes;
 	}
 
+	//Check whether there are other replicas of this demande
 	@Override
 	public boolean sameDemand(Demande demande) {
 		
 		boolean result = false;
 		
-		//Check whether there are other replicas of this demande
-		Query query = em.createQuery("SELECT d FROM Demande d WHERE d.activite_id = :param1 "
+		//Compares the activity; dateOfaction,Starting hiyr and userID for similar demands
+		Query query = em.createQuery("SELECT d FROM Demande d WHERE d.activite = :param1 "
 														+ "AND d.dateAction = :param2 "
-														+ "AND d.heureDebut_id = :param3 "
-														+ "AND d.user_id = :param4");
+														+ "AND d.heureDebut = :param3 "
+														+ "AND d.user = :param4 "
+														+ "AND d.dateAnnulation is NULL");
 		
-		query.setParameter("param1", demande.getActivite().getId());
+		query.setParameter("param1", demande.getActivite());
 		query.setParameter("param2", demande.getDateAction());
-		query.setParameter("param3", demande.getHeureDebut().getId());
-		query.setParameter("param4", demande.getUser().getId());
+		query.setParameter("param3", demande.getHeureDebut());
+		query.setParameter("param4", demande.getUser());
 		List<Demande> demandes = query.getResultList();
 		
 		if(demandes.size() > 0) {
@@ -49,21 +51,6 @@ public class DemandeDao extends GenericDao<Demande> implements DemandeIDao {
 		
 		return result;
 	}
-	
-	public void test() {
-		Query query = em.createQuery("SELECT d FROM Demande d");
-		Demande demande = new Demande();
-		
-		List<Demande> demandes = query.getResultList();
-		
-		if(demandes.size() > 0) {
-			System.out.println(demandes.size());
-			demande = demandes.get(0);
-		}
-		System.out.println(demande.toString());
-		
-	}
-	
 	
 
 }

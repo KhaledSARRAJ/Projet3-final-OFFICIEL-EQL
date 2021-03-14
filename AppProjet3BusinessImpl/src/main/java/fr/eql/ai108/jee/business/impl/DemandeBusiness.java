@@ -23,13 +23,13 @@ public class DemandeBusiness implements DemandeIBusiness {
 		return proxyDemandeDao.getAll();
 	}
 
-	//ajout d'une demande.
+	//ajout d'une demande en véficiant que cette dernière n'existe pas déjà
 	@Override
 	public boolean addDemand(Demande demande) {
 		
 		boolean addedUser= false;
-		
-		if(true) { //à rempalcer true par une fonction (sameDemand) qui vérifie que la demande n'ait pas déjà été émise
+		boolean sameDemand = proxyDemandeDao.sameDemand(demande);
+		if(!sameDemand) { 
 			proxyDemandeDao.add(demande);
 			addedUser= true;
 		}
