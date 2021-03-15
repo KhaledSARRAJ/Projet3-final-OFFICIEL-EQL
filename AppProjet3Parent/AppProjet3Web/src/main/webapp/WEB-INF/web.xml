@@ -5,7 +5,7 @@
 	version="3.1">
 	<display-name>AppProjet3Web</display-name>
 	<welcome-file-list>
-		<welcome-file>index.xhtml</welcome-file>
+		<welcome-file>welcome.xhtml</welcome-file>
 	</welcome-file-list>
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>

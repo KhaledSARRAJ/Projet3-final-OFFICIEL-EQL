@@ -31,7 +31,7 @@ public class AccountManagedBean implements Serializable {
 			message = "Merci " + user.getLogin() + ". Votre compte a bien été créé";
 		}
 		user = new User();
-		return "/index.xhtml?faces-redirect=true";
+		return "/inscription.xhtml?faces-redirect=true";
 	}
 	
 	public String connection(){
