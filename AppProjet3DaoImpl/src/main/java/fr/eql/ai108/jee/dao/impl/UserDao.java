@@ -21,30 +21,30 @@ public class UserDao extends GenericDao<User> implements UserIDao {
 
 	@Override
 	public Boolean exist(User user) {
-		/*
+		
 		Query query = em.createQuery("SELECT u FROM User u WHERE u.login = :paramLogin");
 		query.setParameter("paramLogin", user.getLogin());
 		List<User> users = query.getResultList();
 		
 		return users.size() > 0 ? true : false;
-		*/
-		return null;
+		
 	}
 
 	@Override
-	public User authenticate(String login, String password) {
-		/*
-		Query query = em.createQuery("SELECT u FROM User u WHERE "
-				+ "u.login = :paramLogin AND u.password = :paramPassword");
+	public User authenticate(String login, String mdpUtil) {
+		
+		Query query =  em.createQuery("SELECT u FROM User u WHERE "
+				+ "u.login = :paramLogin AND u.mdpUtil = :paramPassword");
 		User returnedUser = null;
 		query.setParameter("paramLogin", login);
-		query.setParameter("paramPassword", password);
+		query.setParameter("paramPassword", mdpUtil);
 		List<User> users = query.getResultList();
+		
 		if(users.size() > 0) {
 			returnedUser = users.get(0);
 		}
-		return returnedUser;*/
-		return null;
+		return returnedUser;
+		
 	}
 
 }

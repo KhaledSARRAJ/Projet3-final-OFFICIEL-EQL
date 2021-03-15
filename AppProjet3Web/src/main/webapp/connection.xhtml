@@ -6,11 +6,18 @@
 
 <h:head></h:head> 
 <h:body> 
-	<h:form>
-		Login <h:inputText value="#{mbConnect.user.login}" /><br/>
-		Password <h:inputText value="#{mbConnect.user.password}" /><br/>
+	
+	<h:form id="form">
+		<h:messages globalOnly="true" />
+		Login: <h:inputText id="login" value="#{mbConnect.user.login}"
+			required="true" requiredMessage="Le login est obligatoire" />
+		<h:message style="color:red" for="login" />
+		<br />
+		Password: <h:inputSecret id="mdpUtil" value="#{mbConnect.user.mdpUtil}"
+			required="true" requiredMessage="Le password est obligatoire" />
+		<h:message for="mdpUtil" style="color:red" />
+		<br />
 		<h:commandButton action="#{mbConnect.connection()}" value="Connexion" />
-		<h:outputText value="#{mbConnect.message}" />
 	</h:form>
 </h:body>  
 </html>
