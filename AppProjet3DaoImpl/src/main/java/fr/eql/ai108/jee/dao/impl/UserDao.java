@@ -1,5 +1,6 @@
 package fr.eql.ai108.jee.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Remote;

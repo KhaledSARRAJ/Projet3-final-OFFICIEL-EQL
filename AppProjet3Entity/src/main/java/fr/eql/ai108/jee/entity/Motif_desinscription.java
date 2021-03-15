@@ -1,5 +1,6 @@
 package fr.eql.ai108.jee.entity;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,8 +14,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "motif_desinscription")
-public class Motif_desinscription {
+public class Motif_desinscription implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
