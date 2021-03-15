@@ -54,7 +54,7 @@ public class ConnectionManagedBean implements Serializable {
 		login = "";
 		mdpUtil = "";
 		user = new User();		
-		return "/connetion.xhtml?faces-redirect=true";
+		return "/connection.xhtml?faces-redirect=true";
 	}
 	
 	public String getLogin() {

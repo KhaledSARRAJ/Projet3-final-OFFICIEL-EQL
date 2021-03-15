@@ -19,18 +19,19 @@
 	  <b:column>
 	  <h:form>
 	  <b:column>
-	  <b:inputText value="#{loginBean.username}" label="Adresse mail" />
+	  <b:inputText value="#{mbConnect.user.login}" label="Adresse mail"  />
+	  
       </b:column>
       </h:form>
       </b:column>
 	  <b:column>
 	  <h:form>
 	  <b:column>
-	  <b:inputSecret id="passwordDiv" value="#{loginBean.password}" label="Mot de passe"/>
+	  <b:inputSecret id="passwordDiv" value="#{mbConnect.user.mdpUtil}" label="Mot de passe"/>
  	  </b:column>
 	  </h:form> 
 	  </b:column>
-	   <b:column medium-screen="1"><b:button value="Connexion"/></b:column>
+	   <b:column medium-screen="1"><b:button value="Connexion"  outcome="connection" /></b:column> <!-- outcome="connection" -->
 	</h:panelGrid>
 		
 	
