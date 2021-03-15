@@ -27,9 +27,9 @@ public class AccountBusiness implements AccountIBusiness {
 	}
 
 	@Override
-	public User connection(String login, String password) {
+	public User connection(String login, String mdpUtil) {
 		
-		return proxyUser.authenticate(login, password);
+		return proxyUser.authenticate(login, mdpUtil);
 	}
 
 }
