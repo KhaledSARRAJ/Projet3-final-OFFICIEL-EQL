@@ -24,5 +24,4 @@ public class DemandeDao extends GenericDao<Demande> implements DemandeIDao {
 		List<Demande> demandes = query.getResultList();
 		return demandes;
 	}
-
 }

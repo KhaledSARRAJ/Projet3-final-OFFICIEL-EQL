@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<h:body> 
+	<h1>Demandes en attentes</h1>
+	<h2>Filtrer la recherche</h2>
+	
+	<ui:repeat var="demande" value="#{mbDemande.demandes}">
+	<h:form>
+		<table>
+			<tr> 
+				<td><h4>#{demande.user.prenomUtil}</h4></td>
+				<td><h4> de </h4></td>
+				<td><h4>#{demande.user.ville.labelVille}</h4></td>
+				<td><h4> à besoin de </h4></td>
+				<td><h4>#{demande.activite.labelActivite}</h4></td>
+				<td><h4> le </h4></td>
+				<td><h4>#{demande.dateAction}</h4></td>
+				<td><h4> de </h4></td>
+				<td><h4>#{demande.heureDebut.heure}</h4></td>
+				<td><h4> H </h4></td>
+				<td><h4>#{demande.minuteDebut.minute}</h4></td>
+				<td><h4> à </h4></td>
+				<td><h4>#{demande.heureFin.heure}</h4></td>
+				<td><h4> H </h4></td>
+				<td><h4>#{demande.minuteFin.minute}</h4></td>
+				<td>
+					<h:commandButton action="#{mbReponseAction.saveResponse(demande)}" value="Selectionner" />
+				</td>
+			</tr>
+		</table>
+	</h:form>
+	</ui:repeat>
+</h:body> 
+</html>

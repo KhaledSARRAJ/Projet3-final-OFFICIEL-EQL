@@ -19,8 +19,6 @@ public class DemandeBusiness implements DemandeIBusiness {
 	
 	@Override
 	public List<Demande> displayDemande() {
-		// TODO Auto-generated method stub
 		return proxyDemandeDao.getAll();
 	}
-
 }

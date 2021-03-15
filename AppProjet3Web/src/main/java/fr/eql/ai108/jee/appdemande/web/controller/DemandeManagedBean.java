@@ -34,5 +34,4 @@ public class DemandeManagedBean {
 	public void setDemandes(List<Demande> demandes) {
 		this.demandes = demandes;
 	}
-
 }

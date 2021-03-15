@@ -64,3 +64,8 @@ INSERT INTO `user` (id, genre_id, ville_id, desinscription_id, nomUtil, prenomUt
 
 -- remplissage table "demande"
 INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (1, 1, 1, 1, 1, 3, 2, null, null, null, "2021-03-11", "123 ma voie", "2021-03-10", null, null, null, 1);
+INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (2, 1, 2, 4, 1, 5, 2, null, null, null, "2021-03-14", "123 ma voie", "2021-03-10", null, null, null, 1);
+INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (3, 1, 3, 6, 1, 7, 2, null, null, null, "2021-03-20", "123 ma voie", "2021-03-10", null, null, null, 1);
+
+-- remplissage de la table "reponseAction"
+INSERT INTO `reponse_action` (id, dateDesistement, dateRejet, dateReponse, dateSelection, demande_id, motifDesist_id, user_id) VALUES (1, null, null, "2021-01-01", null, 1, null, 2);
