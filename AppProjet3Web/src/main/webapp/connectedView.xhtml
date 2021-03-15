@@ -6,8 +6,14 @@
 
 <h:head></h:head> 
 <h:body> 
+		<h1>Page connectée</h1>
+	Bonjour <h:outputLabel value="#{mbConnect.user.nomUtil}" /><br/>
+	<h1>Les demandes de l'utilisateur connecté</h1>
 	<ui:repeat var="demande" value="#{mbDemande.demandes}">
-		<h4>#{demande.description}</h4>
+		<h4>#{demande.activite.labelActivite}</h4>
 	</ui:repeat>
+	<h:form>
+		<h:commandLink action="#{mbConnect.disconnect()}" value="Log Out" />
+	</h:form>
 </h:body> 
 </html>

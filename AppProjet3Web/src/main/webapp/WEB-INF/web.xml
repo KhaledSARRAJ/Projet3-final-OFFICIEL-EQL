@@ -5,7 +5,7 @@
 	version="3.1">
 	<display-name>AppProjet3Web</display-name>
 	<welcome-file-list>
-		<welcome-file>index.xhtml</welcome-file>
+		<welcome-file>welcome.xhtml</welcome-file>
 	</welcome-file-list>
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
@@ -15,7 +15,11 @@
 		<param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
 		<param-value>true</param-value>
 	</context-param>
-	<servlet>
+	<context-param>
+    <param-name>BootsFaces_USETHEME</param-name>
+    <param-value>default</param-value>
+	</context-param>
+		<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
@@ -32,4 +36,5 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>/faces/</url-pattern>
 	</servlet-mapping>
+	
 </web-app>
