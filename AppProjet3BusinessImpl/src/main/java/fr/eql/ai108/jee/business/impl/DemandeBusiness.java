@@ -21,27 +21,46 @@ public class DemandeBusiness implements DemandeIBusiness {
 	
 	@Override
 	public List<Demande> displayDemande() {
-		// TODO Auto-generated method stub
 		return proxyDemandeDao.getAll();
 	}
 	
 	
+	/*
+	 * @Override public List<Demande> find(Integer id) { // TODO Auto-generated
+	 * method stub return proxyDemande.findById(); }
+	 * 
+	 * @Override public Demande updateDemande (Demande demande) { Demande
+	 * updatedDemande = null; if(!(proxyDemande.exist(demande))) { updatedDemande =
+	 * proxyDemande.update(demande); } return updatedDemande; }
+	 */
+
+
+	//ajout d'une demande en véficiant que cette dernière n'existe pas déjà
+	@Override
+	public boolean addDemand(Demande demande) {
+		
+		boolean addedUser= false;
+		boolean sameDemand = proxyDemandeDao.sameDemand(demande);
+		if(!sameDemand) { 
+			proxyDemandeDao.add(demande);
+			addedUser= true;
+		}
+		return addedUser;
+	}
+
+
 	@Override
 	public List<Demande> find(Integer id) {
 		// TODO Auto-generated method stub
-		return proxyDemande.findById();
+		return null;
 	}
-	
+
+
 	@Override
-	public Demande updateDemande (Demande demande) {
-		Demande updatedDemande = null;
-		if(!(proxyDemande.exist(demande))) {
-			updatedDemande = proxyDemande.update(demande);
-		}
-		return updatedDemande;
+	public Demande updateDemande(Demande demande) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-
-
 
 
 }

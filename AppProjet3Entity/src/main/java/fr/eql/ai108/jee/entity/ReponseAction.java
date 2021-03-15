@@ -2,8 +2,6 @@ package fr.eql.ai108.jee.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "reponseAction")
+@Table (name = "reponse_Action")
 public class ReponseAction implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -33,7 +31,7 @@ public class ReponseAction implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
-	private MotifDesist motifDesist; //A faire
+	private MotifDesist motifDesist; 
 	
 	private Date dateReponse;
 	private Date dateSelection;
@@ -104,6 +102,7 @@ public class ReponseAction implements Serializable{
 		this.dateDesistement = dateDesistement;
 		this.dateRejet = dateRejet;
 	}
+
 
 	public ReponseAction() {
 		super();

@@ -7,7 +7,10 @@ import fr.eql.ai108.jee.entity.Demande;
 
 public interface DemandeIBusiness {
 	List<Demande> displayDemande();
+
 	List<Demande> find(Integer id);
 	Demande updateDemande(Demande demande);
 	
+	boolean addDemand(Demande demande);
+
 }
