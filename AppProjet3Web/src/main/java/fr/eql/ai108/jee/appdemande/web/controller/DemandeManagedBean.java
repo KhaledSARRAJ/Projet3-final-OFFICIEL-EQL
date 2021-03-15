@@ -10,6 +10,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.validation.constraints.NotNull;
 
 import fr.eql.ai108.jee.entity.Activite;
 import fr.eql.ai108.jee.entity.Demande;
@@ -44,6 +45,9 @@ public class DemandeManagedBean implements Serializable {
 	private List<Minute> minutes;
 	private String message = "";
 	
+	@NotNull(message = "Name can't be empty") 
+	private String adresse;
+	
 	@EJB
 	private DemandeIBusiness proxyDemandeBu;
 	
@@ -62,9 +66,9 @@ public class DemandeManagedBean implements Serializable {
 	public String registerNewDemand() {
 		//ajoute de la date de soumission
 		 demande.setDateSoumission(new Date());
-		 
+		 demande.setVoieAction(adresse);
 		 //valeur temporaire, dépendra de la personne inscrite
-		 userConnected.setId(1);
+
 		 demande.setUser(userConnected);
 		 
 		 //Potentiellement inutile, s'assure que l'heure convertie reste à "0";
@@ -76,12 +80,18 @@ public class DemandeManagedBean implements Serializable {
 			 message = "Enregistrement réussi de votre demande";
 			 demande = new Demande();
 			 demande.setDateAction(new Date());
+			 adresse = "";
 			 
 		 } else {
 			 message = "Vous avez déjà enregistré cette demande";
 			 demande.setDateAction(new Date());
 		 }
 		return "/demandForm.xhtml?faces-redirect=true";
+	}
+	
+	public void copyAdress() {
+		this.setAdresse(userConnected.getVoieUtil());
+		demande.setVille(userConnected.getVille());
 	}
 	
 	@PostConstruct
@@ -92,6 +102,8 @@ public class DemandeManagedBean implements Serializable {
 		heures = proxyHeureBu.displayHeure();
 		minutes = proxyMinuteBu.displayMinute();
 		demande.setDateAction(new Date());
+		 userConnected.setId(1);
+		 userConnected.setVoieUtil("test test");
 	}
 
 	public List<Demande> getDemandes() {
@@ -157,6 +169,14 @@ public class DemandeManagedBean implements Serializable {
 
 	public void setUserConnected(User userConnected) {
 		this.userConnected = userConnected;
+	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
 
 	

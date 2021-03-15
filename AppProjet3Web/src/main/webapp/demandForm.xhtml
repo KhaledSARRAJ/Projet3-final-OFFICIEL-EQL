@@ -5,50 +5,71 @@
 	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
 
 
 <h:head>
 	<style>
-#demandForm {
-	text-align: center;
-	border-style: dotted;
-	margin: auto;
-	padding: 150px;
-	background-color: yellow;
-	
-}
-table{
-	border-style: double;
-	align-content: right;
-	margin: auto;
-	
-}
-form{
-border-style: double;
-border-color: green;
-background-color: blue;
-
-}
-
 .titrePage {
 	text-align: center;
 	color: red;
 	border-style: dotted;
+	margin-top: 7vh;
 }
 
+#demandForm {
+	border-style: dotted;
+	margin: auto;
+	padding: 150px;
+	background-color: yellow;
+}
+
+form {
+	border-style: double;
+	border-color: green;
+	background-color: gray;
+}
+
+table {
+	border-style: double;
+	border-color: red;
+	margin: auto;
+	color: blue;
+}
+
+#buttonRegister {
+	color: red;
+	text-align: center;
+	border-style: solid;
+	border-color: blue;
+	border-style: solid;
+}
+
+td {
+	width: 100vw;
+}
 </style>
 
 </h:head>
 
 
 <h:body>
+
+	<b:navBar brand="Project name" brandHref="#" fixed="top" inverse="true">
+		<b:navbarLinks>
+			<b:navLink value="Home" href="#"></b:navLink>
+			<b:navLink value="About" href="#about"></b:navLink>
+			<b:navLink value="Contact" href="#contact"></b:navLink>
+		</b:navbarLinks>
+	</b:navBar>
 	<b:container>
+
 		<div class="titrePage">
 			<h2>Création d'une nouvelle demande</h2>
 		</div>
 		<div id="demandForm">
-			<h:form>
+			<h:form id="form">
 				<table>
 					<tr>
 						<td><h:outputLabel value="Type de service requis: " /></td>
@@ -61,7 +82,8 @@ background-color: blue;
 					<tr>
 						<td><h:outputLabel
 								value="Ville et code postal du lieu de service: " /></td>
-						<td><h:selectOneMenu value="#{mbDemande.demande.ville}"
+						<td><h:selectOneMenu id="ville"
+								value="#{mbDemande.demande.ville}"
 								converter="omnifaces.SelectItemsConverter">
 								<f:selectItems value="#{mbDemande.villes}" var="ville"
 									itemValue="#{ville}"
@@ -72,7 +94,13 @@ background-color: blue;
 					<tr>
 						<td><h:outputLabel value="Numéro et voie: " /></td>
 
-						<td><h:inputText value="#{mbDemande.demande.voieAction}" /></td>
+						<td><h:inputText id="adresse" value="#{mbDemande.adresse}" />
+							<h:commandButton value="mon adresse">
+								<p:ajax event="click" listener="#{mbDemande.copyAdress()}"
+									update="adresse ville" />
+							</h:commandButton> <h:message for="adresse" style="color: red" /></td>
+
+
 					</tr>
 
 					<tr>
@@ -87,6 +115,7 @@ background-color: blue;
 
 					<tr>
 						<td><h:outputLabel value="Horaire du service: " /></td>
+
 						<td><h:selectOneMenu value="#{mbDemande.demande.heureDebut}"
 								converter="omnifaces.SelectItemsConverter">
 								<f:selectItems value="#{mbDemande.heures}" var="heure"
@@ -108,11 +137,13 @@ background-color: blue;
 
 				</table>
 
+				<div id="buttonRegister">
+					<h:commandButton action="#{mbDemande.registerNewDemand()}"
+						value="Valider" />
+					<br />
+					<h:outputLabel value="#{mbDemande.message}" />
+				</div>
 
-				<h:commandButton action="#{mbDemande.registerNewDemand()}"
-					value="Valider" />
-				<br />
-				<h:outputLabel value="#{mbDemande.message}" />
 			</h:form>
 		</div>
 	</b:container>
