@@ -45,7 +45,7 @@ public class DemandeManagedBean implements Serializable {
 	private List<Minute> minutes;
 	private String message = "";
 	
-	@NotNull(message = "Name can't be empty") 
+	@NotNull(message = "L'adresse ne peut pas être vide") 
 	private String adresse;
 	
 	@EJB
@@ -89,6 +89,7 @@ public class DemandeManagedBean implements Serializable {
 		return "/demandForm.xhtml?faces-redirect=true";
 	}
 	
+	//Fonction liée à l'appel Ajax, permet à l'utilisateur de mettre son adresse directement dans le formulaure
 	public void copyAdress() {
 		this.setAdresse(userConnected.getVoieUtil());
 		demande.setVille(userConnected.getVille());
@@ -102,6 +103,8 @@ public class DemandeManagedBean implements Serializable {
 		heures = proxyHeureBu.displayHeure();
 		minutes = proxyMinuteBu.displayMinute();
 		demande.setDateAction(new Date());
+		
+		//à modifier/retirer une fois l'utilisateur connecté implémenté
 		 userConnected.setId(1);
 		 userConnected.setVoieUtil("test test");
 	}

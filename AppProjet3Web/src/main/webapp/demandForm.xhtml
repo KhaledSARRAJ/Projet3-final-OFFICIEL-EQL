@@ -21,14 +21,14 @@
 #demandForm {
 	border-style: dotted;
 	margin: auto;
-	padding: 150px;
-	background-color: yellow;
+	padding: 20%;
+	background-color: rgba(50, 115, 220, 0.3);
 }
 
 form {
 	border-style: double;
 	border-color: green;
-	background-color: gray;
+	background-color: lightgray;
 }
 
 table {
@@ -87,7 +87,7 @@ td {
 								converter="omnifaces.SelectItemsConverter">
 								<f:selectItems value="#{mbDemande.villes}" var="ville"
 									itemValue="#{ville}"
-									itemLabel="#{ville.labelVille} code postal: #{ville.CP}" />
+									itemLabel="#{ville.labelVille} #{ville.CP}" />
 							</h:selectOneMenu></td>
 					</tr>
 

@@ -19,6 +19,7 @@ public class DemandeDao extends GenericDao<Demande> implements DemandeIDao {
 	@PersistenceContext (unitName = "AppProjet3DaoImpl")
 	private EntityManager em;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Demande> getAll() {
 		Query query = em.createQuery("SELECT c FROM Demande c");
@@ -27,6 +28,7 @@ public class DemandeDao extends GenericDao<Demande> implements DemandeIDao {
 	}
 
 	//Check whether there are other replicas of this demande
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean sameDemand(Demande demande) {
 		
