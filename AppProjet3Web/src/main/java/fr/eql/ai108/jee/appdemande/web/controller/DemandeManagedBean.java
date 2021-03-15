@@ -18,6 +18,8 @@ import fr.eql.ai108.jee.ibusiness.api.DemandeIBusiness;
 public class DemandeManagedBean {
 	
 	private List<Demande> demandes;
+	private Demande demande = new Demande();
+	private String message;
 	
 	@EJB
 	private DemandeIBusiness proxyDemandeBu;
@@ -34,5 +36,20 @@ public class DemandeManagedBean {
 	public void setDemandes(List<Demande> demandes) {
 		this.demandes = demandes;
 	}
+	
+	
+	public String updateDemande() {
+		demande = proxyDemandeBu.updateDemande(demande);
+		if(demande == null) {
+			message = "Cette demande a déjà été annulée.";
+		}else {
+			message ="La demande a bien été annulée.";
+		}
+		demande = new Demande();
+		return"/connectedView.xhtml?faces-redirect=true";
+	}
+	
+	
+	
 
 }

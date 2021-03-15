@@ -16,11 +16,32 @@ public class DemandeBusiness implements DemandeIBusiness {
 
 	@EJB
 	DemandeIDao proxyDemandeDao;
+	@EJB 
+	private DemandeIDao proxyDemande;
 	
 	@Override
 	public List<Demande> displayDemande() {
 		// TODO Auto-generated method stub
 		return proxyDemandeDao.getAll();
 	}
+	
+	
+	@Override
+	public List<Demande> find(Integer id) {
+		// TODO Auto-generated method stub
+		return proxyDemande.findById();
+	}
+	
+	@Override
+	public Demande updateDemande (Demande demande) {
+		Demande updatedDemande = null;
+		if(!(proxyDemande.exist(demande))) {
+			updatedDemande = proxyDemande.update(demande);
+		}
+		return updatedDemande;
+	}
+
+
+
 
 }

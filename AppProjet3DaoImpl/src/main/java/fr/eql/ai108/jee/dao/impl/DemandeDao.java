@@ -24,5 +24,21 @@ public class DemandeDao extends GenericDao<Demande> implements DemandeIDao {
 		List<Demande> demandes = query.getResultList();
 		return demandes;
 	}
+	
+	
+	@Override
+	public Boolean exist(Demande demande) {
+		Query query = em.createQuery("SELECT d FROM Demande WHERE d.id = :paramId");
+		query.setParameter("paramId", demande.getId());
+		List<Demande> demandes = query.getResultList();
+		return demandes.size() > 0 ? true : false;
+	}
+
+
+	@Override
+	public List<Demande> findById() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
