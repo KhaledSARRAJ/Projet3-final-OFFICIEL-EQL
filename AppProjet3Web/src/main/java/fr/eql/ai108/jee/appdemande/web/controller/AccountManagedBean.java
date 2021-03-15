@@ -51,8 +51,4 @@ public class AccountManagedBean implements Serializable {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
-	
-	
-
 }

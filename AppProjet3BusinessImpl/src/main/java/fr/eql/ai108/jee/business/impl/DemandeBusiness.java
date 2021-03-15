@@ -19,10 +19,8 @@ public class DemandeBusiness implements DemandeIBusiness {
 	
 	@Override
 	public List<Demande> displayDemande() {
-		// TODO Auto-generated method stub
 		return proxyDemandeDao.getAll();
 	}
-
 	//ajout d'une demande en véficiant que cette dernière n'existe pas déjà
 	@Override
 	public boolean addDemand(Demande demande) {

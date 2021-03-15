@@ -26,7 +26,6 @@ public class DemandeDao extends GenericDao<Demande> implements DemandeIDao {
 		List<Demande> demandes = query.getResultList();
 		return demandes;
 	}
-
 	//Check whether there are other replicas of this demande
 	@SuppressWarnings("unchecked")
 	@Override
@@ -49,10 +48,7 @@ public class DemandeDao extends GenericDao<Demande> implements DemandeIDao {
 		
 		if(demandes.size() > 0) {
 			result = true;
-		}
-		
+		}	
 		return result;
 	}
-	
-
 }

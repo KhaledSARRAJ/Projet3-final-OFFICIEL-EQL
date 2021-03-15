@@ -182,8 +182,4 @@ public class DemandeManagedBean implements Serializable {
 		this.adresse = adresse;
 	}
 
-	
-	
-	
-	
 }
