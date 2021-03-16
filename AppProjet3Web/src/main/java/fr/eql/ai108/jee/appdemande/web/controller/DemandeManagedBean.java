@@ -97,12 +97,13 @@ public class DemandeManagedBean implements Serializable {
 	
 	@PostConstruct
 	public void init() {
-		demandes = proxyDemandeBu.displayDemande();
+		demandes = proxyDemandeBu.displayDemande(); 
 		villes = proxyVilleBu.displayVille();
 		activites = proxyActiviteBu.displayActivite();
 		heures = proxyHeureBu.displayHeure();
 		minutes = proxyMinuteBu.displayMinute();
 		demande.setDateAction(new Date());
+		
 		
 		//à modifier/retirer une fois l'utilisateur connecté implémenté
 		 userConnected.setId(1);

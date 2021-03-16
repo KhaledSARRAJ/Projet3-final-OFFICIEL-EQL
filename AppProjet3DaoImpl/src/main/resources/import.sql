@@ -59,11 +59,15 @@ INSERT INTO `minute` (id, minute) VALUES (3,"30");
 INSERT INTO `minute` (id, minute) VALUES (4,"45");
 
 -- remplissage table "user"
-INSERT INTO `user` (id,nomUtil, prenomUtil, dateNaissance, emailUtil, telUtil,autreTel, numVoieUtil, voieUtil,codePostal,ville_id,login,mdpUtil,genre_id,desinscription_id) VALUES (1,"toto","toto","1994-07-01","toto@gmail.com","1111","111","1","rue pert","1400",1,"login","mtpasse",1,1);
+INSERT INTO `user` (id, genre_id, ville_id, desinscription_id, nomUtil, prenomUtil, dateNaissance, emailUtil, telUtil, voieUtil, mdpUtil, dateInscriUtil, nomContactUrg, prenomContactUrg, telContactUrg, dateDesinscription)VALUES (1, 1, 1, null, "Jacquot", "Roch", "1991-09-26", "roch.jc@emaildfsdf", "111111", "123 ma voie", "123mdp", "2021-03-10", "Louvet", "Raphael", "1234560", null);
+INSERT INTO `user` (id,nomUtil, prenomUtil, dateNaissance, emailUtil, telUtil,autreTel, numVoieUtil, voieUtil,codePostal,ville_id,login,mdpUtil,genre_id,desinscription_id) VALUES (2,"toto","toto","1994-07-01","toto@gmail.com","1111","111","1","rue pert","1400",1,"login","mtpasse",1,1);
+
 -- remplissage table "demande"
 INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (1, 1, 1, 1, 1, 3, 2, null, null, null, "2021-03-11", "123 ma voie", "2021-03-10", null, null, null, 1);
 INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (2, 1, 2, 4, 1, 5, 2, null, null, null, "2021-03-14", "123 ma voie", "2021-03-10", null, null, null, 1);
 INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (3, 1, 3, 6, 1, 7, 2, null, null, null, "2021-03-20", "123 ma voie", "2021-03-10", null, null, null, 1);
+INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (4, 1, 3, 6, 1, 7, 2, null, null, null, "2021-03-20", "456 ma voie", "2021-03-10", null, null, null, 2);
+INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (5, 1, 3, 6, 1, 7, 2, null, null, null, "2021-03-20", "456 ma voie", "2021-03-10", null, null, null, 2);
 
 -- remplissage de la table "reponseAction"
 INSERT INTO `reponse_action` (id, dateDesistement, dateRejet, dateReponse, dateSelection, demande_id, motifDesist_id, user_id) VALUES (1, null, null, "2021-01-01", null, 1, null, 2);

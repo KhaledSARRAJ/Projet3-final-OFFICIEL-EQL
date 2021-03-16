@@ -1,5 +1,6 @@
 package fr.eql.ai108.jee.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Remote;
@@ -51,4 +52,6 @@ public class DemandeDao extends GenericDao<Demande> implements DemandeIDao {
 		}	
 		return result;
 	}
+	
+
 }
