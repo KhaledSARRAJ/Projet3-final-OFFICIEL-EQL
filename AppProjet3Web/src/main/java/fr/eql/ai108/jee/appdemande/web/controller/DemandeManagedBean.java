@@ -19,6 +19,7 @@ import fr.eql.ai108.jee.entity.Minute;
 import fr.eql.ai108.jee.entity.User;
 import fr.eql.ai108.jee.entity.Ville;
 import fr.eql.ai108.jee.ibusiness.api.ActiviteIBusiness;
+
 import fr.eql.ai108.jee.ibusiness.api.DemandeIBusiness;
 import fr.eql.ai108.jee.ibusiness.api.HeureIBusiness;
 import fr.eql.ai108.jee.ibusiness.api.MinuteIBusiness;
@@ -38,6 +39,7 @@ public class DemandeManagedBean implements Serializable {
 	private User userConnected = new User();
 	
 	private List<Demande> demandes;
+
 	private Demande demande = new Demande();
 	private List<Ville> villes;
 	private List<Activite> activites;
@@ -47,6 +49,9 @@ public class DemandeManagedBean implements Serializable {
 	
 	@NotNull(message = "L'adresse ne peut pas être vide") 
 	private String adresse;
+
+	private Demande selectedDemande;
+
 	
 	@EJB
 	private DemandeIBusiness proxyDemandeBu;
@@ -182,8 +187,12 @@ public class DemandeManagedBean implements Serializable {
 		this.adresse = adresse;
 	}
 
-	
-	
-	
+	public Demande getSelectedDemande() {
+		return selectedDemande;
+	}
+
+	public void setSelectedDemande(Demande selectedDemande) {
+		this.selectedDemande = selectedDemande;
+	}
 	
 }

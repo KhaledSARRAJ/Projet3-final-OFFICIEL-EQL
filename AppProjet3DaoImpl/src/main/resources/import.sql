@@ -36,6 +36,7 @@ INSERT INTO `probleme_demande` (id, labelProblemDemande) VALUES (2, "service imp
 INSERT INTO `probleme_demande` (id, labelProblemDemande) VALUES (3, "travail mal exécuté");
 
 -- remplissage table "heure"
+<<<<<<< HEAD
 INSERT INTO `heure` (id, heure) VALUES (1, "07");
 INSERT INTO `heure` (id, heure) VALUES (2, "08");
 INSERT INTO `heure` (id, heure) VALUES (3, "09");
@@ -60,5 +61,7 @@ INSERT INTO `minute` (id, minute) VALUES (4,"45");
 
 -- remplissage table "user"
 INSERT INTO `user` (id,nomUtil, prenomUtil, dateNaissance, emailUtil, telUtil,autreTel, numVoieUtil, voieUtil,codePostal,ville_id,login,mdpUtil,genre_id,desinscription_id) VALUES (1,"toto","toto","1994-07-01","toto@gmail.com","1111","111","1","rue pert","1400",1,"login","mtpasse",1,1);
+
 -- remplissage table "demande"
-INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (1, 1, 1, 1, 1, 3, 2, null, null, null, "2021-03-11", "123 ma voie", "2021-03-10", null, null, null, 1);
+INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (1, 2, 1, 12, 1, 13, 1, null, null, null, "2021-03-11", "123, ma voie", "2021-03-10", null, null, null, 1);
+
