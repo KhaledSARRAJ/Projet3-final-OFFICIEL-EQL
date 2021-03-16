@@ -32,10 +32,8 @@ public class DemandeManagedBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	/* A MODIFIER POUR TENIR EN COMPTE DE LA PERSONNE CONNECTEE
 	@ManagedProperty (value = "#{mbConnect.user}")
-	*/
-	private User userConnected = new User();
+	private User userConnected;
 	
 	private List<Demande> demandes;
 	private Demande demande = new Demande();
@@ -104,9 +102,6 @@ public class DemandeManagedBean implements Serializable {
 		minutes = proxyMinuteBu.displayMinute();
 		demande.setDateAction(new Date());
 		
-		//à modifier/retirer une fois l'utilisateur connecté implémenté
-		 userConnected.setId(1);
-		 userConnected.setVoieUtil("test test");
 	}
 
 	public List<Demande> getDemandes() {
