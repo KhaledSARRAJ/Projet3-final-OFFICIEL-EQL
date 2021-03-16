@@ -1,7 +1,7 @@
 package fr.eql.ai108.jee.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -25,11 +25,11 @@ public class Demande implements Serializable{
 	@Column (name = "id")
 	private Integer id;
 
-	private Date dateAction;
+	private LocalDate dateAction;
 	private String voieAction;
-	private Date dateSoumission;
-	private Date dateAnnulation;
-	private Date dateCloture;
+	private LocalDate dateSoumission;
+	private LocalDate dateAnnulation;
+	private LocalDate dateCloture;
 	private Integer noteEvaluation;
 
 	@ManyToOne
@@ -82,8 +82,8 @@ public class Demande implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Demande(Integer id, Date dateAction, String voieAction, Date dateSoumission, Date dateAnnulation,
-			Date dateCloture, Integer noteEvaluation) {
+	public Demande(Integer id, LocalDate dateAction, String voieAction, LocalDate dateSoumission, LocalDate dateAnnulation,
+			LocalDate dateCloture, Integer noteEvaluation) {
 		super();
 		this.id = id;
 		this.dateAction = dateAction;
@@ -175,11 +175,11 @@ public class Demande implements Serializable{
 		this.ville = ville;
 	}
 
-	public Date getDateAction() {
+	public LocalDate getDateAction() {
 		return dateAction;
 	}
 
-	public void setDateAction(Date dateAction) {
+	public void setDateAction(LocalDate dateAction) {
 		this.dateAction = dateAction;
 	}
 
@@ -191,27 +191,27 @@ public class Demande implements Serializable{
 		this.voieAction = voieAction;
 	}
 
-	public Date getDateSoumission() {
+	public LocalDate getDateSoumission() {
 		return dateSoumission;
 	}
 
-	public void setDateSoumission(Date dateSoumission) {
+	public void setDateSoumission(LocalDate dateSoumission) {
 		this.dateSoumission = dateSoumission;
 	}
 
-	public Date getDateAnnulation() {
+	public LocalDate getDateAnnulation() {
 		return dateAnnulation;
 	}
 
-	public void setDateAnnulation(Date dateAnnulation) {
+	public void setDateAnnulation(LocalDate dateAnnulation) {
 		this.dateAnnulation = dateAnnulation;
 	}
 
-	public Date getDateCloture() {
+	public LocalDate getDateCloture() {
 		return dateCloture;
 	}
 
-	public void setDateCloture(Date dateCloture) {
+	public void setDateCloture(LocalDate dateCloture) {
 		this.dateCloture = dateCloture;
 	}
 
@@ -303,7 +303,4 @@ public class Demande implements Serializable{
 		this.reponseAction = reponseAction;
 	}
 
-
-	
-	
 }
