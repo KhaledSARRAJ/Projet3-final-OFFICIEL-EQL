@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import fr.eql.ai108.jee.entity.Demande;
+import fr.eql.ai108.jee.entity.User;
 import fr.eql.ai108.jee.idao.api.DemandeIDao;
 
 
@@ -53,6 +54,20 @@ public class DemandeDao extends GenericDao<Demande> implements DemandeIDao {
 		
 		return result;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Demande> getAllByReponseUser(User user) {
+		//"SELECT u FROM User u INNER JOIN FETCH u.cats WHERE u.id=1";
+		//Query query = em.createQuery("SELECT d FROM Demande d WHERE d.reponseAction.user = :param");	
+		Query query = em.createQuery("SELECT d FROM Demande d INNER JOIN FETCH d.reponseAction r WHERE r.user = :param1");
+		query.setParameter("param1", user);
+		
+		List<Demande> demandesUser = query.getResultList();
+		return demandesUser;
+	}
+	
 	
 
+	
 }

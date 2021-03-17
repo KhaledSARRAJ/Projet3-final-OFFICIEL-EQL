@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<script>
+function displayDetails() {
+	  var x = document.getElementById("details");
+	  if (x.style.display === "none") {
+	    x.style.display = "block";
+	  } else {
+	    x.style.display = "none";
+	  }
+	}
+
+</script>
+</h:head>
+<h:body>
+	<b:navBar brand="Project name" brandHref="#" fixed="top" inverse="true">
+		<b:navbarLinks>
+			<b:navLink value="Home" href="#"></b:navLink>
+			<b:navLink value="About" href="#about"></b:navLink>
+			<b:navLink value="Contact" href="#contact"></b:navLink>
+		</b:navbarLinks>
+	</b:navBar>
+	<b:container>
+		<div class="titrePage" style="padding: 5%">
+			<h2>Statut de vos propositions d'aide</h2>
+		</div>
+		<h:form>
+			<ui:repeat var="pair" value="#{mbAffichageStatut.pairs}">
+				<div style="display: flex">
+					<h4 style="margin-right: 2vh">Bénéficiaire :
+						#{pair.getValue(0).getUser().getPrenomUtil()}</h4>
+					<h4 style="margin-right: 2vh">Type de service :
+						#{pair.getValue(0).getActivite().getLabelActivite()}</h4>
+					<h4 style="margin-right: 2vh">Date :
+						#{pair.getValue(0).getDateAction()}</h4>
+					<h4 style="margin-right: 2vh">Horaire :
+						#{pair.getValue(0).getHeureDebut().getHeure()}:#{pair.getValue(0).getMinuteDebut().getMinute()}
+						à
+						#{pair.getValue(0).getHeureFin().getHeure()}:#{pair.getValue(0).getMinuteFin().getMinute()}
+					</h4>
+					<h4 style="margin-right: 2vh">Lieu :
+						#{pair.getValue(0).getVille().getLabelVille()}</h4>
+					<h4 style="margin-right: 1vh">Statut : #{pair.getValue(1)}</h4>
+				</div>
+			</ui:repeat>
+		</h:form>
+
+		<h:form>
+			<p:dataScroller value="#{mbAffichageStatut.pairs}" var="pair"
+				chunkSize="5">
+				<f:facet name="header">
+                Descendez pour charger plus de propositions envoyées
+            </f:facet>
+
+				<div class="Liste de vos actions et statuts"
+					style="display: flex; background-color:  #e6f2ff; border-style: solid; justify-content: space-between;">
+					<div class="listeReponses" style="border-style : dotted; width: 50vh">
+						<div class="infos">
+							<h4 style="margin-right: 2vh">Bénéficiaire :
+								#{pair.getValue(0).getUser().getPrenomUtil()}</h4>
+							<h4 style="margin-right: 2vh">Type de service :
+								#{pair.getValue(0).getActivite().getLabelActivite()}</h4>
+							<h4 style="margin-right: 2vh">Date :
+								#{pair.getValue(0).getDateAction()} 
+								</h4>
+							<h4 style="margin-right: 2vh">Horaire :
+								#{pair.getValue(0).getHeureDebut().getHeure()}:#{pair.getValue(0).getMinuteDebut().getMinute()}
+								à
+								#{pair.getValue(0).getHeureFin().getHeure()}:#{pair.getValue(0).getMinuteFin().getMinute()}
+							</h4>
+							<h4 style="margin-right: 2vh">Lieu :
+								#{pair.getValue(0).getVille().getLabelVille()}</h4>
+							<h4 style="margin-right: 1vh">Statut : #{pair.getValue(1)}</h4>
+						</div>
+
+
+						<div class="showDetailButton">
+							<p:commandButton value="Voir détail"
+								disabled="#{pair.getValue(1) != 'Sélectionné'}"
+								onclick="displayDetails()">
+							</p:commandButton>
+
+						</div>
+					</div>
+
+					<div id="details" style="display: none; border-style : dotted; width: 50vh;">
+						<h4 style="margin-right: 2vh">Addresse du bénéficiaire :
+							#{pair.getValue(0).getUser().getVoieUtil()}</h4>
+						<h4 style="margin-right: 2vh">Lieu où est rendu le service :
+							#{pair.getValue(0).getVoieAction()}</h4>
+						<h4 style="margin-right: 2vh">Numéro de téléphone du
+							bénéficiaire : #{pair.getValue(0).getUser().getTelUtil()}</h4>
+						<h4>Second numéro :
+							#{pair.getValue(0).getUser().getAutreTel()}</h4>
+					</div>
+				</div>
+
+
+
+			</p:dataScroller>
+		</h:form>
+	</b:container>
+</h:body>
+</html>

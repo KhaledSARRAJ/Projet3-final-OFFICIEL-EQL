@@ -7,6 +7,7 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import fr.eql.ai108.jee.entity.Demande;
+import fr.eql.ai108.jee.entity.User;
 import fr.eql.ai108.jee.ibusiness.api.DemandeIBusiness;
 import fr.eql.ai108.jee.idao.api.DemandeIDao;
 
@@ -34,6 +35,13 @@ public class DemandeBusiness implements DemandeIBusiness {
 			addedUser= true;
 		}
 		return addedUser;
+	}
+
+	@Override
+	public List<Demande> displayByReponseUser(User user) {
+		List<Demande> demandList = proxyDemandeDao.getAllByReponseUser(user);
+		
+		return demandList;
 	}
 
 }
