@@ -45,6 +45,9 @@ public class DemandeManagedBean implements Serializable {
 	private List<Minute> minutes;
 	private String message = "";
 	
+	private Demande selectedDemande;
+	
+	
 	@NotNull(message = "L'adresse ne peut pas être vide") 
 	private String adresse;
 	
@@ -63,9 +66,32 @@ public class DemandeManagedBean implements Serializable {
 	@EJB
 	private MinuteIBusiness proxyMinuteBu;
 	
+	public void printSelectedDemande() {
+		System.out.println(selectedDemande.toString());
+	}
+	
+	
+	public String cancelDemand() {
+		demande.setDateAnnulation(new Date());	
+		demande.getMotifAnnul();
+		proxyDemandeBu.cancelDemand(demande);
+		message = "Votre demande a bien été annulée.";
+	
+	return "/connectedView.xhtml?faces-redirect=true";
+	}
+	
+	public String updateDemand() {
+		proxyDemandeBu.updateDemand(demande);
+		message = "Votre demande a bien été modifiée.";
+	
+	return "/connectedView.xhtml?faces-redirect=true";
+	}
+	
+	
 	public String registerNewDemand() {
 		//ajoute de la date de soumission
 		 demande.setDateSoumission(new Date());
+		 demande.setDateAnnulation(new Date());
 		 demande.setVoieAction(adresse);
 		 //valeur temporaire, dépendra de la personne inscrite
 
@@ -182,8 +208,14 @@ public class DemandeManagedBean implements Serializable {
 		this.adresse = adresse;
 	}
 
-	
-	
+	public Demande getSelectedDemande() {
+		return selectedDemande;
+	}
+
+	public void setSelectedDemande(Demande selectedDemande) {
+		this.selectedDemande = selectedDemande;
+	}
+
 	
 	
 }

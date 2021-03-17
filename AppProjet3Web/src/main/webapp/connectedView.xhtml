@@ -2,18 +2,81 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
+     
+<h:head>
+      <h:outputStylesheet library="css" name="style.css" /> <!-- Style CSS fait maison -->
+</h:head> 
 
-<h:head></h:head> 
-<h:body> 
-		<h1>Page connectée</h1>
-	Bonjour <h:outputLabel value="#{mbConnect.user.nomUtil}" /><br/>
-	<h1>Les demandes de l'utilisateur connecté</h1>
-	<ui:repeat var="demande" value="#{mbDemande.demandes}">
-		<h4>#{demande.activite.labelActivite}</h4>
-	</ui:repeat>
+<h:body style="background: linear-gradient(white,cyan,white)"> 
+	
+	<b:container id="nav_container"> <!-- container du menu de navigation -->
+	
+	<b:column span ="4" style="font-size:30px"> Association Pand'Ami </b:column>
+	<b:column span="4" style="margin-bottom:2em;margin-top:2em">
+		<b:label style="font-size:20px" severity="success" text="Bienvenue. Vous êtes connecté(e)."/>
+	</b:column>
+	<b:column span="2" style="margin-top:2em"><b:link look="success" value="J'ai besoin d'aide" /></b:column>
+    <b:column span="2" style="margin-top:2em"><b:link look="success" value="Je suis volontaire" /></b:column>
+			
+	
+	</b:container> <!-- balise qui ferme le menu de navigation container -->
+
+		
+	<b:container> <!-- container du carrousel -->
+
 	<h:form>
-		<h:commandLink action="#{mbConnect.disconnect()}" value="Log Out" />
-	</h:form>
+		<b:carousel>
+		 <b:carouselItem>
+		  <img src="resources/pic/escalade.jpg" style="width:1200px;height:600px" />
+		  	<b:carouselCaption>
+   			<h2>Un monde solidaire et uni...</h2>
+   			</b:carouselCaption>
+		 </b:carouselItem>
+		 <b:carouselItem>
+			<img src="resources/pic/pomme.jpg" style="width:1200px;height:600px"/>
+			<b:carouselCaption>
+   			<h2>Un monde fait de partage...</h2>
+   			</b:carouselCaption>
+		 </b:carouselItem>
+		 <b:carouselItem>
+		<img src="resources/pic/planete.jpg" style="width:1200px;height:600px"/>
+			<b:carouselCaption>
+   			<h2>Grâce à vous et Pand'Ami, un monde plus humain...</h2>
+   			</b:carouselCaption>
+		 </b:carouselItem>
+		</b:carousel>
+		
+	</h:form>  
+			
+	</b:container> <!-- balise qui ferme le carousel container-->
+		
+	
+	<b:container> <!-- container des publications-->
+			<b:column>
+				<h:selectOneMenu value="#{mbDemande.selectedDemande}" converter="omnifaces.SelectItemsConverter">
+				<f:selectItem itemValue="" itemLabel="Choisir" noSelectionOption="true"/>
+				<f:selectItems value="#{mbDemande.demandes}" var="demande"
+					itemLabel="#{demande.id}" itemValue="#{demande}"></f:selectItems>
+				</h:selectOneMenu>
+				<h:commandButton action="#{mbDemande.cancelDemand()}" value="Annuler Demande"/>
+			</b:column>
+			
+	</b:container> <!-- balise qui ferme les publications -->	
+
+	
+	<b:container> <!-- footer container -->
+	  
+	    <b:column span="3" style="margin-top:1em"><b:link value="Qui sommes-nous?" outcome="qui_sommes_nous"/></b:column>
+	    <b:column span="3" style="margin-top:1em"><b:link value="Contact" outcome="contact"/></b:column>
+	    <b:column span="3" style="margin-top:1em"><b:link value="Règlement" outcome="reglement"/></b:column>
+	    <b:column span="3" style="margin-top:1em"><b:link value="Mentions Légales" outcome="mentions_legales"/></b:column>
+		
+	</b:container> <!-- balise qui ferme le footer container -->
+
+
 </h:body> 
+
+
 </html>
