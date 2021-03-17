@@ -32,4 +32,19 @@ public class AccountBusiness implements AccountIBusiness {
 		return proxyUser.authenticate(login, mdpUtil);
 	}
 
+	@Override
+	public boolean delete(User user) {
+		Boolean returnedUser = false;
+		if(!(proxyUser.exist(user))) {
+		 proxyUser.delete(user);
+		 returnedUser =true;
+		}
+		return returnedUser;
+	}
+
+	@Override
+	public User update(User user) {
+		return proxyUser.update(user);
+	}
+
 }
