@@ -69,28 +69,28 @@
 	<h1>Bénévoles qui se sont proposés pour votre demande</h1>
 	<div class="volontaires">
     <h:form id="form">
-        <ui:repeat value="#{mbListeVolontaires.volunteers}" var="volunteer">
-                <table>
-                	<tr>
-                		<td class="image">
-                			<img class = "panda" src="pics/panda.jpg"/>
-                		</td>
-                		<td>
-                			<p:rating readonly="true" value="5"/>
-                		</td>
-                		<td class="identite">
-		                	<div class="nomprenom">#{volunteer.user.prenomUtil} #{volunteer.user.nomUtil}</div>
-		                    <div class="infos">#{volunteer.user.getAge()} ans</div>
-		                    <div class="infos">#{volunteer.user.ville.CP} #{volunteer.user.ville.labelVille}</div>
-		                    <div class="infos">#{volunteer.user.genre.labelGenre}</div>
-                		</td>
-                		<td>
-                			<div class="product-list-action">
-		                        <h:commandButton class="choisir" action="#{mbListeVolontaires.selectVolunteer(volunteer)}" value="Retenir ce bénévole" onclick="return confirm('Souhaitez-vous confirmer votre choix?')"/>
-		                    </div>
-                		</td>
-                	</tr>
-                </table> 
+       <ui:repeat value="#{mbListeVolontaires.volunteers}" var="volunteer"> 
+			<table>
+            	<tr>
+               		<td class="image">
+                		<img class = "panda" src="pics/panda.jpg"/>
+                	</td>
+                	<td>
+                		<p:rating readonly="true" value="5"/>
+                	</td>
+                	<td class="identite">
+		                <div class="nomprenom">#{volunteer.user.prenomUtil} #{volunteer.user.nomUtil}</div>
+		                <div class="infos">#{volunteer.user.getAge()} ans</div>
+						<div class="infos">#{volunteer.user.ville.CP} #{volunteer.user.ville.labelVille}</div>
+						<div class="infos">#{volunteer.user.genre.labelGenre}</div>
+                	</td>
+                	<td>
+                		<div class="product-list-action">
+							<h:commandButton class="choisir" action="#{mbListeVolontaires.selectVolunteer(volunteer)}" value="Retenir ce bénévole" onclick="return confirm('Souhaitez-vous confirmer votre choix?')"/>
+		                </div>
+                	</td>
+                </tr>
+        	</table> 
         </ui:repeat>
     </h:form>
 	</div>

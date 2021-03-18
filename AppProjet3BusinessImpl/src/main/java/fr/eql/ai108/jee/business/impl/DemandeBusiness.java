@@ -66,4 +66,14 @@ public class DemandeBusiness implements DemandeIBusiness {
 			proxyDemandeDao.delete(demande);
 	}
 
+	@Override
+	public List<Demande> getDemandesNonPourvues(int idUser) {
+		return proxyDemandeDao.getDemandesNonPourvues(idUser);
+	}
+
+	@Override
+	public List<Demande> getDemandesPourvues(int idUser) {
+		return proxyDemandeDao.getDemandesPourvues(idUser);
+	}
+
 }

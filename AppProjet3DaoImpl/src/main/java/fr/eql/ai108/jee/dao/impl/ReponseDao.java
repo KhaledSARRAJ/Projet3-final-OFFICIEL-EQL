@@ -36,7 +36,11 @@ public class ReponseDao extends GenericDao<ReponseAction> implements ReponseIDao
 				+ "AND r.dateSelection IS NULL");
 		query.setParameter("paramIdDemande", idDemande);
 		List<ReponseAction> reponse = query.getResultList();
-		return reponse;
+		if(reponse == null || reponse.get(0) == null ) {
+			return null;
+		} else {
+			return reponse;
+		}
 	}
 
 }

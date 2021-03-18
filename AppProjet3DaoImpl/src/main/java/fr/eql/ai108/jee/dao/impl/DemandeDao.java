@@ -54,5 +54,49 @@ public class DemandeDao extends GenericDao<Demande> implements DemandeIDao {
 		return result;
 	}
 	
+	/*
+	 * Méthode qui extrait les demandes d'action non pourvues dont l'auteur est l'utilisateur passé 
+	 * en argument
+	 * @param : un int qui est l'id de l'utilisateur dont on veut extraire la liste des demandes non pourvues
+	 * @return : une liste de demandes (List<Demande>) non pourvues
+	 */
+	@Override
+	public List<Demande> getDemandesNonPourvues(int idUser) {
+		Query query = em.createQuery("SELECT d "
+								   + "FROM Demande d "
+								   + "WHERE d.user.id = :paramId "
+								   + "AND d.dateAnnulation IS NULL "
+								   + "AND d.id NOT IN (SELECT r.demande.id "
+								   					+ "FROM ReponseAction r "
+								   					+ "WHERE r.dateSelection IS NOT NULL "
+								   					+ "AND r.dateRejet IS NULL "
+								   					+ "AND r.dateDesistement IS NULL )");
+		query.setParameter("paramId", idUser);
+		List<Demande> demandes = query.getResultList();
+		return demandes;
+	}
+	
+	/*
+	 * Méthode qui extrait les demandes d'action pourvues dont l'auteur est l'utilisateur passé 
+	 * en argument
+	 * @param : un int qui est l'id de l'utilisateur dont on veut extraire la liste des demandes pourvues
+	 * @return : une liste de demandes (List<Demande>) pourvues
+	 */
+	@Override
+	public List<Demande> getDemandesPourvues(int idUser) {
+		Query query = em.createQuery("SELECT d "
+				   + "FROM Demande d "
+				   + "WHERE d.user.id = :paramId "
+				   + "AND d.dateAnnulation IS NULL "
+				   + "AND d.id IN (SELECT r.demande.id "
+				   			    + "FROM ReponseAction r "
+				   			    + "WHERE r.dateSelection IS NOT NULL "
+				   				+ "AND r.dateRejet IS NULL "
+				   				+ "AND r.dateDesistement IS NULL )");
+		query.setParameter("paramId", idUser);
+		List<Demande> demandes = query.getResultList();
+		return demandes;
+	}
+	
 
 }

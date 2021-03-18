@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	<style type="text/css">
+	    body{
+	    	display:flex;
+	    	flex-direction: column;
+	    }
+	    table {
+	    	border-style:outset;
+	        border-width:5px;
+	       	margin:50px;
+	        padding:10px;
+	        width:90%;
+	    }
+	    table.tr.td {
+	    	width:25%;
+	    	align:center;
+	    }
+	    h1 {
+	    	text-align:center;
+	    	font-size: 32px;
+			line-height: 150px;
+			font-family: Arial, Helvetica, sans-serif;
+			padding:32px;
+			font-weight:lighter;
+			  -moz-box-shadow: 2px 2px 6px #888;  
+			  -webkit-box-shadow: 2px 2px 6px #888;  
+			  box-shadow:2px 2px 6px #888;  
+			  text-align:center;
+			  display:inline;
+	    }
+	    .infos {
+    	font-family: Arial, Helvetica, sans-serif;
+    	font-size:25px;
+    	}
+	    input {
+		float:right;
+		border-radius: 10px;
+		border: 4px double #cccccc;
+		text-align: center;
+		font-size: 28px;
+		padding: 20px;
+		width: auto;
+		-webkit-transition: all 0.5s;
+		-moz-transition: all 0.5s;
+		-o-transition: all 0.5s;
+		transition: all 0.5s;
+		cursor: pointer;
+		margin: 5px;
+		}
+	</style>
+</h:head> 
+<body> 
+	<h1>Vos demandes non pourvues</h1>
+    <h:form id="formDemNonPourv">
+        <ui:repeat value="#{mbConsultDemande.demandesNonPourvues}" var="demNonPourvue">
+                <table>
+                	<tr>
+                		<td class="demande">
+		                	<div class="infos">Activité : #{demNonPourvue.activite.labelActivite}</div>
+		                    <div class="infos">Date : #{demNonPourvue.dateAction}</div>
+		                    <div class="infos">De : #{demNonPourvue.heureDebut.heure}:#{demNonPourvue.minuteDebut.minute} à #{demNonPourvue.heureFin.heure}:#{demNonPourvue.minuteFin.minute}</div>
+		                    <div class="infos">Lieu : #{demNonPourvue.ville.CP} #{demNonPourvue.ville.labelVille}</div>
+                		</td>
+                		<td>
+                			<div class="choixbenevole">
+		                        <h:commandButton class="" action="#{mbListeVolontaires.getVolunteers(demNonPourvue)}" value="Choisir un bénévole" rendered="#{mbConsultDemande.proxyDemandeBu.displayVolunteers(demNonPourvue.id)!=null}"/>
+		                        <h:commandButton class="" action="#" value="Annuler"/>
+		                        <h:commandButton class="" action="#" value="Modifier"/>
+		                    </div>
+                		</td>
+                	</tr>
+                </table> 
+        </ui:repeat>
+    </h:form>
+    <h1>Vos demandes pourvues</h1>
+    <h:form id="formDemPourv">
+        <ui:repeat value="#{mbConsultDemande.demandesPourvues}" var="demPourvue">
+                <table>
+                	<tr>
+                		<td class="demande">
+		                	<div class="infos">Activité : #{demPourvue.activite.labelActivite}</div>
+		                    <div class="infos">Date : #{demPourvue.dateAction}</div>
+		                    <div class="infos">De : #{demPourvue.heureDebut.heure}:#{demPourvue.minuteDebut.minute} à #{demPourvue.heureFin.heure}:#{demPourvue.minuteFin.minute}</div>
+		                    <div class="infos">Lieu : #{demPourvue.ville.CP} #{demPourvue.ville.labelVille}</div>
+                		</td>
+                		<td>
+                			<div class="choixbenevole">
+		                        <h:commandButton class="" action="#" value="Annuler"/>
+		                        <h:commandButton class="" action="#" value="Modifier"/>
+		                    </div>
+                		</td>
+                	</tr>
+                </table> 
+        </ui:repeat>
+    </h:form>
+</body> 
+</html>
