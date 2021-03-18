@@ -9,11 +9,11 @@
 	<script>
 function displayDetails() {
 	  var x = document.getElementById("details");
-	  if (x.style.display === "none") {
-	    x.style.display = "block";
-	  } else {
-	    x.style.display = "none";
-	  }
+	  if (x.style.visibility === 'hidden') {
+		    x.style.visibility = 'visible';
+	} else {
+		    x.style.visibility = 'hidden';
+		  }
 	}
 
 </script>
@@ -31,8 +31,8 @@ function displayDetails() {
 			<h2>Statut de vos propositions d'aide</h2>
 		</div>
 		<h:form>
-			<p:dataScroller value="#{mbAffichageStatut.pairs}" var="pair" id="dataScroller"
-				chunkSize="5">
+			<p:dataScroller value="#{mbAffichageStatut.pairs}" var="pair"
+				id="dataScroller" chunkSize="5">
 				<f:facet name="header">
                 Descendez pour charger plus de propositions envoyées
             </f:facet>
@@ -59,26 +59,29 @@ function displayDetails() {
 						</div>
 
 
-						<div class="showDetailButton" id="detailButton">
-							<p:commandButton value="Voir détail"
-								disabled="#{pair.getValue(1) != 'Sélectionné'}"
-								onclick="displayDetails()">
-							</p:commandButton>
 
-						</div>
+					</div>
+
+					<div class="showDetailButton" id="detailButton">
+						<p:commandButton value="Voir détail"
+							disabled="#{pair.getValue(1) != 'Sélectionné'}"
+							onclick="displayDetails()">
+						</p:commandButton>
+
 					</div>
 
 					<div id="desist">
 						<p:commandButton value="Se désister"
 							disabled="#{pair.getValue(1) == 'Sélectionné' || pair.getValue(1) =='Non sélectionné' || pair.getValue(1) == 'Désisté'}">
-							<p:ajax event="click" listener="#{mbAffichageStatut.desist(pair.getValue(0).getReponseAction().iterator().next())}"
+							<p:ajax event="click"
+								listener="#{mbAffichageStatut.desist(pair.getValue(0).getReponseAction().iterator().next())}"
 								update="dataScroller" />
 						</p:commandButton>
 
 					</div>
 
 					<div id="details"
-						style="display: none; border-style: dotted; width: 50vh;">
+						style="visibility: hidden; border-style: dotted; width: 50vh;">
 						<h4 style="margin-right: 2vh">Addresse du bénéficiaire :
 							#{pair.getValue(0).getUser().getVoieUtil()}</h4>
 						<h4 style="margin-right: 2vh">Lieu où est rendu le service :

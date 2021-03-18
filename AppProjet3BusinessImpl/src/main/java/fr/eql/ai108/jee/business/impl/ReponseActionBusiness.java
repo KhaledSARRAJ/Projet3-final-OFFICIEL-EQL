@@ -28,11 +28,9 @@ public class ReponseActionBusiness implements ReponseActionIBusiness {
 
 	@Override
 	public ReponseAction desistementReponse(ReponseAction reponseAction) {
-		//Demande demande = reponseAction.getDemande();
 		ReponseAction desistReponse = reponseAction;
 		desistReponse.setDateDesistement(LocalDate.now());
 		proxyReponseAction.update(desistReponse);
-		//List<ReponseAction> listeReponseDemande = proxyReponseAction.getAllByDemande(demande);
 		return desistReponse;
 	}
 }
