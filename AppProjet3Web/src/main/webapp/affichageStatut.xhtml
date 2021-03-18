@@ -70,7 +70,7 @@ function displayDetails() {
 
 					<div id="desist">
 						<p:commandButton value="Se désister"
-							disabled="#{pair.getValue(1) == 'Sélectionné' || pair.getValue(1) =='Non sélectionné'}">
+							disabled="#{pair.getValue(1) == 'Sélectionné' || pair.getValue(1) =='Non sélectionné' || pair.getValue(1) == 'Désisté'}">
 							<p:ajax event="click" listener="#{mbAffichageStatut.desist(pair.getValue(0).getReponseAction().iterator().next())}"
 								update="dataScroller" />
 						</p:commandButton>
