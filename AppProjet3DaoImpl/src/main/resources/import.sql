@@ -36,7 +36,7 @@ INSERT INTO `probleme_demande` (id, labelProblemDemande) VALUES (2, "service imp
 INSERT INTO `probleme_demande` (id, labelProblemDemande) VALUES (3, "travail mal exécuté");
 
 -- remplissage table "heure"
-<<<<<<< HEAD
+
 INSERT INTO `heure` (id, heure) VALUES (1, "07");
 INSERT INTO `heure` (id, heure) VALUES (2, "08");
 INSERT INTO `heure` (id, heure) VALUES (3, "09");

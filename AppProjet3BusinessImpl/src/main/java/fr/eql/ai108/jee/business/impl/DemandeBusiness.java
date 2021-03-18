@@ -51,5 +51,19 @@ public class DemandeBusiness implements DemandeIBusiness {
 		volunteers = proxyReponseDao.getVolunteers(idDemande);
 		return volunteers;
 	}
+	
+	@Override
+	public Demande updateDemand(Demande demande) {
+		// TODO Auto-generated method stub
+		proxyDemandeDao.update(demande);
+		return demande;
+	}
+
+
+	@Override
+	public void deleteDemand(Demande demande) {
+		// TODO Auto-generated method stub
+			proxyDemandeDao.delete(demande);
+	}
 
 }
