@@ -12,4 +12,6 @@ public interface DemandeIBusiness {
 	List<Demande> displayDemande();
 	boolean addDemand(Demande demande);
 	List<ReponseAction> displayVolunteers(int idDemande);
+	List<Demande> getDemandesNonPourvues(int idUser);
+	List<Demande> getDemandesPourvues(int idUser);
 }

@@ -52,4 +52,14 @@ public class DemandeBusiness implements DemandeIBusiness {
 		return volunteers;
 	}
 
+	@Override
+	public List<Demande> getDemandesNonPourvues(int idUser) {
+		return proxyDemandeDao.getDemandesNonPourvues(idUser);
+	}
+
+	@Override
+	public List<Demande> getDemandesPourvues(int idUser) {
+		return proxyDemandeDao.getDemandesPourvues(idUser);
+	}
+
 }
