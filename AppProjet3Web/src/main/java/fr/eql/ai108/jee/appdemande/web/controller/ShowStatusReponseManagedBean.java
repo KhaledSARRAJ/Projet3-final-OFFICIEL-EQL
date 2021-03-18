@@ -18,6 +18,7 @@ import fr.eql.ai108.jee.entity.Demande;
 import fr.eql.ai108.jee.entity.ReponseAction;
 import fr.eql.ai108.jee.entity.User;
 import fr.eql.ai108.jee.ibusiness.api.DemandeIBusiness;
+import fr.eql.ai108.jee.ibusiness.api.ReponseActionIBusiness;
 
 @ManagedBean (name = "mbAffichageStatut")
 @RequestScoped
@@ -38,9 +39,24 @@ public class ShowStatusReponseManagedBean implements Serializable {
 	@EJB
 	private DemandeIBusiness proxyDemandeBu;
 	
+	@EJB
+	private ReponseActionIBusiness proxyReponseActionBU;
 	
 	@PostConstruct
 	public void init() {
+		loadStatuses();
+		
+	}
+	
+	public void desist(ReponseAction reponseAction) {
+		System.out.println("I desist !");
+		ReponseAction reponseMod =  proxyReponseActionBU.desistementReponse(reponseAction);
+		System.out.println(reponseMod.toString());
+		loadStatuses();
+	}
+	
+	private void loadStatuses() {
+		
 		demandes = proxyDemandeBu.displayByReponseUser(userConnected);
 		pairs = new ArrayList<Pair<Demande, String>>();
 		demandeStatut = new ArrayList<String>();
@@ -49,10 +65,6 @@ public class ShowStatusReponseManagedBean implements Serializable {
 			statut = "";
 			demande.toString();
 			ReponseAction reponseAction = demande.getReponseAction().iterator().next();
-			System.out.println(reponseAction.toString());
-			System.out.println(reponseAction.getDateDesistement() != null);
-			System.out.println(reponseAction.getDateRejet() != null);
-			System.out.println(reponseAction.getDateSelection() != null);
 			
 			if(reponseAction.getDateDesistement()!=null) {
 				statut = "Désisté";
