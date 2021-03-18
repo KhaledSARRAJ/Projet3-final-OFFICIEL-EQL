@@ -34,6 +34,10 @@
 			  text-align:center;
 			  display:inline;
 	    }
+	    .infos {
+    	font-family: Arial, Helvetica, sans-serif;
+    	font-size:25px;
+    	}
 	    input {
 		float:right;
 		border-radius: 10px;
@@ -48,22 +52,20 @@
 		transition: all 0.5s;
 		cursor: pointer;
 		margin: 5px;
-	}
+		}
 	</style>
 </h:head> 
 <body> 
 	<h1>Vos demandes non pourvues</h1>
-<!-- 	<div class="demandesNonPourvues"> -->
     <h:form id="formDemNonPourv">
         <ui:repeat value="#{mbConsultDemande.demandesNonPourvues}" var="demNonPourvue">
                 <table>
                 	<tr>
                 		<td class="demande">
-		                	<div class="activite">#{demNonPourvue.activite.labelActivite}</div>
-		                    <div class="infos">#{demNonPourvue.dateAction}</div>
-		                    <div class="infos">#{demNonPourvue.ville.CP} #{demNonPourvue.ville.labelVille}</div>
-		                    <div class="infos">#{demNonPourvue.heureDebut.heure}:#{demNonPourvue.minuteDebut.minute}</div>
-		                    <div class="infos">#{demNonPourvue.heureFin.heure}:#{demNonPourvue.minuteFin.minute}</div>
+		                	<div class="infos">Activité : #{demNonPourvue.activite.labelActivite}</div>
+		                    <div class="infos">Date : #{demNonPourvue.dateAction}</div>
+		                    <div class="infos">De : #{demNonPourvue.heureDebut.heure}:#{demNonPourvue.minuteDebut.minute} à #{demNonPourvue.heureFin.heure}:#{demNonPourvue.minuteFin.minute}</div>
+		                    <div class="infos">Lieu : #{demNonPourvue.ville.CP} #{demNonPourvue.ville.labelVille}</div>
                 		</td>
                 		<td>
                 			<div class="choixbenevole">
@@ -76,19 +78,16 @@
                 </table> 
         </ui:repeat>
     </h:form>
-<!--     </div> -->
     <h1>Vos demandes pourvues</h1>
-<!-- 	<div class="demandesPourvues"> -->
     <h:form id="formDemPourv">
         <ui:repeat value="#{mbConsultDemande.demandesPourvues}" var="demPourvue">
                 <table>
                 	<tr>
                 		<td class="demande">
-		                	<div class="activite">#{demPourvue.activite.labelActivite}</div>
-		                    <div class="infos">#{demPourvue.dateAction}</div>
-		                    <div class="infos">#{demPourvue.ville.CP} #{demPourvue.ville.labelVille}</div>
-		                    <div class="infos">#{demPourvue.heureDebut.heure}:#{demPourvue.minuteDebut.minute}</div>
-		                    <div class="infos">#{demPourvue.heureFin.heure}:#{demPourvue.minuteFin.minute}</div>
+		                	<div class="infos">Activité : #{demPourvue.activite.labelActivite}</div>
+		                    <div class="infos">Date : #{demPourvue.dateAction}</div>
+		                    <div class="infos">De : #{demPourvue.heureDebut.heure}:#{demPourvue.minuteDebut.minute} à #{demPourvue.heureFin.heure}:#{demPourvue.minuteFin.minute}</div>
+		                    <div class="infos">Lieu : #{demPourvue.ville.CP} #{demPourvue.ville.labelVille}</div>
                 		</td>
                 		<td>
                 			<div class="choixbenevole">
@@ -100,6 +99,5 @@
                 </table> 
         </ui:repeat>
     </h:form>
-<!-- 	</div> -->
 </body> 
 </html>
