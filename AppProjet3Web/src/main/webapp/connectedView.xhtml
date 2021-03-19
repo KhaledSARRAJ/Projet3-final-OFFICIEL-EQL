@@ -57,7 +57,7 @@
 			 
 		<div class ="nonPourvues">	 
 				<h1>Vos demandes non pourvues</h1>
-			 
+			 <h:form>
 			        <ui:repeat value="#{mbConsultDemande.demandesNonPourvues}" var="demNonPourvue">
 			                <table>
 			                	<tr>
@@ -78,11 +78,11 @@
 			                	</tr>
 			                </table> 
 			        </ui:repeat>
-			    
+			    </h:form>
 		</div>  
 		<div class = "Pourvues">  
 			    <h1>Vos demandes pourvues</h1>
-			    
+			    <h:form>
 			        <ui:repeat value="#{mbConsultDemande.demandesPourvues}" var="demPourvue">
 			                <table>
 			                	<tr>
@@ -101,7 +101,7 @@
 			                	</tr>
 			                </table> 
 			        </ui:repeat>
-			    
+			    </h:form>
 		</div>				
 						
 				</b:container> <!-- balise qui ferme les publications -->	
