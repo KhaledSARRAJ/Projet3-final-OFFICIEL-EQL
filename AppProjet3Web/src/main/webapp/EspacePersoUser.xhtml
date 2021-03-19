@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:head>
+	<h:outputStylesheet library="css" name="boots/bootstrap.min.css" />
+	<h:dataTable value="#{mbConnect.user}" var="test"></h:dataTable>
+</h:head>
+<h:body>
+	<div class="container spacer">
+		<!-- si on veut que le tableau occupe pas tout le colonne et qu'il soit centre: "col-md-6 col-xs-12" ou "col-md10 col-md-offset-1 col-xs-12"-->
+		<div class="panel panel-primary">
+			<!--Couleur bleu-->
+			<div class="panel-heading">Espace personnel</div>
+			<div class="panel-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Id°</th>
+							<th>NomUtilisateur</th>
+							
+							<th>Ville</th>
+							<th>Code Postale</th>
+							<th>Contact</th>
+							<th>Contact Urgence</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><h:outputText value="#{mbConnnectUser.user.id}" /></td>
+							<td><h:outputText value="#{mbConnnectUser.user.nomUtil}" /></td>
+						
+							<td><h:outputText
+									value="#{mbConnnectUser.user.ville.labelVille}" /></td>
+							<td><h:outputText value="#{mbConnnectUser.user.codePostal}">
+									<f:convertNumber type="number" maxIntegerDigits="5"
+										minIntegerDigits="5" />
+								</h:outputText></td>
+							<td><h:outputText value="#{mbConnnectUser.user.telUtil}">
+									<f:convertNumber type="number" maxIntegerDigits="9"
+										minIntegerDigits="9" />
+								</h:outputText></td>
+							<td><h:outputText
+									value="#{mbConnnectUser.user.telContactUrg}">
+									<f:convertNumber type="number" maxIntegerDigits="9" minIntegerDigits="9" />
+								</h:outputText></td>
+							<td></td>
+							<td><h:link action="#{mbConnnectUser.Update()}"
+									outcome="FormulaireUtilisateur" value="Editer"></h:link></td>
+	
+
+							<h:form id="deleteForm">
+								<p:outputPanel id="deletePanel">
+									<p:outputLabel value="#{mbConnnectUser.selectedUser}">
+										<f:convertNumber type="number" maxIntegerDigits="6"
+											minIntegerDigits="6" />
+									</p:outputLabel>
+									<br />
+									
+									<p:commandButton value="Désinscrire" action="#{mbConnnectUser.Delete()}" style="display: float; float:right ; margin-right: 2vh"/>
+								</p:outputPanel>
+							</h:form>
+
+
+
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- </ui:define> -->
+</h:body>
+</html>

@@ -1,23 +1,49 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
 
-<h:head></h:head> 
-<h:body> 
-	
-	<h:form id="form">
-		<h:messages globalOnly="true" />
-		Login: <h:inputText id="login" value="#{mbConnect.user.login}"
-			required="true" requiredMessage="Le login est obligatoire" />
-		<h:message style="color:red" for="login" />
-		<br />
-		Password: <h:inputSecret id="mdpUtil" value="#{mbConnect.user.mdpUtil}"
-			required="true" requiredMessage="Le password est obligatoire" />
-		<h:message for="mdpUtil" style="color:red" />
-		<br />
-		<h:commandButton action="#{mbConnect.connection()}" value="Connexion" />
-	</h:form>
-</h:body>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<h:outputStylesheet library="css" name="styleConnection.css" />
+</h:head>
+<h:body>
+	<div class="wrapper">
+		<div class="title">Connexion</div>
+		<h:form>
+			<div class="field">
+				<h:inputText id="login" value="#{mbConnect.user.login}"
+					required="true" />
+				<br /> <label>Adresse E-mail</label>
+			</div>
+
+			<div class="field">
+				<h:inputSecret id="mdpUtil" value="#{mbConnect.user.mdpUtil}"
+					required="true" />
+				<br /> <label>Mot de Passe</label>
+			</div>
+
+			<div class="content">
+				<div class="checkbox">
+					<h:selectBooleanCheckbox  id="remember-me"/> <label for="remember-me">Mémorisez</label>
+				</div>
+				<div class="pass-link">
+					<h:link value="Mot de Passe oublié?" outcome="inscription" />
+				</div>
+			</div>
+
+
+			<div class="field">
+				<h:commandButton action="#{mbConnect.connection()}"
+					value="Connexion" />
+			</div>
+			<div class="signup-link">
+				Pas Membre?
+				<h:link value="   S'inscrire Maintenant" outcome="inscription" />
+			</div>
+		</h:form>
+	</div>
+
+</h:body>
 </html>
