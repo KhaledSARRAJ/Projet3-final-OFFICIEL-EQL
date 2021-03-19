@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+<style type="text/css">
+    body{
+    	display:flex;
+    	flex-direction: column;
+    }
+    table {
+    	border-style:outset;
+        border-width:5px;
+       	margin:50px;
+        padding:10px;
+        width:90%;
+    }
+    table.tr.td {
+    	width:25%;
+    	align:center;
+    }
+    h1 {
+    	text-align:center;
+    	font-size: 32px;
+		line-height: 150px;
+		font-family: Arial, Helvetica, sans-serif;
+		padding:32px;
+		font-weight:lighter;
+		  -moz-box-shadow: 2px 2px 6px #888;  
+		  -webkit-box-shadow: 2px 2px 6px #888;  
+		  box-shadow:2px 2px 6px #888;  
+		  text-align:center;
+		  display:inline;
+    }
+    .identite {
+		line-height:1.5;
+    }
+    .nomprenom {
+    	font-family: Arial, Helvetica, sans-serif;
+    	font-size:25px;
+    }
+	.infos{
+		font-family: Arial, Helvetica, sans-serif;
+    	font-size:20px;
+    	font-style:italic;
+	}
+	.choisir{
+		float:right;
+		border-radius: 10px;
+		border: 4px double #cccccc;
+		text-align: center;
+		font-size: 28px;
+		padding: 20px;
+		width: auto;
+		-webkit-transition: all 0.5s;
+		-moz-transition: all 0.5s;
+		-o-transition: all 0.5s;
+		transition: all 0.5s;
+		cursor: pointer;
+		margin: 5px;
+	}
+    }
+</style>
+</h:head> 
+<h:body> 
+	<h1>Bénévoles qui se sont proposés pour votre demande</h1>
+	<div class="volontaires">
+    <h:form id="form">
+       <ui:repeat value="#{mbListeVolontaires.volunteers}" var="volunteer"> 
+			<table>
+            	<tr>
+               		<td class="image">
+                		<img class = "panda" src="pics/panda.jpg"/>
+                	</td>
+                	<td>
+                		<p:rating readonly="true" value="5"/>
+                	</td>
+                	<td class="identite">
+		                <div class="nomprenom">#{volunteer.user.prenomUtil} #{volunteer.user.nomUtil}</div>
+		                <div class="infos">#{volunteer.user.getAge()} ans</div>
+						<div class="infos">#{volunteer.user.ville.CP} #{volunteer.user.ville.labelVille}</div>
+						<div class="infos">#{volunteer.user.genre.labelGenre}</div>
+                	</td>
+                	<td>
+                		<div class="product-list-action">
+							<h:commandButton class="choisir" action="#{mbListeVolontaires.selectVolunteer(volunteer)}" value="Retenir ce bénévole" onclick="return confirm('Souhaitez-vous confirmer votre choix?')"/>
+		                </div>
+                	</td>
+                </tr>
+        	</table> 
+        </ui:repeat>
+    </h:form>
+	</div>
+</h:body> 
+</html>

@@ -20,6 +20,7 @@ import fr.eql.ai108.jee.entity.Minute;
 import fr.eql.ai108.jee.entity.User;
 import fr.eql.ai108.jee.entity.Ville;
 import fr.eql.ai108.jee.ibusiness.api.ActiviteIBusiness;
+
 import fr.eql.ai108.jee.ibusiness.api.DemandeIBusiness;
 import fr.eql.ai108.jee.ibusiness.api.HeureIBusiness;
 import fr.eql.ai108.jee.ibusiness.api.MinuteIBusiness;
@@ -37,6 +38,7 @@ public class DemandeManagedBean implements Serializable {
 	private User userConnected;
 	
 	private List<Demande> demandes;
+
 	private Demande demande = new Demande();
 	private List<Ville> villes;
 	private List<Activite> activites;
@@ -44,8 +46,33 @@ public class DemandeManagedBean implements Serializable {
 	private List<Minute> minutes;
 	private String message = "";
 	
+	
 	@NotNull(message = "L'adresse ne peut pas être vide") 
 	private String adresse;
+
+	private Demande selectedDemande;
+	
+	public void printSelectedDemande() {
+		System.out.println(selectedDemande.toString());
+	}
+	
+	public String cancelDemand(Demande demandeCanceled) {
+		proxyDemandeBu.deleteDemand(demandeCanceled);
+		//message = "Votre demande a bien été annulée.";
+		return "/connectedView.xhtml?faces-redirect=true";
+	}
+
+	public String updateDemand(Demande demandeUpdated) {
+		//message = "Votre demande a bien été modifiée.";
+		demande = demandeUpdated;
+	return "/updatingDemandForm.xhtml?faces-redirect=true";
+	}
+
+	public String confirmUpdate() {
+		proxyDemandeBu.updateDemand(demande);
+	return "/connectedView.xhtml?faces-redirect=true";
+	}
+
 	
 	@EJB
 	private DemandeIBusiness proxyDemandeBu;
@@ -176,8 +203,12 @@ public class DemandeManagedBean implements Serializable {
 		this.adresse = adresse;
 	}
 
-	
-	
-	
+	public Demande getSelectedDemande() {
+		return selectedDemande;
+	}
+
+	public void setSelectedDemande(Demande selectedDemande) {
+		this.selectedDemande = selectedDemande;
+	}
 	
 }

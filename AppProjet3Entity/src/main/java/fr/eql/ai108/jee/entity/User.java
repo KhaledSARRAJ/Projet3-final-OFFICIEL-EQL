@@ -1,8 +1,14 @@
 package fr.eql.ai108.jee.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -469,7 +475,14 @@ public class User implements Serializable{
 				+ "]";
 	}
 
-	
+	public int getAge() {
+		LocalDate todaysDate = LocalDate.now();
+		LocalDate dateBirth = Instant.ofEpochMilli(dateNaissance.getTime())
+			      .atZone(ZoneId.systemDefault())
+			      .toLocalDate();
+		Period period = Period.between(dateBirth, todaysDate);
+	    return period.getYears();
+	}
 	
 }
 	
