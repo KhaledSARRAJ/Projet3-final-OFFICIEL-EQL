@@ -104,9 +104,8 @@ td {
 					</tr>
 					<tr>
 						<td><h:outputLabel value="Date du service: " /></td>
-						<td><h:inputText a:type="date"
-								value="#{mbDemande.demande.dateAction}">>
-					<f:convertDateTime pattern="yyyy-MM-dd" />
+						<td><h:inputText a:type="date" converter="localDateConverter"
+								value="#{mbDemande.demande.dateAction}">
 							</h:inputText></td>
 					</tr>
 					<tr>

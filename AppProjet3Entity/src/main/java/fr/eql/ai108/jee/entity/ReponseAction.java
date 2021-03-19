@@ -1,7 +1,7 @@
 package fr.eql.ai108.jee.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,40 +35,40 @@ public class ReponseAction implements Serializable{
 	@JoinColumn(referencedColumnName = "id")
 	private MotifDesist motifDesist; //A faire
 	
-	private Date dateReponse;
-	private Date dateSelection;
-	private Date dateDesistement;
-	private Date dateRejet;
+	private LocalDate dateReponse;
+	private LocalDate dateSelection;
+	private LocalDate dateDesistement;
+	private LocalDate dateRejet;
 	
-	public Date getDateReponse() {
+	public LocalDate getDateReponse() {
 		return dateReponse;
 	}
 
-	public void setDateReponse(Date dateReponse) {
+	public void setDateReponse(LocalDate dateReponse) {
 		this.dateReponse = dateReponse;
 	}
 
-	public Date getDateSelection() {
+	public LocalDate getDateSelection() {
 		return dateSelection;
 	}
 
-	public void setDateSelection(Date dateSelection) {
+	public void setDateSelection(LocalDate dateSelection) {
 		this.dateSelection = dateSelection;
 	}
 
-	public Date getDateDesistement() {
+	public LocalDate getDateDesistement() {
 		return dateDesistement;
 	}
 
-	public void setDateDesistement(Date dateDesistement) {
+	public void setDateDesistement(LocalDate dateDesistement) {
 		this.dateDesistement = dateDesistement;
 	}
 
-	public Date getDateRejet() {
+	public LocalDate getDateRejet() {
 		return dateRejet;
 	}
 
-	public void setDateRejet(Date dateRejet) {
+	public void setDateRejet(LocalDate dateRejet) {
 		this.dateRejet = dateRejet;
 	}
 	
@@ -96,7 +96,7 @@ public class ReponseAction implements Serializable{
 		this.id = id;
 	}
 
-	public ReponseAction(Integer id, Date dateReponse, Date dateSelection, Date dateDesistement, Date dateRejet) {
+	public ReponseAction(Integer id, LocalDate dateReponse, LocalDate dateSelection, LocalDate dateDesistement, LocalDate dateRejet) {
 		super();
 		this.id = id;
 		this.dateReponse = dateReponse;
