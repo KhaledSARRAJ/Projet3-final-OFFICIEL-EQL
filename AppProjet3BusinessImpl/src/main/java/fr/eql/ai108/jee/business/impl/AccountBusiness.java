@@ -32,4 +32,16 @@ public class AccountBusiness implements AccountIBusiness {
 		return proxyUser.authenticate(login, mdpUtil);
 	}
 
+	@Override
+	public boolean delete(User user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public User update(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
