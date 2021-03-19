@@ -19,6 +19,7 @@ import fr.eql.ai108.jee.entity.Minute;
 import fr.eql.ai108.jee.entity.User;
 import fr.eql.ai108.jee.entity.Ville;
 import fr.eql.ai108.jee.ibusiness.api.ActiviteIBusiness;
+
 import fr.eql.ai108.jee.ibusiness.api.DemandeIBusiness;
 import fr.eql.ai108.jee.ibusiness.api.HeureIBusiness;
 import fr.eql.ai108.jee.ibusiness.api.MinuteIBusiness;
@@ -36,6 +37,7 @@ public class DemandeManagedBean implements Serializable {
 	private User userConnected;
 	
 	private List<Demande> demandes;
+
 	private Demande demande = new Demande();
 	private List<Ville> villes;
 	private List<Activite> activites;
@@ -43,19 +45,44 @@ public class DemandeManagedBean implements Serializable {
 	private List<Minute> minutes;
 	private String message = "";
 	
+
 	//Pour la recherche de demande
 	private LocalDate dateDebut;
 	private LocalDate dateFin;
-	
+
 	@NotNull(message = "L'adresse ne peut pas être vide") 
 	private String adresse;
+
+	private Demande selectedDemande;
+	
+	public void printSelectedDemande() {
+		System.out.println(selectedDemande.toString());
+	}
+	
+	public String cancelDemand(Demande demandeCanceled) {
+		proxyDemandeBu.deleteDemand(demandeCanceled);
+		//message = "Votre demande a bien été annulée.";
+		return "/connectedView.xhtml?faces-redirect=true";
+	}
+
+	public String updateDemand(Demande demandeUpdated) {
+		//message = "Votre demande a bien été modifiée.";
+		demande = demandeUpdated;
+	return "/updatingDemandForm.xhtml?faces-redirect=true";
+	}
+
+	public String confirmUpdate() {
+		proxyDemandeBu.updateDemand(demande);
+	return "/connectedView.xhtml?faces-redirect=true";
+	}
+
 	
 	@EJB
 	private DemandeIBusiness proxyDemandeBu;
 	
 	@EJB
 	private VilleIBusiness proxyVilleBu;
-	
+
 	@EJB
 	private ActiviteIBusiness proxyActiviteBu;
 	
@@ -72,7 +99,9 @@ public class DemandeManagedBean implements Serializable {
 		 //valeur temporaire, dépendra de la personne inscrite
 
 		 demande.setUser(userConnected);
-		 
+
+		 System.out.println(demande.getDateAction());
+
 		 //Appel de la fonction d'ajout à la base de données
 		 boolean resultat = proxyDemandeBu.addDemand(demande);
 		 //affichage d'un message selon les résultat de l'ajout
@@ -103,12 +132,14 @@ public class DemandeManagedBean implements Serializable {
 		heures = proxyHeureBu.displayHeure();
 		minutes = proxyMinuteBu.displayMinute();
 		demande.setDateAction(LocalDate.now());
+		
 		dateDebut = LocalDate.now();
 		dateFin = LocalDate.now().plusDays(30);	
 	}
 	
 	public void searchDemandes() {
 		demandes = proxyDemandeBu.displayDemande(userConnected.getId(), demande.getActivite().getLabelActivite() , demande.getVille().getLabelVille(), dateDebut, dateFin);
+
 	}
 
 	public List<Demande> getDemandes() {
@@ -184,6 +215,7 @@ public class DemandeManagedBean implements Serializable {
 		this.adresse = adresse;
 	}
 
+
 	public LocalDate getDateDebut() {
 		return dateDebut;
 	}
@@ -201,5 +233,13 @@ public class DemandeManagedBean implements Serializable {
 
 	public void setDateFin(LocalDate dateFin) {
 		this.dateFin = dateFin;
+	}
+
+	public Demande getSelectedDemande() {
+		return selectedDemande;
+	}
+
+	public void setSelectedDemande(Demande selectedDemande) {
+		this.selectedDemande = selectedDemande;
 	}
 }

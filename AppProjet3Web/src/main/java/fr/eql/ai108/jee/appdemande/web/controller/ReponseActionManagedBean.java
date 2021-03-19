@@ -36,7 +36,7 @@ public class ReponseActionManagedBean{
 	
 	public void saveResponse(Demande demande) {
 		ReponseAction reponseAction = new ReponseAction();
-		reponseAction.setDateReponse(new Date());
+		reponseAction.setDateReponse(LocalDate.now());
 		reponseAction.setDemande(demande);
 		reponseAction.setUser(userConnected);
 		proxyReponseBu.addResponse(reponseAction);

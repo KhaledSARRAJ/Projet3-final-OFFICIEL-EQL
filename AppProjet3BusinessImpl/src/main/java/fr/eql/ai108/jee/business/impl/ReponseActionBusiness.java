@@ -1,6 +1,7 @@
 package fr.eql.ai108.jee.business.impl;
 
 import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,4 +27,13 @@ public class ReponseActionBusiness implements ReponseActionIBusiness {
 		returnedReponse = proxyReponseAction.addResponse(reponseAction);
 		return returnedReponse;
 	}
+
+	@Override
+	public ReponseAction desistementReponse(ReponseAction reponseAction) {
+		ReponseAction desistReponse = reponseAction;
+		desistReponse.setDateDesistement(LocalDate.now());
+		proxyReponseAction.update(desistReponse);
+		return desistReponse;
+	}
 }
+

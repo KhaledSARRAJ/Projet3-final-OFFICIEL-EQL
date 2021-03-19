@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<style>
+.titrePage {
+	text-align: center;
+	color: red;
+	border-style: dotted;
+	margin-top: 7vh;
+}
+
+#demandForm {
+	border-style: dotted;
+	margin: auto;
+	padding: 20%;
+	background-color: rgba(50, 115, 220, 0.3);
+}
+
+form {
+	border-style: double;
+	border-color: green;
+	background-color: lightgray;
+}
+
+table {
+	border-style: double;
+	border-color: red;
+	margin: auto;
+	color: blue;
+}
+
+#buttonRegister {
+	color: red;
+	text-align: center;
+	border-style: solid;
+	border-color: blue;
+	border-style: solid;
+}
+
+td {
+	width: 100vw;
+}
+</style>
+
+</h:head>
+
+
+<h:body>
+
+	<b:navBar brand="Project name" brandHref="#" fixed="top" inverse="true">
+		<b:navbarLinks>
+			<b:navLink value="Home" href="#"></b:navLink>
+			<b:navLink value="About" href="#about"></b:navLink>
+			<b:navLink value="Contact" href="#contact"></b:navLink>
+		</b:navbarLinks>
+	</b:navBar>
+	<b:container>
+
+		<div class="titrePage">
+			<h2>Modification de la demande</h2>
+		</div>
+		<div id="demandForm">
+			<h:form id="form">
+				<table>
+					<tr>
+						<td><h:outputLabel value="Type de service requis: " /></td>
+						<td><h:selectOneMenu value="#{mbDemande.demande.activite}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{mbDemande.activites}" var="activite"
+									itemValue="#{activite}" itemLabel="#{activite.labelActivite}" />
+							</h:selectOneMenu></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel
+								value="Ville et code postal du lieu de service: " /></td>
+						<td><h:selectOneMenu id="ville"
+								value="#{mbDemande.demande.ville}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{mbDemande.villes}" var="ville"
+									itemValue="#{ville}"
+									itemLabel="#{ville.labelVille} #{ville.CP}" />
+							</h:selectOneMenu></td>
+					</tr>
+
+					<tr>
+						<td><h:outputLabel value="Numéro et voie: " /></td>
+
+						<td><h:inputText id="adresse" value="#{mbDemande.adresse}" />
+							<h:commandButton value="mon adresse">
+								<p:ajax event="click" listener="#{mbDemande.copyAdress()}"
+									update="adresse ville" />
+							</h:commandButton> <h:message for="adresse" style="color: red" /></td>
+
+
+					</tr>
+
+					<tr>
+						<td><h:outputLabel value="Date du service: " /></td>
+						<td><h:inputText a:type="date"
+								value="#{mbDemande.demande.dateAction}">>
+					<f:convertDateTime pattern="yyyy-MM-dd" />
+							</h:inputText></td>
+					</tr>
+
+
+
+					<tr>
+						<td><h:outputLabel value="Horaire du service: " /></td>
+
+						<td><h:selectOneMenu value="#{mbDemande.demande.heureDebut}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{mbDemande.heures}" var="heure"
+									itemValue="#{heure}" itemLabel="#{heure.heure}" />
+							</h:selectOneMenu> : <h:selectOneMenu value="#{mbDemande.demande.minuteDebut}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{mbDemande.minutes}" var="minute"
+									itemValue="#{minute}" itemLabel="#{minute.minute}" />
+							</h:selectOneMenu> à <h:selectOneMenu value="#{mbDemande.demande.heureFin}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{mbDemande.heures}" var="heure"
+									itemValue="#{heure}" itemLabel="#{heure.heure}" />
+							</h:selectOneMenu> : <h:selectOneMenu value="#{mbDemande.demande.minuteFin}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{mbDemande.minutes}" var="minute"
+									itemValue="#{minute}" itemLabel="#{minute.minute}" />
+							</h:selectOneMenu></td>
+					</tr>
+
+				</table>
+
+				<div id="buttonRegister">
+					<h:commandButton action="#{mbDemande.confirmUpdate()}"
+						value="Valider" />
+					<br />
+					<h:outputLabel value="#{mbDemande.message}" />
+				</div>
+
+			</h:form>
+		</div>
+	</b:container>
+</h:body>
+</html>

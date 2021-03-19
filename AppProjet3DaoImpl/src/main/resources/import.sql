@@ -36,6 +36,7 @@ INSERT INTO `probleme_demande` (id, labelProblemDemande) VALUES (2, "service imp
 INSERT INTO `probleme_demande` (id, labelProblemDemande) VALUES (3, "travail mal exécuté");
 
 -- remplissage table "heure"
+
 INSERT INTO `heure` (id, heure) VALUES (1, "07");
 INSERT INTO `heure` (id, heure) VALUES (2, "08");
 INSERT INTO `heure` (id, heure) VALUES (3, "09");
@@ -59,6 +60,7 @@ INSERT INTO `minute` (id, minute) VALUES (3,"30");
 INSERT INTO `minute` (id, minute) VALUES (4,"45");
 
 -- remplissage table "user"
+
 INSERT INTO `user` (id, genre_id, ville_id, desinscription_id, nomUtil, prenomUtil, dateNaissance, emailUtil, telUtil, voieUtil, mdpUtil, dateInscriUtil, nomContactUrg, prenomContactUrg, telContactUrg, dateDesinscription)VALUES (1, 1, 1, null, "Jacquot", "Roch", "1991-09-26", "roch.jc@emaildfsdf", "111111", "123 ma voie", "123mdp", "2021-03-10", "Louvet", "Raphael", "1234560", null);
 INSERT INTO `user` (id,nomUtil, prenomUtil, dateNaissance, emailUtil, telUtil,autreTel, numVoieUtil, voieUtil,codePostal,ville_id,login,mdpUtil,genre_id,desinscription_id) VALUES (2,"toto","toto","1994-07-01","toto@gmail.com","1111","111","1","rue pert","1400",1,"login","mtpasse",1,1);
 
@@ -78,4 +80,15 @@ INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id,
 INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (13, 3, 4, 6, 1, 7, 2, null, null, null, "2021-04-20", "456 ma voie", "2021-03-10", null, null, null, 2);
 
 -- remplissage de la table "reponseAction"
-INSERT INTO `reponseaction` (id, dateDesistement, dateRejet, dateReponse, dateSelection, demande_id, motifDesist_id, user_id) VALUES (1, null, null, "2021-01-01", null, 1, null, 2);
+
+INSERT INTO `user` (id, genre_id, ville_id, desinscription_id, nomUtil, prenomUtil, dateNaissance, emailUtil, telUtil, voieUtil, login, mdpUtil, dateInscriUtil, nomContactUrg, prenomContactUrg, telContactUrg, dateDesinscription) VALUES (1, 1, 2, null, "Jacquot", "Roch", "1991-09-26", "roch.jc@emaildfsdf", "111111", "123, ma voie","login", "123mdp", "2021-03-10", "Louvet", "Raphael", "1234560", null);
+INSERT INTO `user` (id, genre_id, ville_id, desinscription_id, nomUtil, prenomUtil, dateNaissance, emailUtil, telUtil, voieUtil, login, mdpUtil, dateInscriUtil, nomContactUrg, prenomContactUrg, telContactUrg, dateDesinscription) VALUES (2, 1, 2, null, "Maréjus", "Benoit", "1986-06-06", "bmarejus@gmail.com", "0685742635", "30, rue Foch", "login", "benoit", "2020-05-29", "Jacquot", "Roch", "0385967423", null);
+INSERT INTO `user` (id, genre_id, ville_id, desinscription_id, nomUtil, prenomUtil, dateNaissance, emailUtil, telUtil, voieUtil, login, mdpUtil, dateInscriUtil, nomContactUrg, prenomContactUrg, telContactUrg, dateDesinscription) VALUES (3, 1, 2, null, "Sarraj", "Khaled", "1991-08-02", "khaledsarraj@gmail.com", "0785415256", "15, rue de Paris", "login", "khaled", "2020-05-29", "Marejus", "Benoit", "0685742635", null);
+INSERT INTO `user` (id, genre_id, ville_id, desinscription_id, nomUtil, prenomUtil, dateNaissance, emailUtil, telUtil, voieUtil, login, mdpUtil, dateInscriUtil, nomContactUrg, prenomContactUrg, telContactUrg, dateDesinscription) VALUES (4, 1, 2, null, "Louvet", "Raphael", "1993-01-02", "raphaellouvet@gmail.com", "0185963245", "23, boulevard de Montrouge", "login", "raphael", "2020-05-29", "Marejus", "Benoit", "0685742635", null);
+INSERT INTO `user` (id, genre_id, ville_id, desinscription_id, nomUtil, prenomUtil, dateNaissance, emailUtil, telUtil, voieUtil, login, mdpUtil, dateInscriUtil, nomContactUrg, prenomContactUrg, telContactUrg, dateDesinscription) VALUES (5, 1, 2, null, "Sam-Yin-Yang", "Mikael", "1992-12-25", "mikaelsamyinyang@gmail.com", "0685741236", "86, rue du château", "login" , "mikael", "2020-05-29", "Marejus", "Benoit", "0685742635", null);
+
+-- remplissage table "reponseAction"
+INSERT INTO `reponseAction` (id, dateDesistement, dateRejet, dateReponse, dateSelection, demande_id, motifDesist_id, user_id) VALUES(1, null, null, "2021-03-10", null, 1, null, 2);
+INSERT INTO `reponseAction` (id, dateDesistement, dateRejet, dateReponse, dateSelection, demande_id, motifDesist_id, user_id) VALUES(2, null, null, "2021-03-10", null, 1, null, 3);
+INSERT INTO `reponseAction` (id, dateDesistement, dateRejet, dateReponse, dateSelection, demande_id, motifDesist_id, user_id) VALUES(3, null, null, "2021-03-10", null, 1, null, 4);
+INSERT INTO `reponseAction` (id, dateDesistement, dateRejet, dateReponse, dateSelection, demande_id, motifDesist_id, user_id) VALUES(4, null, null, "2021-03-10", null, 1, null, 5);
