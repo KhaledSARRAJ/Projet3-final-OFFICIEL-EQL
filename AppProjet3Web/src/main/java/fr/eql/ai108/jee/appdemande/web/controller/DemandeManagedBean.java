@@ -57,21 +57,22 @@ public class DemandeManagedBean implements Serializable {
 		System.out.println(selectedDemande.toString());
 	}
 	
-	public String cancelDemand() {
-		proxyDemandeBu.deleteDemand(selectedDemande);
-		message = "Votre demande a bien été annulée.";
-		return null;
+	public String cancelDemand(Demande demandeCanceled) {
+		proxyDemandeBu.deleteDemand(demandeCanceled);
+		//message = "Votre demande a bien été annulée.";
+		return "/connectedView.xhtml?faces-redirect=true";
 	}
 
-	public String updateDemand() {
-		proxyDemandeBu.updateDemand(selectedDemande);
-		demande.setDateAction(new Date());
-		demande.setVoieAction(adresse);
-		message = "Votre demande a bien été modifiée.";
+	public String updateDemand(Demande demandeUpdated) {
+		//message = "Votre demande a bien été modifiée.";
+		demande = demandeUpdated;
+	return "/updatingDemandForm.xhtml?faces-redirect=true";
+	}
 
+	public String confirmUpdate() {
+		proxyDemandeBu.updateDemand(demande);
 	return "/connectedView.xhtml?faces-redirect=true";
 	}
-
 
 	
 	@EJB
