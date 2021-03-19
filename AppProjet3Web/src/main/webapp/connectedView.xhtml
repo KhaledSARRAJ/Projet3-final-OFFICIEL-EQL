@@ -53,29 +53,68 @@
 	</b:container> <!-- balise qui ferme le carousel container-->
 		
 	
-	<b:container> <!-- container des publications-->
-			<b:column>
-				<h:selectOneMenu value="#{mbDemande.selectedDemande}" converter="omnifaces.SelectItemsConverter">
-				<f:selectItem itemValue="" itemLabel="Choisir" noSelectionOption="true"/>
-				<f:selectItems value="#{mbDemande.demandes}" var="demande"
-					itemLabel="#{demande.id}" itemValue="#{demande}"></f:selectItems>
-				</h:selectOneMenu>
-				<h:commandButton action="#{mbDemande.getSelectedDemande()}" value="Test"/>
-				<h:commandButton action="#{mbDemande.cancelDemand()}" value="Annuler Demande"/>
-				<h:commandButton action="#{mbDemande.updateDemand()}" value="Modifier Demande"/>
-			</b:column>
+	<b:container style="display:flex;justify-content:space-between"> <!-- container des publications-->
+			 
+		<div class ="nonPourvues">	 
+				<h1>Vos demandes non pourvues</h1>
+			 
+			        <ui:repeat value="#{mbConsultDemande.demandesNonPourvues}" var="demNonPourvue">
+			                <table>
+			                	<tr>
+			                		<td class="demande">
+					                	<div class="infos">Activité : #{demNonPourvue.activite.labelActivite}</div>
+					                    <div class="infos">Date : #{demNonPourvue.dateAction}</div>
+					                    <div class="infos">De : #{demNonPourvue.heureDebut.heure}:#{demNonPourvue.minuteDebut.minute} à #{demNonPourvue.heureFin.heure}:#{demNonPourvue.minuteFin.minute}</div>
+					                    <div class="infos">Lieu : #{demNonPourvue.ville.CP} #{demNonPourvue.ville.labelVille}</div>
+			                		</td>
+			                		<td>
+			                			<div class="choixbenevole">
+					               
+					                  	    <h:commandButton class="buttonStyle" action="#{mbDemande.cancelDemand(demNonPourvue)}" value="Annuler"/>
+					                        <h:commandButton class="buttonStyle" action="#{mbDemande.updateDemand(demNonPourvue)}" value="Modifier"/>
+					                        <h:commandButton class="buttonStyle" action="#{mbListeVolontaires.getVolunteers(demNonPourvue)}" value="Choisir un bénévole" rendered="#{mbConsultDemande.proxyDemandeBu.displayVolunteers(demNonPourvue.id)!=null}"/>
+					                    </div>
+			                		</td>
+			                	</tr>
+			                </table> 
+			        </ui:repeat>
+			    
+		</div>  
+		<div class = "Pourvues">  
+			    <h1>Vos demandes pourvues</h1>
+			    
+			        <ui:repeat value="#{mbConsultDemande.demandesPourvues}" var="demPourvue">
+			                <table>
+			                	<tr>
+			                		<td class="demande">
+					                	<div class="infos">Activité : #{demPourvue.activite.labelActivite}</div>
+					                    <div class="infos">Date : #{demPourvue.dateAction}</div>
+					                    <div class="infos">De : #{demPourvue.heureDebut.heure}:#{demPourvue.minuteDebut.minute} à #{demPourvue.heureFin.heure}:#{demPourvue.minuteFin.minute}</div>
+					                    <div class="infos">Lieu : #{demPourvue.ville.CP} #{demPourvue.ville.labelVille}</div>
+			                		</td>
+			                		<td>
+			                			<div class="choixbenevole">
+					                        <h:commandButton class="" action="#{mbDemande.cancelDemand(demPourvue)}" value="Annuler"/>
+					                        <h:commandButton class="" action="#{mbDemande.updateDemand(demPourvue)}" value="Modifier"/>
+					                    </div>
+			                		</td>
+			                	</tr>
+			                </table> 
+			        </ui:repeat>
+			    
+		</div>				
+						
+				</b:container> <!-- balise qui ferme les publications -->	
 			
-	</b:container> <!-- balise qui ferme les publications -->	
-
-	
-	<b:container> <!-- footer container -->
-	  
-	    <b:column span="3" style="margin-top:1em"><b:link value="Qui sommes-nous?" outcome="qui_sommes_nous"/></b:column>
-	    <b:column span="3" style="margin-top:1em"><b:link value="Contact" outcome="contact"/></b:column>
-	    <b:column span="3" style="margin-top:1em"><b:link value="Règlement" outcome="reglement"/></b:column>
-	    <b:column span="3" style="margin-top:1em"><b:link value="Mentions Légales" outcome="mentions_legales"/></b:column>
-		
-	</b:container> <!-- balise qui ferme le footer container -->
+				
+				<b:container> <!-- footer container -->
+				  
+				    <b:column span="3" style="margin-top:1em"><b:link value="Qui sommes-nous?" outcome="qui_sommes_nous"/></b:column>
+				    <b:column span="3" style="margin-top:1em"><b:link value="Contact" outcome="contact"/></b:column>
+				    <b:column span="3" style="margin-top:1em"><b:link value="Règlement" outcome="reglement"/></b:column>
+				    <b:column span="3" style="margin-top:1em"><b:link value="Mentions Légales" outcome="mentions_legales"/></b:column>
+					
+				</b:container> <!-- balise qui ferme le footer container -->
 
 
 </h:body> 
