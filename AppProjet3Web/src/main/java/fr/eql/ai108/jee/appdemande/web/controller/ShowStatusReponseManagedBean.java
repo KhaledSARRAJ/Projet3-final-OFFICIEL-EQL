@@ -49,7 +49,6 @@ public class ShowStatusReponseManagedBean implements Serializable {
 	}
 	
 	public void desist(ReponseAction reponseAction) {
-		System.out.println("I desist !");
 		ReponseAction reponseMod =  proxyReponseActionBU.desistementReponse(reponseAction);
 		System.out.println(reponseMod.toString());
 		loadStatuses();
