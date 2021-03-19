@@ -1,7 +1,8 @@
 package fr.eql.ai108.jee.entity;
 
 import java.io.Serializable;
-import java.time.*;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -443,6 +444,14 @@ public class User implements Serializable{
 		} else if (!voieUtil.equals(other.voieUtil))
 			return false;
 		return true;
+	}
+
+
+
+	public int getAge() {
+		LocalDate todaysDate = LocalDate.now();
+	Period period = Period.between(dateNaissance, todaysDate);
+	    return period.getYears();
 	}
 
 	
