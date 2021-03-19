@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:head>
+	<h:outputStylesheet library="css" name="boots/bootstrap.min.css" />
+</h:head>
+<h:body>
+	<div class="container spacer">
+
+		<h:form id="modifForm">
+			<p:panelGrid id="defautDetail" columns="4" styleClass="ui-noborder">
+				<p:outputLabel>Nom Utilisateur: </p:outputLabel>
+				<p:inputText value="#{mbConnnectUser.user.nomUtil}"></p:inputText>
+				<p:outputLabel>Ville: </p:outputLabel>
+				<h:inputText value="#{mbConnnectUser.user.ville.labelVille}" />
+				<p:outputLabel>Code Postal: </p:outputLabel>
+				<h:inputText value="#{mbConnnectUser.user.codePostal}" />
+				<p:outputLabel>Téléphone: </p:outputLabel>
+				<h:inputText value="#{mbConnnectUser.user.telUtil}" />
+				<p:outputLabel>Contact Urgence: </p:outputLabel>
+				<h:inputText value="#{mbConnnectUser.user.telContactUrg}" />
+			</p:panelGrid>
+			<p:separator></p:separator>
+			<p:commandButton value="Mettre à jour" action="#{mbConnnectUser.Update()}" />
+			<p:commandButton outcome="EspacePersoUser.xhtml" value="Annuler" onclick="Dommage !! Merci et Au revoir!!" style="display: float; float:right ; margin-right: 2vh" />
+		</h:form>
+	</div>
+
+</h:body>
+</html>

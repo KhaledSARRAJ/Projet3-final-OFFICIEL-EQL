@@ -1,112 +1,134 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:b="http://bootsfaces.net/ui">
-     
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
+
 <h:head>
-      <h:outputStylesheet library="css" name="style.css" />
-</h:head> 
+	<h:outputStylesheet library="css" name="style.css" />
+	<!-- Style CSS fait maison -->
+</h:head>
 
-<h:body style="background: linear-gradient(white,cyan,white)"> 
-	
-	<b:container id="nav_container"> <!-- container du menu de navigation -->
-	
-	<h:panelGrid columns="5">
-	  <b:column style="font-size:30px"> Association Pand'Ami </b:column>
-	  <b:column medium-screen="1"><b:button value="S'inscrire" look="success" outcome="inscription" /></b:column>
-	  <b:column>
-	  <h:form>
-	  <b:column>
-	  <b:inputText value="#{mbConnect.user.login}" label="Adresse mail"  />
-	  
-      </b:column>
-      </h:form>
-      </b:column>
-	  <b:column>
-	  <h:form>
-	  <b:column>
-	  <b:inputSecret id="passwordDiv" value="#{mbConnect.user.mdpUtil}" label="Mot de passe"/>
- 	  </b:column>
-	  </h:form> 
-	  </b:column>
-	   <b:column medium-screen="1"><b:button value="Connexion"  outcome="connection" /></b:column> <!-- outcome="connection" -->
-	</h:panelGrid>
-		
-	
-	
-	</b:container> <!-- balise qui ferme le menu de navigation container -->
+<h:body style="background: linear-gradient(white,cyan,white)">
 
-		
-	<b:container> <!-- container du carrousel -->
+	<b:container id="nav_container">
+		<!-- container du menu de navigation -->
 
-	<h:form>
-		<b:carousel>
-		 <b:carouselItem>
-		  <img src="resources/pic/escalade.jpg" style="width:1200px;height:600px" />
-		  	<b:carouselCaption>
-   			<h2>Un monde solidaire et uni...</h2>
-   			</b:carouselCaption>
-		 </b:carouselItem>
-		 <b:carouselItem>
-			<img src="resources/pic/pomme.jpg" style="width:1200px;height:600px"/>
-			<b:carouselCaption>
-   			<h2>Un monde fait de partage...</h2>
-   			</b:carouselCaption>
-		 </b:carouselItem>
-		 <b:carouselItem>
-		<img src="resources/pic/planete.jpg" style="width:1200px;height:600px"/>
-			<b:carouselCaption>
-   			<h2>Grâce à vous et Pand'Ami, un monde plus humain...</h2>
-   			</b:carouselCaption>
-		 </b:carouselItem>
-		</b:carousel>
-		
-	</h:form>  
-			
-	</b:container> <!-- balise qui ferme le carousel container-->
-		
-	<b:container> <!--  container du menu User action -->
+		<b:column span="4" style="font-size:30px;margin-top:0.8em"> Association Pand'Ami </b:column>
+
+		<b:column span="2" style="margin-bottom:2em;margin-top:2em">
+			<b:dropButton look="primary" value="Bénéficiaire">
+				<b:navLink value="Comment ca marche ?" href="EditProfil.xhtml"></b:navLink>
+				<b:navLink value="Mes demandes" href="#"></b:navLink>
+				<b:navLink value="Mes péréférences" href="#"></b:navLink>
+
+				<b:navLink></b:navLink>
+				<b:navLink header="Notification"></b:navLink>
+				<b:navLink value="Suivi" href="#"></b:navLink>
+				<b:navLink value="Témoinage" href="#"></b:navLink>
+			</b:dropButton>
+		</b:column>
+
+		<b:column span="2" style="margin-bottom:2em;margin-top:2em">
+			<b:dropButton look="primary" value="Volontaire">
+				<b:navLink value="Comment ca marche ?" href="EditProfil.xhtml"></b:navLink>
+				<b:navLink value="Mes actions" href="#"></b:navLink>
+				<b:navLink value="Mes péréférences" href="#"></b:navLink>
+
+				<b:navLink></b:navLink>
+				<b:navLink header="Notification"></b:navLink>
+				<b:navLink value="Suivi" href="#"></b:navLink>
+				<b:navLink value="Témoinage" href="#"></b:navLink>
+				
+			</b:dropButton>
+		</b:column>
+		<b:column span="1" style="margin-bottom:2em;margin-top:2em">
+    <b:button value="S'inscrire" look="primary" outcome="inscription" />		
+		</b:column>
+
+		<b:column span="1" style="margin-bottom:2em;margin-top:2em">
+    <b:button value="Connexion" look="primary" outcome="connection" />		
+		</b:column>
+
+		<b:column span="2" style="margin-bottom:2em;margin-top:2em">
+			<b:dropButton look="primary" value="Compte">
+				<b:navLink value="Profil" outcome="EspacePersoUser.xhtml"></b:navLink>
+				<b:navLink value="Connexion" href="connection.xhtml"></b:navLink>
+				<b:navLink></b:navLink>
+				<b:navLink header="Problème"></b:navLink>
+				<b:navLink value="Besoin d'aide ?" href="#"></b:navLink>
+				<b:navLink value="Signaler un problème ?" href="#"></b:navLink>
+			</b:dropButton>
+		</b:column>
+	</b:container>
+	<!-- balise qui ferme le menu de navigation container -->
+
+
+	<b:container>
+		<!-- container du carrousel -->
+
 		<h:form>
-  	<b:panelGrid colSpans="6,6" size="sm">
-    <b:link style="margin-bottom:2em;margin-top:2em" look="success" value="J'ai besoin d'aide" />
-    <b:link style="margin-bottom:2em;margin-top:2em"  look="success" value="Je suis volontaire" />
+			<b:carousel>
+				<b:carouselItem>
+					<img src="resources/pic/escalade.jpg"
+						style="width: 1200px; height: 600px" />
+					<b:carouselCaption>
+						<h2>Un monde solidaire et uni...</h2>
+					</b:carouselCaption>
+				</b:carouselItem>
+				<b:carouselItem>
+					<img src="resources/pic/pomme.jpg"
+						style="width: 1200px; height: 600px" />
+					<b:carouselCaption>
+						<h2>Un monde fait de partage...</h2>
+					</b:carouselCaption>
+				</b:carouselItem>
+				<b:carouselItem>
+					<img src="resources/pic/planete.jpg"
+						style="width: 1200px; height: 600px" />
+					<b:carouselCaption>
+						<h2>Grâce à vous et Pand'Ami, un monde plus humain...</h2>
+					</b:carouselCaption>
+				</b:carouselItem>
+			</b:carousel>
 
-  	</b:panelGrid>
 		</h:form>
-			
-	</b:container> <!-- balise qui ferme le User action container -->
-		
-	
-	<b:container id="annonces_demandes"> <!-- container des publications-->
-			
-  	<b:panelGrid colSpans="6,6">
-  		
-  		<b:column>Demandes récentes</b:column>
 
-  		<b:column>Volontaires disponibles</b:column>
-  		
-	</b:panelGrid>
-	
-	</b:container> <!-- balise qui ferme les publications -->	
-
-	
-	<b:container> <!-- footer container -->
-	
-	  	<b:panelGrid style="margin-bottom:2em;margin-top:2em"  colSpans="3,3,3,3">    
-	
-	    <b:column><b:link value="Qui sommes-nous?" outcome="qui_sommes_nous"/></b:column>
-	    <b:column><b:link value="Contact" outcome="contact"/></b:column>
-	    <b:column><b:link value="Règlement" outcome="reglement"/></b:column>
-	    <b:column><b:link value="Mentions Légales" outcome="mentions_legales"/></b:column>
-    
-  		</b:panelGrid>
-		
-	</b:container> <!-- balise qui ferme le footer container -->
+	</b:container>
+	<!-- balise qui ferme le carousel container-->
 
 
-</h:body> 
+	<b:container>
+		<!-- container des publications-->
+
+
+	</b:container>
+	<!-- balise qui ferme les publications -->
+
+
+	<b:container>
+		<!-- footer container -->
+
+
+		<b:column span="3" style="margin-top:1em">
+			<b:link value="Qui sommes-nous?" outcome="qui_sommes_nous" />
+		</b:column>
+		<b:column span="3" style="margin-top:1em">
+			<b:link value="Contact" outcome="contact" />
+		</b:column>
+		<b:column span="3" style="margin-top:1em">
+			<b:link value="Règlement" outcome="reglement" />
+		</b:column>
+		<b:column span="3" style="margin-top:1em">
+			<b:link value="Mentions Légales" outcome="mentions_legales" />
+		</b:column>
+
+	</b:container>
+	<!-- balise qui ferme le footer container -->
+
+
+</h:body>
 
 
 </html>

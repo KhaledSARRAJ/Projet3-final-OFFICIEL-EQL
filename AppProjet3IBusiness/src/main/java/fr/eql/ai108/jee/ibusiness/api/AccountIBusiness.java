@@ -5,4 +5,6 @@ import fr.eql.ai108.jee.entity.User;
 public interface AccountIBusiness {
 	User createAccount(User user);
 	User connection(String login, String mdpUtil);
+	User update(User user);
+	boolean delete(User user);
 }
