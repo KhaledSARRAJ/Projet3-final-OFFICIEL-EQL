@@ -14,4 +14,7 @@ public interface DemandeIBusiness {
 	List<ReponseAction> displayVolunteers(int idDemande);
 	List<Demande> getDemandesNonPourvues(int idUser);
 	List<Demande> getDemandesPourvues(int idUser);
+	Demande updateDemand(Demande demande);
+	void deleteDemand(Demande demande);
+
 }

@@ -47,10 +47,31 @@ public class DemandeManagedBean implements Serializable {
 	private List<Minute> minutes;
 	private String message = "";
 	
+	
 	@NotNull(message = "L'adresse ne peut pas être vide") 
 	private String adresse;
 
 	private Demande selectedDemande;
+	
+	public void printSelectedDemande() {
+		System.out.println(selectedDemande.toString());
+	}
+	
+	public String cancelDemand() {
+		proxyDemandeBu.deleteDemand(selectedDemande);
+		message = "Votre demande a bien été annulée.";
+		return null;
+	}
+
+	public String updateDemand() {
+		proxyDemandeBu.updateDemand(selectedDemande);
+		demande.setDateAction(new Date());
+		demande.setVoieAction(adresse);
+		message = "Votre demande a bien été modifiée.";
+
+	return "/connectedView.xhtml?faces-redirect=true";
+	}
+
 
 	
 	@EJB
