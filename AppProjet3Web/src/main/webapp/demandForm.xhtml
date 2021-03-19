@@ -99,20 +99,15 @@ td {
 								<p:ajax event="click" listener="#{mbDemande.copyAdress()}"
 									update="adresse ville" />
 							</h:commandButton> <h:message for="adresse" style="color: red" /></td>
-
-
 					</tr>
 
 					<tr>
 						<td><h:outputLabel value="Date du service: " /></td>
 						<td><h:inputText a:type="date"
-								value="#{mbDemande.demande.dateAction}">>
-					<f:convertDateTime pattern="yyyy-MM-dd" />
+								value="#{mbDemande.demande.dateAction}">
+					
 							</h:inputText></td>
 					</tr>
-
-
-
 					<tr>
 						<td><h:outputLabel value="Horaire du service: " /></td>
 

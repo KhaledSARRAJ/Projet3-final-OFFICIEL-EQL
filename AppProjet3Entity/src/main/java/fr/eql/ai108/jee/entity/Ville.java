@@ -127,8 +127,5 @@ public class Ville implements Serializable {
 	public String toString() {
 		return "Ville [id=" + id + ", CP=" + CP + ", labelVille=" + labelVille + "]";
 	}
-	
-	
-	
-	
+
 }

@@ -1,5 +1,6 @@
 package fr.eql.ai108.jee.dao.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.ejb.Remote;
@@ -19,13 +20,6 @@ public class DemandeDao extends GenericDao<Demande> implements DemandeIDao {
 	@PersistenceContext (unitName = "AppProjet3DaoImpl")
 	private EntityManager em;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Demande> getAll() {
-		Query query = em.createQuery("SELECT c FROM Demande c");
-		List<Demande> demandes = query.getResultList();
-		return demandes;
-	}
 
 	//Check whether there are other replicas of this demande
 	@SuppressWarnings("unchecked")
@@ -54,5 +48,84 @@ public class DemandeDao extends GenericDao<Demande> implements DemandeIDao {
 		return result;
 	}
 	
-
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Demande> getAll(Integer userId, String labelActivite, String labelVille, LocalDate dateDebut, LocalDate dateFin) {
+		Query query = null;
+		
+		String maRequete = "SELECT d FROM Demande d WHERE d.user.id != :paramIdUtil";
+		if(labelActivite != null) {
+			maRequete += " AND d.activite.labelActivite = :paramActivite";
+		}
+		if(labelVille != null) {
+			maRequete += " AND d.ville.labelVille = :paramVille";
+		}
+		if(dateDebut != null) {
+			maRequete += " AND d.dateAction > :paramDebut";	
+		}
+		if(dateFin != null) {
+			maRequete += " AND d.dateAction < :paramFin";
+		}
+		query = em.createQuery(maRequete);
+		if(labelActivite != null) {
+			query.setParameter("paramActivite", labelActivite);
+		}
+		if(labelVille != null) {
+			query.setParameter("paramVille", labelVille);
+		}
+		if(dateDebut != null) {
+			query.setParameter("paramDebut", dateDebut);
+		}
+		if(dateFin != null) {
+			query.setParameter("paramFin", dateFin);
+		}
+		query.setParameter("paramIdUtil", userId);
+		System.out.println(maRequete);
+		List<Demande> demandes = query.getResultList();
+		
+		return demandes;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Demande> getAllTri(Demande demande) {
+		Query query = null;
+		String labelActivite = demande.getVille().getLabelVille();
+		int userId = 2;
+		String labelVille = null;
+		String dateDebut = null;
+		String dateFin = null;
+		
+		String maRequete = "SELECT d FROM Demande d WHERE d.user.id != :paramIdUtil";
+		if(labelActivite != null) {
+			maRequete += " AND d.activite.labelActivite = :paramActivite";
+		}
+		if(labelVille != null) {
+			maRequete += " AND d.ville.labelVille = :paramVille";
+		}
+		if(dateDebut != null) {
+			maRequete += " AND d.dateAction > :paramDebut";	
+		}
+		if(dateFin != null) {
+			maRequete += " AND d.dateAction < :paramFin";
+		}
+		query = em.createQuery(maRequete);
+		if(labelActivite != null) {
+			query.setParameter("paramActivite", labelActivite);
+		}
+		if(labelVille != null) {
+			query.setParameter("paramVille", labelVille);
+		}
+		if(dateDebut != null) {
+			query.setParameter("paramDebut", dateDebut);
+		}
+		if(dateFin != null) {
+			query.setParameter("paramFin", dateFin);
+		}
+		query.setParameter("paramIdUtil", userId);
+		System.out.println(maRequete);
+		List<Demande> demandes = query.getResultList();
+		
+		return demandes;
+	}
 }

@@ -43,6 +43,10 @@ public class DemandeManagedBean implements Serializable {
 	private List<Minute> minutes;
 	private String message = "";
 	
+	//Pour la recherche de demande
+	private LocalDate dateDebut;
+	private LocalDate dateFin;
+	
 	@NotNull(message = "L'adresse ne peut pas être vide") 
 	private String adresse;
 	
@@ -93,13 +97,18 @@ public class DemandeManagedBean implements Serializable {
 	
 	@PostConstruct
 	public void init() {
-		demandes = proxyDemandeBu.displayDemande();
+		demandes = proxyDemandeBu.displayDemande(userConnected.getId(), null, null, LocalDate.now(), null);
 		villes = proxyVilleBu.displayVille();
 		activites = proxyActiviteBu.displayActivite();
 		heures = proxyHeureBu.displayHeure();
 		minutes = proxyMinuteBu.displayMinute();
 		demande.setDateAction(LocalDate.now());
-		
+		dateDebut = LocalDate.now();
+		dateFin = LocalDate.now().plusDays(30);	
+	}
+	
+	public void searchDemandes() {
+		demandes = proxyDemandeBu.displayDemande(userConnected.getId(), demande.getActivite().getLabelActivite() , demande.getVille().getLabelVille(), dateDebut, dateFin);
 	}
 
 	public List<Demande> getDemandes() {
@@ -173,5 +182,24 @@ public class DemandeManagedBean implements Serializable {
 
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
+	}
+
+	public LocalDate getDateDebut() {
+		return dateDebut;
+	}
+
+
+	public void setDateDebut(LocalDate dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+
+
+	public LocalDate getDateFin() {
+		return dateFin;
+	}
+
+
+	public void setDateFin(LocalDate dateFin) {
+		this.dateFin = dateFin;
 	}
 }

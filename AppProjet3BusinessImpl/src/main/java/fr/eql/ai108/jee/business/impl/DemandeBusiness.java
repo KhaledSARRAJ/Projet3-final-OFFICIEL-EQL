@@ -1,5 +1,7 @@
 package fr.eql.ai108.jee.business.impl;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -16,12 +18,6 @@ public class DemandeBusiness implements DemandeIBusiness {
 
 	@EJB
 	DemandeIDao proxyDemandeDao;
-	
-	@Override
-	public List<Demande> displayDemande() {
-		// TODO Auto-generated method stub
-		return proxyDemandeDao.getAll();
-	}
 
 	//ajout d'une demande en véficiant que cette dernière n'existe pas déjà
 	@Override
@@ -35,5 +31,14 @@ public class DemandeBusiness implements DemandeIBusiness {
 		}
 		return addedUser;
 	}
-
+	
+	@Override
+	public List<Demande> displayDemande(Integer userId, String labelActivite, String labelVille, LocalDate dateDebut, LocalDate dateFin) {
+		return proxyDemandeDao.getAll(userId, labelActivite, labelVille, dateDebut, dateFin);
+	}
+	
+	@Override
+	public List<Demande> displayDemandeTri(Demande demande) {
+		return proxyDemandeDao.getAllTri(demande);
+	}
 }

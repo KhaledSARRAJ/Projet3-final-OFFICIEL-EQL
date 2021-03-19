@@ -1,61 +1,78 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
-
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<h:outputStylesheet library="css" name="rechercheAction.css" />
-	
-</h:head> 
-<h:body > 
+
+</h:head>
+<h:body>
 	<div class="titre">
 		<h1>DEMANDES DE SERVICES</h1>
 	</div>
-	<div class="maPage">
-	<br/>
-	<br/>
-	<br/>
-	<div class="filtreRecherche">
-		<h2 class="titre2">FILTRER LA RECHERCHE</h2>
-		<table>
-			<tr>
-				<td>Activite :</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>Ville :</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>Date début :</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>Date fin :</td>
-				<td></td>
-			</tr>
-		</table>
-		<h:commandButton  value="Appliquer" />
+	<div class="maPage" id="maPage">
+		<br /> <br /> <br />
+		<div class="filtreRecherche">
+			<h2 class="titre2">FILTRER LA RECHERCHE</h2>
+			<h:form id="form" prependId="false">
+				<table>
+					<tr>
+						<td>Activite :</td>
+						<td><h:selectOneMenu value="#{mbDemande.demande.activite}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{mbDemande.activites}" var="activite"
+									itemValue="#{activite}" itemLabel="#{activite.labelActivite}" />
+							</h:selectOneMenu></td>
+						<td>Ville :</td>
+						<td><h:selectOneMenu value="#{mbDemande.demande.ville}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItems value="#{mbDemande.villes}" var="ville"
+									itemValue="#{ville}"
+									itemLabel="#{ville.labelVille}">
+								</f:selectItems>
+							</h:selectOneMenu></td>
+					</tr>
+					<tr>
+						<td>Date début :</td>
+						<td><h:inputText a:type="date" converter="localDateConverter"
+								value="#{mbDemande.dateDebut}">
+							</h:inputText></td>
+						<td>Date fin :</td>
+						<td><h:inputText a:type="date" converter="localDateConverter"
+								value="#{mbDemande.dateFin}">
+							</h:inputText></td>
+					</tr>
+				</table>
+				<p:commandButton class="monBouton" action="#{mbDemande.searchDemandes()}" value="appliquer" update="monForm"/>
+			</h:form>
+		</div>
+		<div class="lesDemandes" id="lesDemandes">
+			<h:form id="monForm" prependId="false">
+				<ui:repeat var="demande" value="#{mbDemande.demandes}">
+
+					<table class="maLigne">
+						<tr>
+							<td><h3 class="titre3">#{demande.activite.labelActivite}
+									à #{demande.ville.labelVille}</h3></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>#{demande.user.prenomUtil} <br />
+								<h:outputLabel a:type="date" converter="localDateConverter" value="#{demande.dateAction}"/>
+								de #{demande.heureDebut.heure} H #{demande.minuteDebut.minute} -
+								#{demande.heureFin.heure} H #{demande.minuteFin.minute}
+							</td>
+							<td><h:commandButton class="monBouton"
+									action="#{mbReponseAction.saveResponse(demande)}"
+									value="Selectionner" /></td>
+						</tr>
+					</table>
+				</ui:repeat>
+			</h:form>
+		</div>
 	</div>
-		<div class="lesDemandes">
-			<ui:repeat var="demande" value="#{mbDemande.demandes}">
-	<h:form>
-		<table class="maLigne">
-			<tr>
-				<td><h3 class="titre3">#{demande.activite.labelActivite} à #{demande.user.ville.labelVille}</h3></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>#{demande.user.prenomUtil} <br/>#{demande.dateAction} de #{demande.heureDebut.heure} H #{demande.minuteDebut.minute} - #{demande.heureFin.heure} H #{demande.minuteFin.minute}</td>
-				<td>
-					<h:commandButton action="#{mbReponseAction.saveResponse(demande)}" value="Selectionner" />
-				</td>
-			</tr>
-		</table>
-	</h:form>
-	</ui:repeat>
-	</div>
-	</div>
-</h:body> 
+</h:body>
 </html>
