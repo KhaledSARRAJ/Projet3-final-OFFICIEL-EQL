@@ -18,6 +18,7 @@ public interface DemandeIBusiness {
 	boolean addDemand(Demande demande);
 	void clotureDemand(Demande demPourvue);
 
+
 	List<Demande> displayByReponseUser(User user);
 
 	List<ReponseAction> displayVolunteers(int idDemande);

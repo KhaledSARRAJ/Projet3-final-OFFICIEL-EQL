@@ -1,3 +1,4 @@
+
 package fr.eql.ai108.jee.idao.api;
 
 import java.util.List;
@@ -8,3 +9,4 @@ public interface TypeFinalisationIDao extends GenericIDao<TypeFinalisation>{
 	List<TypeFinalisation> getAll();
 
 }
+

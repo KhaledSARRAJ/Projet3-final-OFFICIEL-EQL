@@ -1,0 +1,61 @@
+@charset "ISO-8859-1";
+
+.maPage{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1vh;
+    justify-content: space-around;
+    background-color: white;
+    margin-left: 30vh;
+    margin-right: 30vh;
+    margin-top: 200px;
+    border-style:groove;
+    border-clor: black;
+}
+
+.titre{
+	color: grey;
+	text-align: center;
+}
+
+.titre2{
+	color: grey;
+	text-align: left;
+}
+
+.filtreRecherche{
+	color: Black;
+	display: flex;
+	flex-direction: column;
+	background-color: #f0f8ff;
+	padding:10px;
+	width:800px;
+	border-style:groove;
+    border-clor: black; 
+}
+
+.lesDemandes{
+	border-style:groove;
+    border-clor: black;
+    padding:10px;
+    width:800px;
+    overflow-y: scroll;
+}
+
+.maLigne{
+	border-style:groove;
+    border-clor: black;
+    margin:10px;
+    background-color: WhiteSmoke;
+    width:780px;
+}
+
+.titre3{
+	color: MidnightBlue;
+}
+
+.monBouton{
+	margin-left: auto;
+	margin-right: auto;
+}

@@ -1,136 +1,106 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:b="http://bootsfaces.net/ui">
-     
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
 <h:head>
-      <h:outputStylesheet library="css" name="style.css" /> <!-- Style CSS fait maison -->
+	<style type="text/css">
+	    body{
+	    	display:flex;
+	    	flex-direction: column;
+	    }
+	    table {
+	    	border-style:outset;
+	        border-width:5px;
+	       	margin:50px;
+	        padding:10px;
+	        width:90%;
+	    }
+	    table.tr.td {
+	    	width:25%;
+	    	align:center;
+	    }
+	    h1 {
+	    	text-align:center;
+	    	font-size: 32px;
+			line-height: 150px;
+			font-family: Arial, Helvetica, sans-serif;
+			padding:32px;
+			font-weight:lighter;
+			  -moz-box-shadow: 2px 2px 6px #888;  
+			  -webkit-box-shadow: 2px 2px 6px #888;  
+			  box-shadow:2px 2px 6px #888;  
+			  text-align:center;
+			  display:inline;
+	    }
+	    .infos {
+    	font-family: Arial, Helvetica, sans-serif;
+    	font-size:25px;
+    	}
+	    input {
+		float:right;
+		border-radius: 10px;
+		border: 4px double #cccccc;
+		text-align: center;
+		font-size: 28px;
+		padding: 20px;
+		width: auto;
+		-webkit-transition: all 0.5s;
+		-moz-transition: all 0.5s;
+		-o-transition: all 0.5s;
+		transition: all 0.5s;
+		cursor: pointer;
+		margin: 5px;
+		}
+	</style>
 </h:head> 
-
-<h:body> 
-	
-	<b:container id="nav_container"> <!-- container du menu de navigation -->
-	
-		<b:column id="home" span="4"> 
-		<b:link id="homeLink" value="Association Pand'Ami" outcome="connectedView.xhtml"/>
-		</b:column>
-
-		<b:column class="navi" span="2">
-			<b:dropButton contentDisabled="false" look="info" value="Bénéficiaire">
-				<b:navLink value="Effectuer une nouvelle demande" href="demandForm.xhtml"></b:navLink>
-				<b:navLink value="Mes demandes" href="listeDemandes.xhtml"></b:navLink>
-				<b:navLink value="Mes préférences" href="#"></b:navLink>
-
-				<b:navLink></b:navLink>
-				<b:navLink header="Notification"></b:navLink>
-				<b:navLink value="Témoignage" href="#"></b:navLink>
-				<b:navLink value="Comment ca marche ?" href="EspacePersoUser.xhtml"></b:navLink>
-			</b:dropButton>
-		</b:column>
-
-		<b:column class="navi" span="2">
-			<b:dropButton contentDisabled="false" look="info" value="Volontaire">
-				<b:navLink value="Rechercher un bénéficiaire" href="rechercheAction.xhtml"></b:navLink>
-				<b:navLink value="Mes sollicitations" href="affichageStatut.xhtml"></b:navLink>
-				<b:navLink value="Mes préférences" href="#"></b:navLink>
-
-				<b:navLink></b:navLink>
-				<b:navLink header="Notification"></b:navLink>
-				<b:navLink value="Témoignage" href="#"></b:navLink>
-				<b:navLink value="Comment ca marche ?" href="EspacePersoUser.xhtml"></b:navLink>
-				
-			</b:dropButton>
-		</b:column>
-
-		<b:column class="navi" span="2">
-		<h:outputLabel id="connectLabel" value="Bienvenue, #{mbConnect.user.prenomUtil} !"/>
-		</b:column>
-
-		<b:column class="navi" span="2">
-			<b:dropButton contentDisabled="false" look="info" value="Compte">
-				<b:navLink value="Profil" outcome="EspacePersoUser.xhtml"></b:navLink>
-				<b:navLink value="Déconnexion" action="#{mbConnect.disconnect()}" href="welcome.xhtml"></b:navLink>
-				<b:navLink></b:navLink>
-				<b:navLink header="Problème"></b:navLink>
-				<b:navLink value="Besoin d'aide ?" href="#"></b:navLink>
-				<b:navLink value="Signaler un problème ?" href="#"></b:navLink>
-			</b:dropButton>
-		</b:column>
-	
-	</b:container> <!-- balise qui ferme le menu de navigation container -->
-
-		
-
-	
-	<b:container style="display:flex;justify-content:space-between"> <!-- container des publications-->
-			 
-		<div class ="nonPourvues">	 
-				<h2>Vos demandes non pourvues</h2>
-			 <h:form>
-			        <ui:repeat value="#{mbConsultDemande.demandesNonPourvues}" var="demNonPourvue">
-			                <table>
-			                	<tr>
-			                		<td class="demande">
-					                	<div class="activity">Activité : #{demNonPourvue.activite.labelActivite}</div>
-					                    <div class="infos">Date : #{demNonPourvue.dateAction}</div>
-					                    <div class="infos">De : #{demNonPourvue.heureDebut.heure}:#{demNonPourvue.minuteDebut.minute} à #{demNonPourvue.heureFin.heure}:#{demNonPourvue.minuteFin.minute}</div>
-					                    <div class="infos">Lieu : #{demNonPourvue.ville.CP} #{demNonPourvue.ville.labelVille}</div>
-			                		</td>
-			                		<td>
-			                			<div class="choixbenevole">
-					               
-					                  	    <h:commandButton class="monBouton" action="#{mbDemande.cancelDemand(demNonPourvue)}" value="Annuler"/>
-					                        <h:commandButton class="monBouton" action="#{mbDemande.updateDemand(demNonPourvue)}" value="Modifier"/>
-					                        <h:commandButton class="monBouton" action="#{mbListeVolontaires.getVolunteers(demNonPourvue)}" value="Choisir un bénévole" rendered="#{mbConsultDemande.proxyDemandeBu.displayVolunteers(demNonPourvue.id)!=null}"/>
-					                    </div>
-			                		</td>
-			                	</tr>
-			                </table> 
-			        </ui:repeat>
-			    </h:form>
-		</div>  
-		<div class = "Pourvues">  
-			    <h2>Vos demandes pourvues</h2>
-			    <h:form>
-			        <ui:repeat value="#{mbConsultDemande.demandesPourvues}" var="demPourvue">
-			                <table>
-			                	<tr>
-			                		<td class="demande">
-					                	<div class="activity">Activité : #{demPourvue.activite.labelActivite}</div>
-					                    <div class="infos">Date : #{demPourvue.dateAction}</div>
-					                    <div class="infos">De : #{demPourvue.heureDebut.heure}:#{demPourvue.minuteDebut.minute} à #{demPourvue.heureFin.heure}:#{demPourvue.minuteFin.minute}</div>
-					                    <div class="infos">Lieu : #{demPourvue.ville.CP} #{demPourvue.ville.labelVille}</div>
-			                		</td>
-			                		<td>
-			                			<div class="choixbenevole">
-					                        <h:commandButton class="monBouton" action="#{mbDemande.cancelDemand(demPourvue)}" value="Annuler"/>
-					                        <h:commandButton class="monBouton" action="#{mbDemande.updateDemand(demPourvue)}" value="Modifier"/>
-					                    </div>
-			                		</td>
-			                	</tr>
-			                </table> 
-			        </ui:repeat>
-			    </h:form>
-		</div>				
-						
-				</b:container> <!-- balise qui ferme les publications -->	
-			
-				
-				
-				<b:container id="footer_container"> <!-- footer container -->
-				  
-				   <b:column class="footer" span="3"><b:link class="foot_item" value="Qui sommes-nous?" outcome="qui_sommes_nous"/></b:column>
-				   <b:column class="footer" span="3"><b:link class="foot_item" value="Contact" outcome="contact"/></b:column>
-				   <b:column class="footer" span="3"><b:link class="foot_item" value="Règlement" outcome="reglement"/></b:column>
-				   <b:column class="footer" span="3"><b:link class="foot_item" value="Mentions Légales" outcome="mentions_legales"/></b:column>
-					
-				</b:container> <!-- balise qui ferme le footer container -->
-			
-
-
-</h:body> 
-
-
+<body> 
+	<h1>Vos demandes non pourvues</h1>
+    <h:form id="formDemNonPourv">
+        <ui:repeat value="#{mbConsultDemande.demandesNonPourvues}" var="demNonPourvue">
+                <table>
+                	<tr>
+                		<td class="demande">
+		                	<div class="infos">Activité : #{demNonPourvue.activite.labelActivite}</div>
+		                    <div class="infos">Date : #{demNonPourvue.dateAction}</div>
+		                    <div class="infos">De : #{demNonPourvue.heureDebut.heure}:#{demNonPourvue.minuteDebut.minute} à #{demNonPourvue.heureFin.heure}:#{demNonPourvue.minuteFin.minute}</div>
+		                    <div class="infos">Lieu : #{demNonPourvue.ville.CP} #{demNonPourvue.ville.labelVille}</div>
+                		</td>
+                		<td>
+                			<div class="choixbenevole">
+		                        <h:commandButton class="" action="#{mbListeVolontaires.getVolunteers(demNonPourvue)}" value="Choisir un bénévole" rendered="#{mbConsultDemande.proxyDemandeBu.displayVolunteers(demNonPourvue.id)!=null}"/>
+		                        <h:commandButton class="" action="#{mbDemande.cancelDemand(demNonPourvue)}" value="Annuler"/>
+		                        <h:commandButton class="" action="#{mbDemande.updateDemand(demNonPourvue)}" value="Modifier"/>
+		                    </div>
+                		</td>
+                	</tr>
+                </table> 
+        </ui:repeat>
+    </h:form>
+    <h1>Vos demandes pourvues</h1>
+    <h:form id="formDemPourv">
+        <ui:repeat value="#{mbConsultDemande.demandesPourvues}" var="demPourvue">
+                <table>
+                	<tr>
+                		<td class="demande">
+		                	<div class="infos">Activité : #{demPourvue.activite.labelActivite}</div>
+		                    <div class="infos">Date : #{demPourvue.dateAction}</div>
+		                    <div class="infos">De : #{demPourvue.heureDebut.heure}:#{demPourvue.minuteDebut.minute} à #{demPourvue.heureFin.heure}:#{demPourvue.minuteFin.minute}</div>
+		                    <div class="infos">Lieu : #{demPourvue.ville.CP} #{demPourvue.ville.labelVille}</div>
+                		</td>
+                		<td>
+                			<div class="choixbenevole">
+		                        <h:commandButton class="" action="#{mbDemande.cancelDemand(demPourvue)}" value="Annuler"/>
+		                        <h:commandButton class="" action="#{mbDemande.updateDemand(demPourvue)}" value="Modifier"/>
+		                        <h:commandButton class="" action="#{mbCloture.clotureDemand(demPourvue)}" value="Clôturer"/>
+		                    </div>
+                		</td>
+                	</tr>
+                </table> 
+        </ui:repeat>
+    </h:form>
+</body> 
 </html>
+

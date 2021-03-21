@@ -1,3 +1,4 @@
+
 package fr.eql.ai108.jee.dao.impl;
 
 import java.util.List;
@@ -27,3 +28,4 @@ public class TypeFinalisationDao extends GenericDao<TypeFinalisation> implements
 		return typeFinalisations;
 	}
 }
+

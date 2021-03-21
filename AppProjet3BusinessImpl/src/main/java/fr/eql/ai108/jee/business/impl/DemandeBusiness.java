@@ -88,7 +88,6 @@ public class DemandeBusiness implements DemandeIBusiness {
 		return demandList;
 	}
 
-	
 	@Override
 	public void clotureDemand(Demande demPourvue) {
 		demPourvue.setDateCloture(LocalDate.now());
@@ -98,6 +97,7 @@ public class DemandeBusiness implements DemandeIBusiness {
 		demPourvue.setFinaleDemande(type);
 		proxyDemandeDao.update(demPourvue);
 	}
+
 	
 
 }

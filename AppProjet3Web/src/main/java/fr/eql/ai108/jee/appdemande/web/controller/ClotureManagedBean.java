@@ -1,3 +1,4 @@
+
 package fr.eql.ai108.jee.appdemande.web.controller;
 
 import java.io.Serializable;
@@ -79,3 +80,4 @@ public class ClotureManagedBean implements Serializable {
 		this.probDemandes = probDemandes;
 	}
 }
+

@@ -1,3 +1,4 @@
+
 package fr.eql.ai108.jee.dao.impl;
 
 import java.util.List;
@@ -28,4 +29,5 @@ public class ProbDemandeDao extends GenericDao<ProbDemande> implements ProbDeman
 		List<ProbDemande> probDemandes = query.getResultList();
 		return probDemandes;
 	}
+
 }

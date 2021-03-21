@@ -1,3 +1,4 @@
+
 package fr.eql.ai108.jee.idao.api;
 
 import java.util.List;
@@ -9,3 +10,4 @@ public interface ProbDemandeIDao extends GenericIDao<ProbDemande>{
 	List<ProbDemande> getAll();
 
 }
+
