@@ -3,19 +3,77 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
+     
 
 <h:head>
-	<h:outputStylesheet library="css" name="styleConnection.css" />
+	 <h:outputStylesheet library="css" name="styleConnection.css" />
+	 <h:outputStylesheet library="css" name="style.css" /> <!-- Style CSS fait maison -->
 </h:head>
 <h:body>
+
+<b:container id="nav_container">
+		<!-- container du menu de navigation -->
+
+		<b:column id="home" span="4"> 
+		<b:link id="homeLink" value="Association Pand'Ami" outcome="welcome.xhtml"/>
+		</b:column>
+
+		<b:column class="navi" span="2">
+			<b:dropButton contentDisabled="true" look="info" value="Bénéficiaire">
+				<b:navLink value="Comment ca marche ?" href="EditProfil.xhtml"></b:navLink>
+				<b:navLink value="Mes demandes" href="#"></b:navLink>
+				<b:navLink value="Mes préférences" href="#"></b:navLink>
+
+				<b:navLink></b:navLink>
+				<b:navLink header="Notification"></b:navLink>
+				<b:navLink value="Suivi" href="#"></b:navLink>
+				<b:navLink value="Témoignage" href="#"></b:navLink>
+			</b:dropButton>
+		</b:column>
+
+		<b:column class="navi" span="2">
+			<b:dropButton contentDisabled="true" look="info" value="Volontaire">
+				<b:navLink value="Comment ca marche ?" href="EditProfil.xhtml"></b:navLink>
+				<b:navLink value="Mes sollicitations" href="affichageStatut.xhtml"></b:navLink>
+				<b:navLink value="Mes préférences" href="#"></b:navLink>
+
+				<b:navLink></b:navLink>
+				<b:navLink header="Notification"></b:navLink>
+				<b:navLink value="Suivi" href="#"></b:navLink>
+				<b:navLink value="Témoignage" href="#"></b:navLink>
+				
+			</b:dropButton>
+		</b:column>
+		<b:column class="navi" span="1">
+    <b:button value="S'inscrire" look="info" outcome="inscription" />		
+		</b:column>
+
+		<b:column class="navi" span="1">
+    <b:button value="Connexion" look="info" outcome="connection" />		
+		</b:column>
+
+		<b:column class="navi" span="2">
+			<b:dropButton contentDisabled="true" look="info" value="Compte">
+				<b:navLink value="Profil" outcome="EspacePersoUser.xhtml"></b:navLink>
+				<b:navLink value="Connexion" href="connection.xhtml"></b:navLink>
+				<b:navLink></b:navLink>
+				<b:navLink header="Problème"></b:navLink>
+				<b:navLink value="Besoin d'aide ?" href="#"></b:navLink>
+				<b:navLink value="Signaler un problème ?" href="#"></b:navLink>
+			</b:dropButton>
+		</b:column>
+	</b:container>
+	<!-- balise qui ferme le menu de navigation container -->
+
 	<div class="wrapper">
 		<div class="title">Connexion</div>
 		<h:form>
 			<div class="field">
 				<h:inputText id="login" value="#{mbConnect.user.login}"
 					required="true" />
-				<br /> <label>Adresse E-mail</label>
+				<br /> <label>Login</label>
 			</div>
 
 			<div class="field">
@@ -25,8 +83,9 @@
 			</div>
 
 			<div class="content">
+			<label id="remember_me">Se souvenir de mes identifiants</label>
 				<div class="checkbox">
-					<h:selectBooleanCheckbox  id="remember-me"/> <label for="remember-me">Mémorisez</label>
+					<h:selectBooleanCheckbox  id="check_case"/> 
 				</div>
 				<div class="pass-link">
 					<h:link value="Mot de Passe oublié?" outcome="inscription" />
@@ -34,16 +93,25 @@
 			</div>
 
 
-			<div class="field">
-				<h:commandButton action="#{mbConnect.connection()}"
+			<div id="field" style="text-align:center">
+				<h:commandButton style="color:white;font-family:impact;font-size:20px;width:200px;height:50px;padding:2px 2px;background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%)" action="#{mbConnect.connection()}"
 					value="Connexion" />
 			</div>
 			<div class="signup-link">
-				Pas Membre?
-				<h:link value="   S'inscrire Maintenant" outcome="inscription" />
+				Nouvel adhérent ?
+				<h:link value="Pour s'inscrire, c'est par ici!" outcome="inscription" />
 			</div>
 		</h:form>
 	</div>
+
+	<b:container id="footer_container"> <!-- footer container -->
+				  
+				    <b:column class="footer" span="3"><b:link class="foot_item" value="Qui sommes-nous?" outcome="qui_sommes_nous"/></b:column>
+				    <b:column class="footer" span="3"><b:link class="foot_item" value="Contact" outcome="contact"/></b:column>
+				    <b:column class="footer" span="3"><b:link class="foot_item" value="Règlement" outcome="reglement"/></b:column>
+				    <b:column class="footer" span="3"><b:link class="foot_item" value="Mentions Légales" outcome="mentions_legales"/></b:column>
+					
+	</b:container> <!-- balise qui ferme le footer container -->
 
 </h:body>
 </html>

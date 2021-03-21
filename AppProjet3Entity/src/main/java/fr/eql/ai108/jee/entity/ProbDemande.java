@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ public class ProbDemande implements Serializable {
 	
 	private String labelProblemDemande;
 	
-	@OneToMany(mappedBy = "probDemande", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "probDemande", /*cascade = CascadeType.PERSIST,*/ fetch = FetchType.EAGER)
 	private Set<Demande> demandes;
 
 	public ProbDemande() {
@@ -57,6 +58,12 @@ public class ProbDemande implements Serializable {
 
 	public void setDemandes(Set<Demande> demandes) {
 		this.demandes = demandes;
+	}
+	
+	@Override
+	public String toString() {
+		return "ProbDemande [id=" + id + ", labelProblemDemande=" + labelProblemDemande + ", demandes=" + demandes
+				+ "]";
 	}
 	
 }

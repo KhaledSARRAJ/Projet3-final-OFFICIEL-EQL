@@ -16,6 +16,7 @@ public interface DemandeIBusiness {
 	List<Demande> displayDemande(Integer userId, String labelActivite, String labelVille, LocalDate dateDebut, LocalDate dateFin);
 	List<Demande> displayDemandeTri(Demande demande);
 	boolean addDemand(Demande demande);
+	void clotureDemand(Demande demPourvue);
 
 	List<Demande> displayByReponseUser(User user);
 
@@ -24,6 +25,6 @@ public interface DemandeIBusiness {
 	List<Demande> getDemandesPourvues(int idUser);
 	Demande updateDemand(Demande demande);
 	void deleteDemand(Demande demande);
-
+	
 
 }

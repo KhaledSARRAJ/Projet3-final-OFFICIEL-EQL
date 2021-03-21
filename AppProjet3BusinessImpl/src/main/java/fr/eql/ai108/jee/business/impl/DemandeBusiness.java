@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 
 import fr.eql.ai108.jee.entity.Demande;
 import fr.eql.ai108.jee.entity.ReponseAction;
+import fr.eql.ai108.jee.entity.TypeFinalisation;
 import fr.eql.ai108.jee.entity.User;
 import fr.eql.ai108.jee.ibusiness.api.DemandeIBusiness;
 import fr.eql.ai108.jee.idao.api.DemandeIDao;
@@ -65,9 +66,10 @@ public class DemandeBusiness implements DemandeIBusiness {
 
 	@Override
 	public void deleteDemand(Demande demande) {
-		// TODO Auto-generated method stub
-			proxyDemandeDao.delete(demande);
-	}
+		 proxyDemandeDao.delete(demande);
+		
+		}
+	
 
 	@Override
 	public List<Demande> getDemandesNonPourvues(int idUser) {
@@ -85,5 +87,17 @@ public class DemandeBusiness implements DemandeIBusiness {
 		
 		return demandList;
 	}
+
+	
+	@Override
+	public void clotureDemand(Demande demPourvue) {
+		demPourvue.setDateCloture(LocalDate.now());
+		TypeFinalisation type = new TypeFinalisation();
+		type.setId(1);
+		type.setLabelTypeFinal("standard");
+		demPourvue.setFinaleDemande(type);
+		proxyDemandeDao.update(demPourvue);
+	}
+	
 
 }

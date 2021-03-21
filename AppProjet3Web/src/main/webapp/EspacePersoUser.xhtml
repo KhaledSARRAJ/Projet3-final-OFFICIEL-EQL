@@ -4,19 +4,73 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions">
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:b="http://bootsfaces.net/ui">
+	
 <h:head>
-	<h:outputStylesheet library="css" name="boots/bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<!-- Style CSS fait maison -->
 	<h:dataTable value="#{mbConnect.user}" var="test"></h:dataTable>
 </h:head>
 <h:body>
+
+<b:container id="nav_container"> <!-- container du menu de navigation -->
+	
+		<b:column id="home" span="4"> 
+		<b:link id="homeLink" value="Association Pand'Ami" outcome="connectedView.xhtml"/>
+		</b:column>
+
+		<b:column class="navi" span="2">
+			<b:dropButton contentDisabled="false" look="info" value="Bénéficiaire">
+				<b:navLink value="Effectuer une nouvelle demande" href="demandForm.xhtml"></b:navLink>
+				<b:navLink value="Mes demandes" href="listeDemandes.xhtml"></b:navLink>
+				<b:navLink value="Mes préférences" href="#"></b:navLink>
+
+				<b:navLink></b:navLink>
+				<b:navLink header="Notification"></b:navLink>
+				<b:navLink value="Témoignage" href="#"></b:navLink>
+				<b:navLink value="Comment ca marche ?" href="EspacePersoUser.xhtml"></b:navLink>
+			</b:dropButton>
+		</b:column>
+
+		<b:column class="navi" span="2">
+			<b:dropButton contentDisabled="false" look="info" value="Volontaire">
+				<b:navLink value="Rechercher un bénéficiaire" href="rechercheAction.xhtml"></b:navLink>
+				<b:navLink value="Mes sollicitations" href="affichageStatut.xhtml"></b:navLink>
+				<b:navLink value="Mes préférences" href="#"></b:navLink>
+
+				<b:navLink></b:navLink>
+				<b:navLink header="Notification"></b:navLink>
+				<b:navLink value="Témoignage" href="#"></b:navLink>
+				<b:navLink value="Comment ca marche ?" href="EspacePersoUser.xhtml"></b:navLink>
+				
+			</b:dropButton>
+		</b:column>
+
+		<b:column class="navi" span="2">
+		<h:outputLabel id="connectLabel" value="Bienvenue, #{mbConnect.user.prenomUtil} !"/>
+		</b:column>
+
+		<b:column class="navi" span="2">
+			<b:dropButton contentDisabled="false" look="info" value="Compte">
+				<b:navLink value="Profil" outcome="EspacePersoUser.xhtml"></b:navLink>
+				<b:navLink value="Déconnexion" action="#{mbConnect.disconnect()}" href="welcome.xhtml"></b:navLink>
+				<b:navLink></b:navLink>
+				<b:navLink header="Problème"></b:navLink>
+				<b:navLink value="Besoin d'aide ?" href="#"></b:navLink>
+				<b:navLink value="Signaler un problème ?" href="#"></b:navLink>
+			</b:dropButton>
+		</b:column>
+	
+	</b:container> <!-- balise qui ferme le menu de navigation container -->
+	
 	<div class="container spacer">
 		<!-- si on veut que le tableau occupe pas tout le colonne et qu'il soit centre: "col-md-6 col-xs-12" ou "col-md10 col-md-offset-1 col-xs-12"-->
 		<div class="panel panel-primary">
 			<!--Couleur bleu-->
-			<div class="panel-heading">Espace personnel</div>
+			<div class="titrePage">Espace personnel</div>
 			<div class="panel-body">
-				<table class="table table-striped">
+				<table class="table">
 					<thead>
 						<tr>
 							<th>Id°</th>
@@ -60,7 +114,7 @@
 									</p:outputLabel>
 									<br />
 									
-									<p:commandButton value="Désinscrire" action="#{mbConnnectUser.Delete()}" style="display: float; float:right ; margin-right: 2vh"/>
+									<p:commandButton class="monBouton" value="Clôturer mon compte" action="#{mbConnnectUser.Delete()}" style="font-size:15px;display: float; float:right ; margin-right: 2vh"/>
 								</p:outputPanel>
 							</h:form>
 
@@ -77,5 +131,18 @@
 
 
 	<!-- </ui:define> -->
+	
+		<b:container id="footer_container">
+		<!-- footer container -->
+
+  		<b:column class="footer" span="3"><b:link class="foot_item" value="Qui sommes-nous?" outcome="qui_sommes_nous"/></b:column>
+		<b:column class="footer" span="3"><b:link class="foot_item" value="Contact" outcome="contact"/></b:column>
+		<b:column class="footer" span="3"><b:link class="foot_item" value="Règlement" outcome="reglement"/></b:column>
+		<b:column class="footer" span="3"><b:link class="foot_item" value="Mentions Légales" outcome="mentions_legales"/></b:column>
+					
+	</b:container>
+	<!-- balise qui ferme le footer container -->
+	
+	
 </h:body>
 </html>

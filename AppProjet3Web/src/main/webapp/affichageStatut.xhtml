@@ -3,32 +3,70 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui">
+	xmlns:b="http://bootsfaces.net/ui" 
+	xmlns:p="http://primefaces.org/ui">
+
 
 <h:head>
-	<script>
-function displayDetails() {
-	  var x = document.getElementById("details");
-	  if (x.style.visibility === 'hidden') {
-		    x.style.visibility = 'visible';
-	} else {
-		    x.style.visibility = 'hidden';
-		  }
-	}
+<h:outputStylesheet library="css" name="style.css" />
+	<!-- Style CSS fait maison -->
 
-</script>
 </h:head>
 <h:body>
-	<b:navBar brand="Project name" brandHref="#" fixed="top" inverse="true">
-		<b:navbarLinks>
-			<b:navLink value="Home" href="#"></b:navLink>
-			<b:navLink value="About" href="#about"></b:navLink>
-			<b:navLink value="Contact" href="#contact"></b:navLink>
-		</b:navbarLinks>
-	</b:navBar>
+	
+	<b:container id="nav_container"> <!-- container du menu de navigation -->
+	
+		<b:column id="home" span="4"> 
+		<b:link id="homeLink" value="Association Pand'Ami" outcome="connectedView.xhtml"/>
+		</b:column>
+
+		<b:column class="navi" span="2">
+			<b:dropButton contentDisabled="false" look="info" value="Bénéficiaire">
+				<b:navLink value="Effectuer une nouvelle demande" href="demandForm.xhtml"></b:navLink>
+				<b:navLink value="Mes demandes" href="listeDemandes.xhtml"></b:navLink>
+				<b:navLink value="Mes préférences" href="#"></b:navLink>
+
+				<b:navLink></b:navLink>
+				<b:navLink header="Notification"></b:navLink>
+				<b:navLink value="Témoignage" href="#"></b:navLink>
+				<b:navLink value="Comment ca marche ?" href="EspacePersoUser.xhtml"></b:navLink>
+			</b:dropButton>
+		</b:column>
+
+		<b:column class="navi" span="2">
+			<b:dropButton contentDisabled="false" look="info" value="Volontaire">
+				<b:navLink value="Rechercher un bénéficiaire" href="rechercheAction.xhtml"></b:navLink>
+				<b:navLink value="Mes sollicitations" href="affichageStatut.xhtml"></b:navLink>
+				<b:navLink value="Mes préférences" href="#"></b:navLink>
+
+				<b:navLink></b:navLink>
+				<b:navLink header="Notification"></b:navLink>
+				<b:navLink value="Témoignage" href="#"></b:navLink>
+				<b:navLink value="Comment ca marche ?" href="EspacePersoUser.xhtml"></b:navLink>
+				
+			</b:dropButton>
+		</b:column>
+
+		<b:column class="navi" span="2">
+		<h:outputLabel id="connectLabel" value="Bienvenue, #{mbConnect.user.prenomUtil} !"/>
+		</b:column>
+
+		<b:column class="navi" span="2">
+			<b:dropButton contentDisabled="false" look="info" value="Compte">
+				<b:navLink value="Profil" outcome="EspacePersoUser.xhtml"></b:navLink>
+				<b:navLink value="Déconnexion" action="#{mbConnect.disconnect()}" href="welcome.xhtml"></b:navLink>
+				<b:navLink></b:navLink>
+				<b:navLink header="Problème"></b:navLink>
+				<b:navLink value="Besoin d'aide ?" href="#"></b:navLink>
+				<b:navLink value="Signaler un problème ?" href="#"></b:navLink>
+			</b:dropButton>
+		</b:column>
+	
+	</b:container> <!-- balise qui ferme le menu de navigation container -->
+	
 	<b:container>
-		<div class="titrePage" style="padding: 5%">
-			<h2>Statut de vos propositions d'aide</h2>
+		<div class="titrePage">
+			Statut de vos propositions d'aide
 		</div>
 		<h:form>
 			<p:dataScroller value="#{mbAffichageStatut.pairs}" var="pair"
@@ -63,12 +101,11 @@ function displayDetails() {
 					</div>
 
 					<div class="showDetailButton" id="detailButton">
-						<p:commandButton value="Voir détail"
-							disabled="#{pair.getValue(1) != 'Sélectionné'}"
-							onclick="displayDetails()">
-						</p:commandButton>
+							<p:commandButton value="Voir détail" disabled="#{pair.getValue(1) != 'Sélectionné'}"
+								actionListener="#{mbAffichageStatut.details(pair.getValue(0))}"
+								update="monForm" />
 
-					</div>
+						</div>
 
 					<div id="desist">
 						<p:commandButton value="Se désister"
@@ -79,22 +116,38 @@ function displayDetails() {
 						</p:commandButton>
 
 					</div>
-
-					<div id="details"
-						style="visibility: hidden; border-style: dotted; width: 50vh;">
-						<h4 style="margin-right: 2vh">Addresse du bénéficiaire :
-							#{pair.getValue(0).getUser().getVoieUtil()}</h4>
-						<h4 style="margin-right: 2vh">Lieu où est rendu le service :
-							#{pair.getValue(0).getVoieAction()}</h4>
-						<h4 style="margin-right: 2vh">Numéro de téléphone du
-							bénéficiaire : #{pair.getValue(0).getUser().getTelUtil()}</h4>
-						<h4>Second numéro :
-							#{pair.getValue(0).getUser().getAutreTel()}</h4>
-					</div>
+					
 				</div>
 
 			</p:dataScroller>
 		</h:form>
+		
+		<h:form id="monForm" style="border-style: dotted; width: 50vh; margin: auto; align-self: center;">
+				<div id="details" style="border-style: solid;">
+					<h4 style="margin-right: 2vh">Addresse du bénéficiaire :
+						#{mbAffichageStatut.demande.getUser().getVoieUtil()}</h4>
+					<h4 style="margin-right: 2vh">Lieu où est rendu le service :
+						#{mbAffichageStatut.demande.getVoieAction()}</h4>
+					<h4 style="margin-right: 2vh">Numéro de téléphone du
+						bénéficiaire : #{mbAffichageStatut.demande.getUser().getTelUtil()}</h4>
+					<h4>Second numéro :
+						#{mbAffichageStatut.demande.getUser().getAutreTel()}</h4>
+				</div>
+			</h:form>
+		
 	</b:container>
+	
+		<b:container id="footer_container">
+		<!-- footer container -->
+
+  		<b:column class="footer" span="3"><b:link class="foot_item" value="Qui sommes-nous?" outcome="qui_sommes_nous"/></b:column>
+		<b:column class="footer" span="3"><b:link class="foot_item" value="Contact" outcome="contact"/></b:column>
+		<b:column class="footer" span="3"><b:link class="foot_item" value="Règlement" outcome="reglement"/></b:column>
+		<b:column class="footer" span="3"><b:link class="foot_item" value="Mentions Légales" outcome="mentions_legales"/></b:column>
+					
+	</b:container>
+	<!-- balise qui ferme le footer container -->
+	
+	
 </h:body>
 </html>

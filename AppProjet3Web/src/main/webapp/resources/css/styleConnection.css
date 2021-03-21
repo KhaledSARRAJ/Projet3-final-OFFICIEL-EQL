@@ -31,7 +31,7 @@ html,body{
   color: #fff;
   user-select: none;
   border-radius: 15px 15px 0 0;
-  background: linear-gradient(-135deg, #c850c0, #4158d0);
+background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%)
 }
 .wrapper form{
   padding: 10px 30px 50px 30px;
@@ -103,14 +103,14 @@ form .content .pass-link{
   color: "";
 }
 form .field input[type="submit"]{
-  color: #fff;
+  color: yellow;
   border: none;
   padding-left: 0;
   margin-top: -10px;
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
-  background: linear-gradient(-135deg, #c850c0, #4158d0);
+
   transition: all 0.3s ease;
 }
 form .field input[type="submit"]:active{
@@ -130,3 +130,14 @@ form .pass-link a:hover,
 form .signup-link a:hover{
   text-decoration: underline;
 }
+
+.pass-link{
+	margin-left:2em !important;
+}
+
+#remember_me{
+	 color: #4158d0;
+	 font-size:small !important;
+}
+
+

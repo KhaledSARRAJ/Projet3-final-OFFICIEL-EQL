@@ -10,69 +10,73 @@
 
 
 <h:head>
-	<style>
-.titrePage {
-	text-align: center;
-	color: red;
-	border-style: dotted;
-	margin-top: 7vh;
-}
-
-#demandForm {
-	border-style: dotted;
-	margin: auto;
-	padding: 20%;
-	background-color: rgba(50, 115, 220, 0.3);
-}
-
-form {
-	border-style: double;
-	border-color: green;
-	background-color: lightgray;
-}
-
-table {
-	border-style: double;
-	border-color: red;
-	margin: auto;
-	color: blue;
-}
-
-#buttonRegister {
-	color: red;
-	text-align: center;
-	border-style: solid;
-	border-color: blue;
-	border-style: solid;
-}
-
-td {
-	width: 100vw;
-}
-</style>
-
+	<h:outputStylesheet library="css" name="style.css" />
+	<!-- Style CSS fait maison -->
 </h:head>
 
 
 <h:body>
 
-	<b:navBar brand="Project name" brandHref="#" fixed="top" inverse="true">
-		<b:navbarLinks>
-			<b:navLink value="Home" href="#"></b:navLink>
-			<b:navLink value="About" href="#about"></b:navLink>
-			<b:navLink value="Contact" href="#contact"></b:navLink>
-		</b:navbarLinks>
-	</b:navBar>
+	<b:container id="nav_container"> <!-- container du menu de navigation -->
+	
+		<b:column id="home" span="4"> 
+		<b:link id="homeLink" value="Association Pand'Ami" outcome="connectedView.xhtml"/>
+		</b:column>
+
+		<b:column class="navi" span="2">
+			<b:dropButton contentDisabled="false" look="info" value="Bénéficiaire">
+				<b:navLink value="Effectuer une nouvelle demande" href="demandForm.xhtml"></b:navLink>
+				<b:navLink value="Mes demandes" href="listeDemandes.xhtml"></b:navLink>
+				<b:navLink value="Mes préférences" href="#"></b:navLink>
+
+				<b:navLink></b:navLink>
+				<b:navLink header="Notification"></b:navLink>
+				<b:navLink value="Témoignage" href="#"></b:navLink>
+				<b:navLink value="Comment ca marche ?" href="EspacePersoUser.xhtml"></b:navLink>
+			</b:dropButton>
+		</b:column>
+
+		<b:column class="navi" span="2">
+			<b:dropButton contentDisabled="false" look="info" value="Volontaire">
+				<b:navLink value="Rechercher un bénéficiaire" href="rechercheAction.xhtml"></b:navLink>
+				<b:navLink value="Mes sollicitations" href="affichageStatut.xhtml"></b:navLink>
+				<b:navLink value="Mes préférences" href="#"></b:navLink>
+
+				<b:navLink></b:navLink>
+				<b:navLink header="Notification"></b:navLink>
+				<b:navLink value="Témoignage" href="#"></b:navLink>
+				<b:navLink value="Comment ca marche ?" href="EspacePersoUser.xhtml"></b:navLink>
+				
+			</b:dropButton>
+		</b:column>
+
+		<b:column class="navi" span="2">
+		<h:outputLabel id="connectLabel" value="Bienvenue, #{mbConnect.user.prenomUtil} !"/>
+		</b:column>
+
+		<b:column class="navi" span="2">
+			<b:dropButton contentDisabled="false" look="info" value="Compte">
+				<b:navLink value="Profil" outcome="EspacePersoUser.xhtml"></b:navLink>
+				<b:navLink value="Déconnexion" action="#{mbConnect.disconnect()}" href="welcome.xhtml"></b:navLink>
+				<b:navLink></b:navLink>
+				<b:navLink header="Problème"></b:navLink>
+				<b:navLink value="Besoin d'aide ?" href="#"></b:navLink>
+				<b:navLink value="Signaler un problème ?" href="#"></b:navLink>
+			</b:dropButton>
+		</b:column>
+	
+	</b:container> <!-- balise qui ferme le menu de navigation container -->
+	
 	<b:container>
 
 		<div class="titrePage">
-			<h2>Création d'une nouvelle demande</h2>
+			Création d'une nouvelle demande
 		</div>
 		<div id="demandForm">
-			<h:form id="form">
+			<h:form class="form">
 				<table>
 					<tr>
-						<td><h:outputLabel value="Type de service requis: " /></td>
+						<td><h:outputLabel value="Quel est votre besoin ? " /></td>
 						<td><h:selectOneMenu value="#{mbDemande.demande.activite}"
 								converter="omnifaces.SelectItemsConverter">
 								<f:selectItems value="#{mbDemande.activites}" var="activite"
@@ -81,7 +85,7 @@ td {
 					</tr>
 					<tr>
 						<td><h:outputLabel
-								value="Ville et code postal du lieu de service: " /></td>
+								value="Préciser votre ville et votre code postal : " /></td>
 						<td><h:selectOneMenu id="ville"
 								value="#{mbDemande.demande.ville}"
 								converter="omnifaces.SelectItemsConverter">
@@ -92,16 +96,16 @@ td {
 					</tr>
 
 					<tr>
-						<td><h:outputLabel value="Numéro et voie: " /></td>
-
+						<td><h:outputLabel 
+								value="Préciser le numéro et le nom de votre rue : " /></td>
 						<td><h:inputText id="adresse" value="#{mbDemande.adresse}" />
-							<h:commandButton value="mon adresse">
+							<h:commandButton style="color:white;font-family:arial;font-size:12px;width:200px;height:30px;padding:0.5px 0.5px;background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%)" value="Utiliser l'adresse de mon profil">
 								<p:ajax event="click" listener="#{mbDemande.copyAdress()}"
 									update="adresse ville" />
 							</h:commandButton> <h:message for="adresse" style="color: red" /></td>
 					</tr>
 					<tr>
-						<td><h:outputLabel value="Date du service: " /></td>
+						<td><h:outputLabel value="Quand avez-vous besoin d'aide ? " /></td>
 
 						<td><h:inputText a:type="date" converter="localDateConverter"
 								value="#{mbDemande.demande.dateAction}">
@@ -109,7 +113,7 @@ td {
 							</h:inputText></td>
 					</tr>
 					<tr>
-						<td><h:outputLabel value="Horaire du service: " /></td>
+						<td><h:outputLabel value="A quelle heure ? " /></td>
 
 						<td><h:selectOneMenu value="#{mbDemande.demande.heureDebut}"
 								converter="omnifaces.SelectItemsConverter">
@@ -132,9 +136,9 @@ td {
 
 				</table>
 
-				<div id="buttonRegister">
-					<h:commandButton action="#{mbDemande.registerNewDemand()}"
-						value="Valider" />
+				<div>
+					<h:commandButton style="color:white;font-family:arial;font-size:20px;width:400px;height:50px;padding:2px 2px;background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%)" action="#{mbDemande.registerNewDemand()}"
+						value="Valider la demande" />
 					<br />
 					<h:outputLabel value="#{mbDemande.message}" />
 				</div>
@@ -142,5 +146,18 @@ td {
 			</h:form>
 		</div>
 	</b:container>
+	
+		<b:container id="footer_container">
+		<!-- footer container -->
+
+  		<b:column class="footer" span="3"><b:link class="foot_item" value="Qui sommes-nous?" outcome="qui_sommes_nous"/></b:column>
+		<b:column class="footer" span="3"><b:link class="foot_item" value="Contact" outcome="contact"/></b:column>
+		<b:column class="footer" span="3"><b:link class="foot_item" value="Règlement" outcome="reglement"/></b:column>
+		<b:column class="footer" span="3"><b:link class="foot_item" value="Mentions Légales" outcome="mentions_legales"/></b:column>
+					
+	</b:container>
+	<!-- balise qui ferme le footer container -->
+	
+	
 </h:body>
 </html>

@@ -1,5 +1,123 @@
+body{
+	background: linear-gradient(white,cyan,white) !important;
+}
+
+.titrePage,h2{
+	margin-top: 1em !important;
+	margin-bottom: 1em !important;
+	padding-top: 0.5em;
+	padding-bottom:0.5em;
+	padding-right: 0.5em;
+	padding-left:0.5em;
+	font-size: 30px !important;
+	background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%) !important;
+	color:white !important;
+	text-align:center;
+}
+
+h3{
+	margin-top: 1em !important;
+	margin-bottom: 1em !important;
+	padding-top: 0.5em;
+	padding-bottom:0.5em;
+	padding-left:0.5em;
+	font-size: 20px !important;
+	background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%) !important;
+	color:white !important;
+	
+}
+
+
+.footer{
+	margin-top:2em !important;
+}
+
+#nav_container{
+background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%) !important;
+text-align:center;
+margin-bottom:2em;
+}
+
+#footer_container{
+margin-top:2em !important;
+background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%) !important;
+text-align:center;
+}
+
+#home{
+	margin-top:0.8em !important;
+	padding-bottom:0.5em !important;
+	color:white !important;
+	font-size:30px !important;
+}
+
+#homeLink{
+	color:white !important;
+}
+
+
+.navi{
+	margin-top:2em !important;
+	margin-bottom:2em !important;
+
+}
+
+#field{
+	position:right !important;
+}
+
+.footer{
+	margin-top:2em !important;
+	margin-bottom:2em !important;
+}
+
+.foot_item{
+	color: white !important;
+}
+
 .buttonStyle{
 	margin-right:1em !important; 
 	margin-left:1em !important;
 }
 
+.monBouton{
+	background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%) !important;
+	color:white;
+	margin-top:0.5em;
+	margin-bottom:0.5em;
+}
+
+
+.activity{
+	margin-top:1em !important;
+	margin-right:1em !important;
+	
+}
+
+.form, .table{
+	background-color:white !important;
+	padding-top:0.5em !important;
+	padding-bottom:0.5em !important;
+	padding-left:0.5em !important;
+	padding-right:0.5em !important;
+	font-size: 15px !important;
+	color:blue !important;
+}
+
+.fied{
+	padding-left:0.5em !important;
+	padding-right:0.5em;
+	margin-top:0.5em;
+	margin-bottom:0.5em;
+	margin-left:0.5em;
+	margin-right:0.5em;
+}
+
+#connectLabel{
+	background-color:#00b900;
+	color:white;
+	padding-top:0.5em !important;
+	padding-bottom:0.5em !important;
+	padding-left:0.5em !important;
+	padding-right:0.5em !important;
+}

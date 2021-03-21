@@ -35,6 +35,8 @@ public class ShowStatusReponseManagedBean implements Serializable {
 	
 	private List<String> demandeStatut;
 	
+	private Demande demande;
+	
 	
 	@EJB
 	private DemandeIBusiness proxyDemandeBu;
@@ -81,7 +83,12 @@ public class ShowStatusReponseManagedBean implements Serializable {
 		}
 		
 	}
-
+	
+	public void details(Demande demande) {
+        this.demande = demande;
+        System.out.println(demande.getVoieAction());
+        System.out.println(demande.getUser().getVoieUtil());
+	}
 
 	public User getUserConnected() {
 		return userConnected;
@@ -120,6 +127,14 @@ public class ShowStatusReponseManagedBean implements Serializable {
 
 	public void setPairs(List<Pair<Demande, String>> pairs) {
 		this.pairs = pairs;
+	}
+
+	public Demande getDemande() {
+		return demande;
+	}
+
+	public void setDemande(Demande demande) {
+		this.demande = demande;
 	}
 
 	

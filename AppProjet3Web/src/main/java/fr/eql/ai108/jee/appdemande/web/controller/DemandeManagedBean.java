@@ -62,7 +62,7 @@ public class DemandeManagedBean implements Serializable {
 	public String cancelDemand(Demande demandeCanceled) {
 		proxyDemandeBu.deleteDemand(demandeCanceled);
 		//message = "Votre demande a bien été annulée.";
-		return "/connectedView.xhtml?faces-redirect=true";
+		return "/listeDemandes.xhtml?faces-redirect=true";
 	}
 
 	public String updateDemand(Demande demandeUpdated) {
@@ -73,7 +73,7 @@ public class DemandeManagedBean implements Serializable {
 
 	public String confirmUpdate() {
 		proxyDemandeBu.updateDemand(demande);
-	return "/connectedView.xhtml?faces-redirect=true";
+	return "/listeDemandes.xhtml?faces-redirect=true";
 	}
 
 	

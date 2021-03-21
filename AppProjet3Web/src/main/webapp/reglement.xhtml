@@ -2,10 +2,70 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
 
-<h:head></h:head> 
+<h:head>
+<h:outputStylesheet library="css" name="style.css" />
+	<!-- Style CSS fait maison -->
+</h:head> 
+
 <h:body> 
+
+<b:container id="nav_container">
+		<!-- container du menu de navigation -->
+
+		<b:column id="home" span="4"> 
+		<b:link id="homeLink" value="Association Pand'Ami" outcome="welcome.xhtml"/>
+		</b:column>
+		
+
+		<b:column class="navi" span="2">
+			<b:dropButton contentDisabled="true" look="info" value="Bénéficiaire">
+				<b:navLink value="Effectuer une nouvelle demande" href="demandForm.xhtml"></b:navLink>
+				<b:navLink value="Mes demandes" href="listeDemandes.xhtml"></b:navLink>
+				<b:navLink value="Mes préférences" href="#"></b:navLink>
+
+				<b:navLink></b:navLink>
+				<b:navLink header="Notification"></b:navLink>
+				<b:navLink value="Témoignage" href="#"></b:navLink>
+				<b:navLink value="Comment ca marche ?" href="EspacePersoUser.xhtml"></b:navLink>
+			</b:dropButton>
+		</b:column>
+
+		<b:column class="navi" span="2">
+			<b:dropButton contentDisabled="true" look="info" value="Volontaire">
+				<b:navLink value="Mes sollicitations" href="affichageStatut.xhtml"></b:navLink>
+				<b:navLink value="Mes préférences" href="#"></b:navLink>
+
+				<b:navLink></b:navLink>
+				<b:navLink header="Notification"></b:navLink>
+				<b:navLink value="Témoignage" href="#"></b:navLink>
+				<b:navLink value="Comment ca marche ?" href="EspacePersoUser.xhtml"></b:navLink>
+				
+			</b:dropButton>
+		</b:column>
+		
+		<b:column class="navi" span="1">
+    <b:button value="S'inscrire" look="info" outcome="inscription" />		
+		</b:column>
+
+		<b:column class="navi" span="1">
+    <b:button value="Connexion" look="info" outcome="connection" />		
+		</b:column>
+
+		<b:column class="navi" span="2">
+			<b:dropButton contentDisabled="true" look="info" value="Compte">
+				<b:navLink value="Profil" outcome="EspacePersoUser.xhtml"></b:navLink>
+				<b:navLink value="Connexion" href="connection.xhtml"></b:navLink>
+				<b:navLink></b:navLink>
+				<b:navLink header="Problème"></b:navLink>
+				<b:navLink value="Besoin d'aide ?" href="#"></b:navLink>
+				<b:navLink value="Signaler un problème ?" href="#"></b:navLink>
+			</b:dropButton>
+		</b:column>
+	</b:container>
+	<!-- balise qui ferme le menu de navigation container -->
 
 <div class="container cgu">
 	<div class="row">
@@ -19,7 +79,7 @@
         l'application Pand'Ami développée par AI108 Groupe 1 et tout service de communication au public en ligne qui en dépend,
         ainsi que les droits et obligations de ses Utilisateurs respectifs. 
         Sauf disposition expresse contraire, toute nouvelle caractéristique qui modifie un ou plusieurs services
-        existants ou tout nouveau service lancé par AlloVoisins seront soumis aux présentes Conditions. 
+        existants ou tout nouveau service lancé par Pand'Ami seront soumis aux présentes Conditions. 
         Des Conditions Particulières notamment applicables aux professionnels complètent les présentes Conditions
         Générales. Elles sont alors précisées lors de la présentation de la fonctionnalité. 
         Le formulaire d’inscription affiché en ligne fait partie intégrante des présentes dispositions.
@@ -71,6 +131,17 @@
 	</div>
 	</div>
 	</div>
+	
+	<b:container id="footer_container">
+		<!-- footer container -->
+
+  		<b:column class="footer" span="3"><b:link class="foot_item" value="Qui sommes-nous?" outcome="qui_sommes_nous"/></b:column>
+		<b:column class="footer" span="3"><b:link class="foot_item" value="Contact" outcome="contact"/></b:column>
+		<b:column class="footer" span="3"><b:link class="foot_item" value="Règlement" outcome="reglement"/></b:column>
+		<b:column class="footer" span="3"><b:link class="foot_item" value="Mentions Légales" outcome="mentions_legales"/></b:column>
+					
+	</b:container>
+	<!-- balise qui ferme le footer container -->
 
 </h:body> 
 </html>

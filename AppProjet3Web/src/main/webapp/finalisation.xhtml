@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<h:outputStylesheet library="css" name="finalisation.css" />
+</h:head>
+<body>
+	<h1 class="titre">CLOTURE DEMANDE</h1>
+	<div class="maPage">
+		<table class="infoDemande">
+			<tr>
+				<td><h3 class="titre3">#{mbCloture.selectedDemande.activite.labelActivite}
+						à #{mbCloture.selectedDemande.ville.labelVille}</h3></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><h:outputLabel a:type="date" converter="localDateConverter"
+						value="#{demande.dateAction}" />
+					#{mbCloture.selectedDemande.heureDebut.heure} H
+					#{mbCloture.selectedDemande.minuteDebut.minute} -
+					#{mbCloture.selectedDemande.heureFin.heure} H
+					#{mbCloture.selectedDemande.minuteFin.minute}</td>
+			</tr>
+		</table>
+		<h:form class="formCloture">
+			<table>
+				<tr>
+					<td>Déroulement du service</td>
+					<td><h:selectOneMenu
+							value="#{mbCloture.selectedDemande.finaleDemande}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItems value="#{mbCloture.typeFinalisations}"
+								var="typeFinalisation" itemValue="#{typeFinalisation}"
+								itemLabel="#{typeFinalisation.labelTypeFinal}" />
+						</h:selectOneMenu></td>
+					<td>Détail</td>
+					<td><h:selectOneMenu
+							value="#{mbCloture.selectedDemande.probDemande}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItems value="#{mbCloture.probDemandes}"
+								var="probDemande" itemValue="#{probDemande}"
+								itemLabel="#{probDemande.labelProblemDemande}" />
+						</h:selectOneMenu></td>
+				</tr>
+			</table>
+			<h:commandButton class="monBouton"
+				action="#{mbCloture.saveCloture()}" value="Valider" />
+		</h:form>
+	</div>
+</body>
+</html>

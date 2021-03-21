@@ -26,14 +26,6 @@ public class AccountManagedBean implements Serializable {
 	public String createAccount() {
 		
 		user = proxyAccountBu.createAccount(user);
-		if(user == null) {
-			message = "Veuillez inscrire SVP";
-		}else {
-			/*
-			message = "Merci " + user.getLogin() + ". Votre compte a bien été créé";
-			*/
-		}
-		
 		user = new User();
 		return "/confirmation.xhtml?faces-redirect=true";
 	}

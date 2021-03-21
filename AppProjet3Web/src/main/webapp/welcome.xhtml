@@ -15,44 +15,47 @@
 	<b:container id="nav_container">
 		<!-- container du menu de navigation -->
 
-		<b:column span="4" style="font-size:30px;margin-top:0.8em"> Association Pand'Ami </b:column>
+		<b:column id="home" span="4"> 
+		<b:link id="homeLink" value="Association Pand'Ami" outcome="welcome.xhtml"/>
+		</b:column>
+		
 
-		<b:column span="2" style="margin-bottom:2em;margin-top:2em">
-			<b:dropButton look="primary" value="Bénéficiaire">
-				<b:navLink value="Comment ca marche ?" href="EditProfil.xhtml"></b:navLink>
-				<b:navLink value="Mes demandes" href="#"></b:navLink>
-				<b:navLink value="Mes péréférences" href="#"></b:navLink>
+		<b:column class="navi" span="2">
+			<b:dropButton contentDisabled="true" look="info" value="Bénéficiaire">
+				<b:navLink value="Effectuer une nouvelle demande" href="demandForm.xhtml"></b:navLink>
+				<b:navLink value="Mes demandes" href="listeDemandes.xhtml"></b:navLink>
+				<b:navLink value="Mes préférences" href="#"></b:navLink>
 
 				<b:navLink></b:navLink>
 				<b:navLink header="Notification"></b:navLink>
-				<b:navLink value="Suivi" href="#"></b:navLink>
-				<b:navLink value="Témoinage" href="#"></b:navLink>
+				<b:navLink value="Témoignage" href="#"></b:navLink>
+				<b:navLink value="Comment ca marche ?" href="EspacePersoUser.xhtml"></b:navLink>
 			</b:dropButton>
 		</b:column>
 
-		<b:column span="2" style="margin-bottom:2em;margin-top:2em">
-			<b:dropButton look="primary" value="Volontaire">
-				<b:navLink value="Comment ca marche ?" href="EditProfil.xhtml"></b:navLink>
-				<b:navLink value="Mes actions" href="#"></b:navLink>
-				<b:navLink value="Mes péréférences" href="#"></b:navLink>
+		<b:column class="navi" span="2">
+			<b:dropButton contentDisabled="true" look="info" value="Volontaire">
+				<b:navLink value="Mes sollicitations" href="affichageStatut.xhtml"></b:navLink>
+				<b:navLink value="Mes préférences" href="#"></b:navLink>
 
 				<b:navLink></b:navLink>
 				<b:navLink header="Notification"></b:navLink>
-				<b:navLink value="Suivi" href="#"></b:navLink>
-				<b:navLink value="Témoinage" href="#"></b:navLink>
+				<b:navLink value="Témoignage" href="#"></b:navLink>
+				<b:navLink value="Comment ca marche ?" href="EspacePersoUser.xhtml"></b:navLink>
 				
 			</b:dropButton>
 		</b:column>
-		<b:column span="1" style="margin-bottom:2em;margin-top:2em">
-    <b:button value="S'inscrire" look="primary" outcome="inscription" />		
+		
+		<b:column class="navi" span="1">
+    <b:button value="S'inscrire" look="info" outcome="inscription" />		
 		</b:column>
 
-		<b:column span="1" style="margin-bottom:2em;margin-top:2em">
-    <b:button value="Connexion" look="primary" outcome="connection" />		
+		<b:column class="navi" span="1">
+    <b:button value="Connexion" look="info" outcome="connection" />		
 		</b:column>
 
-		<b:column span="2" style="margin-bottom:2em;margin-top:2em">
-			<b:dropButton look="primary" value="Compte">
+		<b:column class="navi" span="2">
+			<b:dropButton contentDisabled="true" look="info" value="Compte">
 				<b:navLink value="Profil" outcome="EspacePersoUser.xhtml"></b:navLink>
 				<b:navLink value="Connexion" href="connection.xhtml"></b:navLink>
 				<b:navLink></b:navLink>
@@ -107,23 +110,14 @@
 	<!-- balise qui ferme les publications -->
 
 
-	<b:container>
+	<b:container id="footer_container">
 		<!-- footer container -->
 
-
-		<b:column span="3" style="margin-top:1em">
-			<b:link value="Qui sommes-nous?" outcome="qui_sommes_nous" />
-		</b:column>
-		<b:column span="3" style="margin-top:1em">
-			<b:link value="Contact" outcome="contact" />
-		</b:column>
-		<b:column span="3" style="margin-top:1em">
-			<b:link value="Règlement" outcome="reglement" />
-		</b:column>
-		<b:column span="3" style="margin-top:1em">
-			<b:link value="Mentions Légales" outcome="mentions_legales" />
-		</b:column>
-
+  		<b:column class="footer" span="3"><b:link class="foot_item" value="Qui sommes-nous?" outcome="qui_sommes_nous"/></b:column>
+		<b:column class="footer" span="3"><b:link class="foot_item" value="Contact" outcome="contact"/></b:column>
+		<b:column class="footer" span="3"><b:link class="foot_item" value="Règlement" outcome="reglement"/></b:column>
+		<b:column class="footer" span="3"><b:link class="foot_item" value="Mentions Légales" outcome="mentions_legales"/></b:column>
+					
 	</b:container>
 	<!-- balise qui ferme le footer container -->
 

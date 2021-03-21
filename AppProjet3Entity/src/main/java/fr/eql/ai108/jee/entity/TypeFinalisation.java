@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,8 +24,10 @@ public class TypeFinalisation implements Serializable{
 	
 	private String labelTypeFinal;
 	
-	@OneToMany(mappedBy = "finaleDemande", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "finaleDemande", /*cascade = CascadeType.PERSIST,*/ fetch = FetchType.EAGER)
 	private Set<Demande> demandes;
+	
+	
 
 	public TypeFinalisation() {
 		super();
@@ -57,6 +60,11 @@ public class TypeFinalisation implements Serializable{
 
 	public void setDemandes(Set<Demande> demandes) {
 		this.demandes = demandes;
+	}
+
+	@Override
+	public String toString() {
+		return "TypeFinalisation [id=" + id + ", labelTypeFinal=" + labelTypeFinal + ", demandes=" + demandes + "]";
 	}
 
 }
