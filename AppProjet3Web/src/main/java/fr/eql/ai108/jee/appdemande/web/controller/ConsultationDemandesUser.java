@@ -36,7 +36,7 @@ public class ConsultationDemandesUser implements Serializable {
 		demandesNonPourvues = proxyDemandeBu.getDemandesNonPourvues(userConnected.getId());
 		demandesPourvues = proxyDemandeBu.getDemandesPourvues(userConnected.getId());
 	}
-	
+
 	public String chooseVolunteer(Demande demande) {
 		selectedDemande = demande;
 		return "/listeVolontaires.xhtml?faces-redirect=true";

@@ -7,8 +7,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter(value="localDateConverter")
-public class LocalDateConverter implements javax.faces.convert.Converter {
+@FacesConverter(value="testConverter")
+public class TestConverter implements javax.faces.convert.Converter {
  
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {

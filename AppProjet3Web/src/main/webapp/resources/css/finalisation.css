@@ -1,0 +1,40 @@
+
+
+.formCloture{
+	border-style:groove;
+    border-color: black;
+    background-color: red;
+    padding: 5 px;
+    width:780px;
+}
+
+.titre{
+	color: grey;
+	text-align: center;
+}
+
+.maPage{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1vh;
+    justify-content: space-around;
+    background-color: WhiteSmoke;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+    border-style:groove;
+    border-color: black;
+    width:980px;
+}
+
+.monBouton{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.infoDemande{
+	background-color: red;
+	margin: 10px;
+	width:780px;
+}
