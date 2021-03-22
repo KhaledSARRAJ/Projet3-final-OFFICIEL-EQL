@@ -1,4 +1,3 @@
-
 package fr.eql.ai108.jee.entity;
 
 import java.io.Serializable;

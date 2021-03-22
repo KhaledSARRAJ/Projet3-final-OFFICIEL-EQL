@@ -64,35 +64,32 @@
 	</b:container> <!-- balise qui ferme le menu de navigation container -->
 
 	<b:container>
-
 	<div class="titrePage">Bénévoles qui se sont proposés pour votre demande</div>
-	<div class="volontaires">
-    <h:form id="form">
+	</b:container>
+	
+	<b:container id="benevoles">
        <ui:repeat value="#{mbListeVolontaires.volunteers}" var="volunteer"> 
-			<table>
-            	<tr>
-               		<td class="image">
+			<b:column>
+            	<b:column>
+           
                 		<img class = "panda" src="pics/panda.jpg"/>
-                	</td>
-                	<td>
+                	</b:column>
+                	<b:column>
                 		<p:rating readonly="true" value="5"/>
-                	</td>
-                	<td class="identite">
+                	</b:column>
+                	<b:column class="identite">
 		                <div class="nomprenom">#{volunteer.user.prenomUtil} #{volunteer.user.nomUtil}</div>
 		                <div class="infos">#{volunteer.user.getAge()} ans</div>
 						<div class="infos">#{volunteer.user.ville.CP} #{volunteer.user.ville.labelVille}</div>
 						<div class="infos">#{volunteer.user.genre.labelGenre}</div>
-                	</td>
-                	<td>
-                		<div class="product-list-action">
-							<h:commandButton class="choisir" action="#{mbListeVolontaires.selectVolunteer(volunteer)}" value="Retenir ce bénévole" onclick="return confirm('Souhaitez-vous confirmer votre choix?')"/>
-		                </div>
-                	</td>
-                </tr>
-        	</table> 
+                	</b:column>
+             
+                		<b:column>
+							<h:commandButton class="monBouton" action="#{mbListeVolontaires.selectVolunteer(volunteer)}" value="Retenir ce bénévole" onclick="return confirm('Souhaitez-vous confirmer votre choix?')"/>
+		                </b:column>
+        		</b:column>
         </ui:repeat>
-    </h:form>
-	</div>
+
 	
 	</b:container>
 	
