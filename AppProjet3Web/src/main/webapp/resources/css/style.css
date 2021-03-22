@@ -1,5 +1,5 @@
 body{
-	background: linear-gradient(white,cyan,white) !important;
+	background: radial-gradient(lightgrey,white,lightgrey) !important;
 }
 
 .titrePage,h2{
@@ -60,6 +60,26 @@ text-align:center;
 	margin-top:2em !important;
 	margin-bottom:2em !important;
 
+}
+
+.identite{
+	margin-top:1em !important;
+	margin-bottom:1em !important;
+	margin-right:1em !important;
+	margin-left:1em !important;
+	
+}
+
+.filtreRecherche{
+	position:center;
+}
+
+#publication{
+	display:flex;
+}
+
+#benevoles{
+	display:flex;
 }
 
 #field{

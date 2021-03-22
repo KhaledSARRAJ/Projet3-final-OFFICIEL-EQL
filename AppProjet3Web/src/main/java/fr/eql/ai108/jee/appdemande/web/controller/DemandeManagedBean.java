@@ -3,6 +3,7 @@ package fr.eql.ai108.jee.appdemande.web.controller;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -59,8 +60,9 @@ public class DemandeManagedBean implements Serializable {
 		System.out.println(selectedDemande.toString());
 	}
 	
-	public String cancelDemand(Demande demandeCanceled) {
-		proxyDemandeBu.deleteDemand(demandeCanceled);
+	public String cancelDemand(Demande demande) {
+		demande.setDateAnnulation(LocalDate.now());
+		proxyDemandeBu.updateDemand(demande);
 		//message = "Votre demande a bien été annulée.";
 		return "/listeDemandes.xhtml?faces-redirect=true";
 	}

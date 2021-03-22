@@ -66,8 +66,8 @@ public class DemandeBusiness implements DemandeIBusiness {
 
 	@Override
 	public void deleteDemand(Demande demande) {
-		 proxyDemandeDao.delete(demande);
-		
+		System.out.println("Demande annulée" + demande.getId());
+		proxyDemandeDao.delete(demande);
 		}
 	
 
