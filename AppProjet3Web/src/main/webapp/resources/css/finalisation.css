@@ -2,8 +2,7 @@
 
 .formCloture{
 	border-style:groove;
-    border-color: black;
-    background-color: red;
+    background-color: WhiteSmoke;
     padding: 5 px;
     width:780px;
 }
@@ -34,7 +33,7 @@
 }
 
 .infoDemande{
-	background-color: red;
+	background-color: WhiteSmoke;
 	margin: 10px;
 	width:780px;
 }

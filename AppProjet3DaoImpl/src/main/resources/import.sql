@@ -5,9 +5,12 @@ INSERT INTO `genre` (id, labelGenre) VALUES (2, "Femme");
 INSERT INTO `genre` (id, labelGenre) VALUES (3, "Autre");
 
 -- remplissage table "ville"
-INSERT INTO `ville` (id, CP, labelVille) VALUES (1, 92130, "Issy");
-INSERT INTO `ville` (id, CP, labelVille) VALUES (2, 93130, "Rosny");
-INSERT INTO `ville` (id, CP, labelVille) VALUES (3, 69130, "Caluire");
+INSERT INTO `ville` (id, CP, labelVille) VALUES (1, 93300, "Aubervilliers");
+INSERT INTO `ville` (id, CP, labelVille) VALUES (2, 93110, "Rosny-sous-bois");
+INSERT INTO `ville` (id, CP, labelVille) VALUES (3, 93600, "Aulnay-sous-Bois");
+INSERT INTO `ville` (id, CP, labelVille) VALUES (4, 93100, "Montreuil"); 
+INSERT INTO `ville` (id, CP, labelVille) VALUES (5, 93260, "Les Lilas");
+INSERT INTO `ville` (id, CP, labelVille) VALUES (6, 93200, "Saint-Denis");
 
 -- remplissage table "motif_desinscription"
 INSERT INTO `motif_desinscription` (id, raisonDesinscription) VALUES (1, "Pas le temps");
@@ -20,6 +23,9 @@ INSERT INTO `activite` (id, labelActivite) VALUES (2, "faire les courses");
 INSERT INTO `activite` (id, labelActivite) VALUES (3, "aide aux devoirs");
 INSERT INTO `activite` (id, labelActivite) VALUES (4, "faire le ménage");
 INSERT INTO `activite` (id, labelActivite) VALUES (5, "faire du bricolage");
+INSERT INTO `activite` (id, labelActivite) VALUES (6, "faire du jardinage");
+INSERT INTO `activite` (id, labelActivite) VALUES (7, "transport pour rendez-vous");
+INSERT INTO `activite` (id, labelActivite) VALUES (8, "achats en pharmacie");
 
 -- remplissage table "motif_annulation"
 INSERT INTO `motif_annulation` (id, labelMotifAnnulation) VALUES (1, "plus de besoin");
@@ -27,14 +33,15 @@ INSERT INTO `motif_annulation` (id, labelMotifAnnulation) VALUES (2, "imprévu")
 INSERT INTO `motif_annulation` (id, labelMotifAnnulation) VALUES (3, "action déjà réalisée");
 
 -- remplissage table "type_finalisation"
-INSERT INTO `type_finalisation` (id, labelTypeFinal) VALUES (1, "standard");
+INSERT INTO `type_finalisation` (id, labelTypeFinal) VALUES (1, "Réalisé");
 INSERT INTO `type_finalisation` (id, labelTypeFinal) VALUES (2, "difficultés rencontrées");
-INSERT INTO `type_finalisation` (id, labelTypeFinal) VALUES (3, "non-aboutie");
+INSERT INTO `type_finalisation` (id, labelTypeFinal) VALUES (3, "non-réalisé");
 
 -- remplissage table "probleme_demande"
-INSERT INTO `probleme_demande` (id, labelProblemDemande) VALUES (1, "bénévole absent");
-INSERT INTO `probleme_demande` (id, labelProblemDemande) VALUES (2, "service impossible à réaliser");
-INSERT INTO `probleme_demande` (id, labelProblemDemande) VALUES (3, "travail mal exécuté");
+INSERT INTO `probleme_demande` (id, labelProblemDemande) VALUES (1, "aucun problème rencontré");
+INSERT INTO `probleme_demande` (id, labelProblemDemande) VALUES (2, "bénévole absent");
+INSERT INTO `probleme_demande` (id, labelProblemDemande) VALUES (3, "service impossible à réaliser");
+INSERT INTO `probleme_demande` (id, labelProblemDemande) VALUES (4, "travail mal exécuté");
 
 -- remplissage table "heure"
 
@@ -70,12 +77,23 @@ INSERT INTO `user` (id, genre_id, ville_id, desinscription_id, nomUtil, prenomUt
 -- remplissage table "demande"
 INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (1, 2, 1, 12, 1, 13, 1, null, null, null, "2021-03-11", "123, ma voie", "2021-03-10", null, null, null, 1);
 INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (2, 2, 1, 12, 1, 13, 1, null, null, null, "2021-03-11", "123 soleil", "2021-03-10", null, null, null, 1);
-INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (3, 2, 1, 12, 1, 13, 1, null, null, null, "2021-03-11", "456 rue des amis", "2021-03-10", null, null, null, 1);
-INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (4, 2, 1, 12, 1, 13, 1, null, null, null, "2021-03-11", "789, ratatouille", "2021-03-10", null, null, null, 1);
+INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (3, 2, 1, 12, 1, 13, 1, null, null, null, "2021-03-28", "456 rue des amis", "2021-03-10", null, null, null, 1);
+INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (4, 2, 1, 12, 1, 13, 1, null, null, null, "2021-03-31", "789, ratatouille", "2021-03-10", null, null, null, 1);
+INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (5, 2, 1, 12, 1, 13, 1, null, null, null, "2021-03-25", "456 rue des amis", "2021-03-10", null, null, null, 2);
+INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (6, 2, 1, 12, 1, 13, 1, null, null, null, "2021-03-27", "789, ratatouille", "2021-03-10", null, null, null, 2);
+INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (7, 2, 1, 12, 1, 13, 1, null, null, null, "2021-03-29", "456 rue des amis", "2021-03-10", null, null, null, 2);
+INSERT INTO `demande` (id, ville_id, activite_id, heureDebut_id, minuteDebut_id, heureFin_id, minuteFin_id, motifAnnul_id, finaleDemande_id, probDemande_id, dateAction, voieAction, dateSoumission, dateAnnulation, dateCloture, noteEvaluation, user_id) VALUES (8, 2, 1, 12, 1, 13, 1, null, null, null, "2021-03-30", "789, ratatouille", "2021-03-10", null, null, null, 2);
+
+
+
 
 -- remplissage table "reponseAction"
 INSERT INTO `reponseAction` (id, dateDesistement, dateRejet, dateReponse, dateSelection, demande_id, motifDesist_id, user_id) VALUES(1, null, null, "2021-03-10", null, 1, null, 2);
 INSERT INTO `reponseAction` (id, dateDesistement, dateRejet, dateReponse, dateSelection, demande_id, motifDesist_id, user_id) VALUES(2, null, null, "2021-03-10", null, 1, null, 3);
 INSERT INTO `reponseAction` (id, dateDesistement, dateRejet, dateReponse, dateSelection, demande_id, motifDesist_id, user_id) VALUES(3, null, null, "2021-03-10", null, 1, null, 4);
 INSERT INTO `reponseAction` (id, dateDesistement, dateRejet, dateReponse, dateSelection, demande_id, motifDesist_id, user_id) VALUES(4, null, null, "2021-03-10", null, 1, null, 5);
+
+INSERT INTO `reponseAction` (id, dateDesistement, dateRejet, dateReponse, dateSelection, demande_id, motifDesist_id, user_id) VALUES(5, null, null, "2021-03-10", null, 5, null, 4);
+INSERT INTO `reponseAction` (id, dateDesistement, dateRejet, dateReponse, dateSelection, demande_id, motifDesist_id, user_id) VALUES(6, null, null, "2021-03-10", null, 5, null, 5);
+INSERT INTO `reponseAction` (id, dateDesistement, dateRejet, dateReponse, dateSelection, demande_id, motifDesist_id, user_id) VALUES(7, null, null, "2021-03-10", null, 6, null, 3);
 
