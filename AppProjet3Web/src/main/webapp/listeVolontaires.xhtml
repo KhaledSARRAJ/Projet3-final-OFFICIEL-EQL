@@ -1,27 +1,30 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui" 
-      xmlns:b="http://bootsfaces.net/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
 
 <h:head>
-<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
 	<!-- Style CSS fait maison -->
-</h:head> 
+</h:head>
 
-<h:body> 
+<h:body>
 
-<b:container id="nav_container"> <!-- container du menu de navigation -->
-	
-		<b:column id="home" span="4"> 
-		<b:link id="homeLink" value="Association Pand'Ami" outcome="connectedView.xhtml"/>
+	<b:container id="nav_container">
+		<!-- container du menu de navigation -->
+
+		<b:column id="home" span="4">
+			<b:link id="homeLink" value="Association Pand'Ami"
+				outcome="connectedView.xhtml" />
 		</b:column>
 
 		<b:column class="navi" span="2">
-			<b:dropButton contentDisabled="false" look="info" value="Bénéficiaire">
-				<b:navLink value="Effectuer une nouvelle demande" href="demandForm.xhtml"></b:navLink>
+			<b:dropButton contentDisabled="false" look="info"
+				value="Bénéficiaire">
+				<b:navLink value="Effectuer une nouvelle demande"
+					href="demandForm.xhtml"></b:navLink>
 				<b:navLink value="Mes demandes" href="listeDemandes.xhtml"></b:navLink>
 				<b:navLink value="Mes préférences" href="#"></b:navLink>
 
@@ -34,7 +37,8 @@
 
 		<b:column class="navi" span="2">
 			<b:dropButton contentDisabled="false" look="info" value="Volontaire">
-				<b:navLink value="Rechercher un bénéficiaire" href="rechercheAction.xhtml"></b:navLink>
+				<b:navLink value="Rechercher un bénéficiaire"
+					href="rechercheAction.xhtml"></b:navLink>
 				<b:navLink value="Mes sollicitations" href="affichageStatut.xhtml"></b:navLink>
 				<b:navLink value="Mes préférences" href="#"></b:navLink>
 
@@ -42,67 +46,87 @@
 				<b:navLink header="Notification"></b:navLink>
 				<b:navLink value="Témoignage" href="#"></b:navLink>
 				<b:navLink value="Comment ca marche ?" href="EspacePersoUser.xhtml"></b:navLink>
-				
+
 			</b:dropButton>
 		</b:column>
 
 		<b:column class="navi" span="2">
-		<h:outputLabel id="connectLabel" value="Bienvenue, #{mbConnect.user.prenomUtil} !"/>
+			<h:outputLabel id="connectLabel"
+				value="Bienvenue, #{mbConnect.user.prenomUtil} !" />
 		</b:column>
 
 		<b:column class="navi" span="2">
 			<b:dropButton contentDisabled="false" look="info" value="Compte">
 				<b:navLink value="Profil" outcome="EspacePersoUser.xhtml"></b:navLink>
-				<b:navLink value="Déconnexion" action="#{mbConnect.disconnect()}" href="welcome.xhtml"></b:navLink>
+				<b:navLink value="Déconnexion" action="#{mbConnect.disconnect()}"
+					href="welcome.xhtml"></b:navLink>
 				<b:navLink></b:navLink>
 				<b:navLink header="Problème"></b:navLink>
 				<b:navLink value="Besoin d'aide ?" href="#"></b:navLink>
 				<b:navLink value="Signaler un problème ?" href="#"></b:navLink>
 			</b:dropButton>
 		</b:column>
-	
-	</b:container> <!-- balise qui ferme le menu de navigation container -->
+
+	</b:container>
+	<!-- balise qui ferme le menu de navigation container -->
 
 	<b:container>
-	<div class="titrePage">Bénévoles qui se sont proposés pour votre demande</div>
+		<div class="titrePage">Bénévoles qui se sont proposés pour votre
+			demande</div>
 	</b:container>
-	
-	<b:container id="benevoles">
-       <ui:repeat value="#{mbListeVolontaires.volunteers}" var="volunteer"> 
-			<b:column>
-            	<b:column>
-           
-                		<img class = "panda" src="pics/panda.jpg"/>
-                	</b:column>
-                	<b:column>
-                		<p:rating readonly="true" value="5"/>
-                	</b:column>
-                	<b:column class="identite">
-		                <div class="nomprenom">#{volunteer.user.prenomUtil} #{volunteer.user.nomUtil}</div>
-		                <div class="infos">#{volunteer.user.getAge()} ans</div>
-						<div class="infos">#{volunteer.user.ville.CP} #{volunteer.user.ville.labelVille}</div>
-						<div class="infos">#{volunteer.user.genre.labelGenre}</div>
-                	</b:column>
-             
-                		<b:column>
-							<h:commandButton class="monBouton" action="#{mbListeVolontaires.selectVolunteer(volunteer)}" value="Retenir ce bénévole" onclick="return confirm('Souhaitez-vous confirmer votre choix?')"/>
-		                </b:column>
-        		</b:column>
-        </ui:repeat>
 
-	
+	<b:container id="benevoles">
+		<h:form>
+			<ui:repeat value="#{mbListeVolontaires.volunteers}" var="volunteer">
+				<b:column>
+					<b:column>
+
+						<img class="panda" src="pics/panda.jpg" />
+					</b:column>
+					<b:column>
+						<p:rating readonly="true" value="5" />
+					</b:column>
+					<b:column class="identite">
+						<div class="nomprenom">#{volunteer.user.prenomUtil}
+							#{volunteer.user.nomUtil}</div>
+						<div class="infos">#{volunteer.user.getAge()} ans</div>
+						<div class="infos">#{volunteer.user.ville.CP}
+							#{volunteer.user.ville.labelVille}</div>
+						<div class="infos">#{volunteer.user.genre.labelGenre}</div>
+					</b:column>
+
+					<b:column>
+						<h:commandButton class="monBouton"
+							action="#{mbListeVolontaires.selectVolunteer(volunteer)}"
+							value="Retenir ce bénévole"
+							onclick="return confirm('Souhaitez-vous confirmer votre choix?')" />
+					</b:column>
+				</b:column>
+			</ui:repeat>
+		</h:form>
+
 	</b:container>
-	
+
 	<b:container id="footer_container">
 		<!-- footer container -->
 
-  		<b:column class="footer" span="3"><b:link class="foot_item" value="Qui sommes-nous?" outcome="qui_sommes_nous"/></b:column>
-		<b:column class="footer" span="3"><b:link class="foot_item" value="Contact" outcome="contact"/></b:column>
-		<b:column class="footer" span="3"><b:link class="foot_item" value="Règlement" outcome="reglement"/></b:column>
-		<b:column class="footer" span="3"><b:link class="foot_item" value="Mentions Légales" outcome="mentions_legales"/></b:column>
-					
+		<b:column class="footer" span="3">
+			<b:link class="foot_item" value="Qui sommes-nous?"
+				outcome="qui_sommes_nous" />
+		</b:column>
+		<b:column class="footer" span="3">
+			<b:link class="foot_item" value="Contact" outcome="contact" />
+		</b:column>
+		<b:column class="footer" span="3">
+			<b:link class="foot_item" value="Règlement" outcome="reglement" />
+		</b:column>
+		<b:column class="footer" span="3">
+			<b:link class="foot_item" value="Mentions Légales"
+				outcome="mentions_legales" />
+		</b:column>
+
 	</b:container>
 	<!-- balise qui ferme le footer container -->
-	
-</h:body> 
+
+</h:body>
 </html>
