@@ -33,9 +33,7 @@ public class ConnectionManagedBean implements Serializable {
 		if (user != null) {
 			retour = "/connectedView.xhtml?faces-redirect=true";
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_WARN, "Login et/ou Password incorrect", "azertyuiop"));
-			FacesContext.getCurrentInstance().addMessage("form:mdpUtil", new FacesMessage("Un message ciblé"));
+			retour = "/connection.xhtml?faces-redirect=true";
 
 		}
 		return retour;
